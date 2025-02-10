@@ -11,7 +11,7 @@ class LoadingDialog extends GetxController with GetSingleTickerProviderStateMixi
     super.onInit();
     _animationController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 1100),
+      duration: const Duration(milliseconds: 5000),
     );
   }
 
@@ -28,7 +28,7 @@ class LoadingDialog extends GetxController with GetSingleTickerProviderStateMixi
           ),
           child: SpinKitCircle(
             color: const Color.fromARGB(255, 112, 206, 116),
-            size: 40.0,
+            size: 35.0,
             controller: _animationController,
           ),
         ),

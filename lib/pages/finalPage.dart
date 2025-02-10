@@ -40,7 +40,7 @@ class _FinalPageState extends State<FinalPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     // Icon(Icons.downloading_rounded, size: 17, color: Color.fromARGB(255, 106, 183, 71)),
-                    FaIcon(FontAwesomeIcons.heart),
+                    FaIcon(FontAwesomeIcons.download, size: 15, color: Color.fromARGB(255, 106, 183, 71)),
                     Text("Download",
                       style: TextStyle(
                         color: Color.fromARGB(255, 106, 183, 71)
@@ -78,11 +78,14 @@ class _FinalPageState extends State<FinalPage> {
                 width: double.infinity,
                 height: screenHeight * 0.2,
                 alignment: Alignment.center,
+                padding : EdgeInsets.all(5),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(Icons.check_circle, size: 50, color : Color.fromARGB(255, 106, 183, 71)),
+                    // Icon(Icons.check_circle, size: 50, color : Color.fromARGB(255, 106, 183, 71)),
+                    FaIcon(FontAwesomeIcons.solidCircleCheck, size: 40, color: Color.fromARGB(255, 106, 183, 71)),
+                    SizedBox(height: 10),
                     Text("Successful", style: TextStyle(color: Color.fromARGB(255, 106, 183, 71), fontSize: 15))
                   ],
                 ),
