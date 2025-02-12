@@ -11,7 +11,7 @@ class LoadingDialog extends GetxController with GetSingleTickerProviderStateMixi
     super.onInit();
     _animationController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 5000),
+      duration: const Duration(milliseconds: 2000),
     );
   }
 

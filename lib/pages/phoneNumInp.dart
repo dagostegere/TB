@@ -30,22 +30,23 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                       padding: EdgeInsets.all(5),
                       child: Container(
                         width: double.infinity,
-                        height: 40,
+                        height: 60,
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Icon(Icons.arrow_back, size: 22, color: Colors.black),
-                            Text("Send Money to Individuals", 
-                              style: TextStyle(fontSize: 17.5, fontWeight: FontWeight.bold),
-                            ),
+                            Icon(Icons.arrow_back, size: 23, color: Colors.black),
                             SizedBox(width: 24), // For spacing
+                            Text("Send Money to Individuals", 
+                              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                            ),
                           ],
                         ),
                       ),
                     ),
                     Container( // Image holder
                       width: double.infinity,
-                      height: 100,
+                      margin: EdgeInsets.only(bottom: 10),
+                      height: 110,
                       child: Padding(
                         padding: EdgeInsets.symmetric(horizontal: 8),
                         child: ClipRRect(
@@ -61,7 +62,7 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                       padding: EdgeInsets.all(8),
                       child: Container(
                         width: double.infinity,
-                        height: 180,
+                        height: 210,
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.all(Radius.circular(8)),
@@ -72,41 +73,41 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                           children: [
                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: 15),
-                              child: Text("Mobile Number"),
+                              child: Text("Please Enter Mobile Number", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
                             ),
                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: 15),
                               child: Container(
                                 width: double.infinity,
-                                height: 45,
+                                height: 55,
                                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                                 decoration: BoxDecoration(
                                   color: Colors.white, // Background color
                                   borderRadius: BorderRadius.circular(8), // Rounded corners
-                                  border: Border.all(color: Colors.grey[300]!), // Border
+                                  border: Border.all(color: Color.fromARGB(255, 106, 183, 71), width: 2), // Border
                                 ),
                                 child: Row(
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Text('+251', 
-                                      style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                                     ),
                                     const SizedBox(width: 8), // Space between country code and input
                                     Expanded(
                                       child: Column(
                                         children: [
-                                          SizedBox(height: 3.5,),
+                                          SizedBox(height: 6.2),
                                           TextField(
                                             keyboardType: TextInputType.phone, // Numeric keyboard
                                             controller: textController,
                                             decoration: InputDecoration(
                                               hintText: 'Enter Mobile Number',
-                                              hintStyle: TextStyle(color: Colors.grey[600], fontSize: 15),
+                                              hintStyle: TextStyle(color: Colors.grey[600], fontSize: 20),
                                               border: InputBorder.none, // Remove default underline
                                               isDense: true, // Reduce vertical padding
                                               contentPadding: EdgeInsets.zero, // Remove extra padding
                                             ),
-                                            style: const TextStyle(fontSize: 15, color: Colors.black),
+                                            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                                           ),
                                         ],
                                       ),
@@ -124,7 +125,7 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                                   loadingDialog.showLoadingDialog();
 
                                   phoneNumberinpController.setPhoneNumber(int.tryParse(textController.text) ?? 0);
-                                  Future.delayed(Duration (seconds: 1), () {
+                                  Future.delayed(Duration (seconds: 4), () {
                                     Get.back();
                                     Get.toNamed('sendMoney');
                                   });
@@ -138,7 +139,7 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                                     borderRadius: BorderRadius.circular(8),
                                   ),
                                 ),
-                                child: Text("Next"),
+                                child: Text("Next", style: TextStyle(fontSize: 19)),
                               ),
                             )
                           ],
@@ -162,10 +163,10 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("Recent", style: TextStyle(color: Colors.black)),
+                          Text("Recent", style: TextStyle(color: Colors.black, fontSize: 20)),
                           Icon(Icons.delete_forever_outlined, 
                             color: Color.fromARGB(255, 191, 190, 190), 
-                            size: 20, // Reduced size
+                            size: 24, // Reduced size
                           ),
                         ],
                       ),
@@ -186,9 +187,25 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                                   children: [
                                     Row(
                                       children: [
-                                        Icon(Icons.account_circle,color: const Color.fromARGB(255, 106, 183, 71), size: 35),
+                                        Icon(Icons.account_circle,color: const  Color.fromARGB(255, 106, 183, 71), size: 45),
                                         SizedBox(width: 5),
-                                        Text("DAGIMAWI"),
+                                        Text("TESSEMA", style : TextStyle(fontSize: 19)),
+                                      ],
+                                    ),
+                                    Icon(Icons.arrow_forward_ios, color: const  Color.fromARGB(255, 106, 183, 71), size: 15),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.all(8),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Icon(Icons.account_circle, color: const Color.fromARGB(255, 106, 183, 71), size: 45),
+                                        SizedBox(width: 5),
+                                        Text("YAFET", style : TextStyle(fontSize: 19)),
                                       ],
                                     ),
                                     Icon(Icons.arrow_forward_ios, color: const Color.fromARGB(255, 203, 200, 200), size: 15),
@@ -202,9 +219,9 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                                   children: [
                                     Row(
                                       children: [
-                                        Icon(Icons.account_circle, color: const Color.fromARGB(255, 106, 183, 71), size: 35),
+                                        Icon(Icons.account_circle, color: const Color.fromARGB(255, 106, 183, 71), size: 45),
                                         SizedBox(width: 5),
-                                        Text("YAFET"),
+                                        Text("TEMESGEN", style : TextStyle(fontSize: 19)),
                                       ],
                                     ),
                                     Icon(Icons.arrow_forward_ios, color: const Color.fromARGB(255, 203, 200, 200), size: 15),
@@ -218,9 +235,9 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                                   children: [
                                     Row(
                                       children: [
-                                        Icon(Icons.account_circle, color: const Color.fromARGB(255, 106, 183, 71), size: 35),
+                                        Icon(Icons.account_circle,color: const Color.fromARGB(255, 106, 183, 71), size: 45),
                                         SizedBox(width: 5),
-                                        Text("YAFET"),
+                                        Text("ESTIFANOS", style : TextStyle(fontSize: 19)),
                                       ],
                                     ),
                                     Icon(Icons.arrow_forward_ios, color: const Color.fromARGB(255, 203, 200, 200), size: 15),
@@ -234,25 +251,9 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                                   children: [
                                     Row(
                                       children: [
-                                        Icon(Icons.account_circle,color: const Color.fromARGB(255, 106, 183, 71), size: 35),
+                                        Icon(Icons.account_circle,color: const Color.fromARGB(255, 106, 183, 71), size: 45),
                                         SizedBox(width: 5),
-                                        Text("ESTIFANOS"),
-                                      ],
-                                    ),
-                                    Icon(Icons.arrow_forward_ios, color: const Color.fromARGB(255, 203, 200, 200), size: 15),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.all(8),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Icon(Icons.account_circle,color: const Color.fromARGB(255, 106, 183, 71), size: 35),
-                                        SizedBox(width: 5),
-                                        Text("TEMESGEN"),
+                                        Text("YAFET", style : TextStyle(fontSize: 19)),
                                       ],
                                     ),
                                     Icon(Icons.arrow_forward_ios, color: const Color.fromARGB(255, 203, 200, 200), size: 15),

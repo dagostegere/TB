@@ -43,7 +43,8 @@ class _FinalPageState extends State<FinalPage> {
                     FaIcon(FontAwesomeIcons.download, size: 15, color: Color.fromARGB(255, 106, 183, 71)),
                     Text("Download",
                       style: TextStyle(
-                        color: Color.fromARGB(255, 106, 183, 71)
+                        color: Color.fromARGB(255, 106, 183, 71),
+                        fontSize: 20
                       ),
                     ),
                   ],
@@ -59,7 +60,8 @@ class _FinalPageState extends State<FinalPage> {
                     Icon(Icons.share_outlined, size: 17, color: Color.fromARGB(255, 106, 183, 71)),
                     Text("Share",
                       style: TextStyle(
-                        color: Color.fromARGB(255, 106, 183, 71)
+                        color: Color.fromARGB(255, 106, 183, 71),
+                        fontSize: 20
                       ),
                     ),
                   ],
@@ -84,9 +86,9 @@ class _FinalPageState extends State<FinalPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     // Icon(Icons.check_circle, size: 50, color : Color.fromARGB(255, 106, 183, 71)),
-                    FaIcon(FontAwesomeIcons.solidCircleCheck, size: 40, color: Color.fromARGB(255, 106, 183, 71)),
+                    FaIcon(FontAwesomeIcons.solidCircleCheck, size: 50, color: Color.fromARGB(255, 106, 183, 71)),
                     SizedBox(height: 10),
-                    Text("Successful", style: TextStyle(color: Color.fromARGB(255, 106, 183, 71), fontSize: 15))
+                    Text("Successful", style: TextStyle(color: Color.fromARGB(255, 106, 183, 71), fontSize: 20))
                   ],
                 ),
               ),
@@ -96,12 +98,13 @@ class _FinalPageState extends State<FinalPage> {
                 alignment: Alignment.center,
                 child: Text.rich(
                   TextSpan(
-                    text: '-${phoneNumberinpcontroller.amount}.00',
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black),
+                    // text: '-${phoneNumberinpcontroller.amount}.00',
+                    text: "-203.00",
+                    style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold, color: Colors.black),
                     children: [
                       TextSpan(
                         text: ' (ETB)',
-                        style: TextStyle(fontSize: 13, fontWeight: FontWeight.normal, color: Colors.black),
+                        style: TextStyle(fontSize: 15, fontWeight: FontWeight.normal, color: Colors.black),
                       ),
                     ],
                   ),
@@ -123,15 +126,15 @@ class _FinalPageState extends State<FinalPage> {
                     _transactionRow("Transaction Time:", getCurrentDateTime()),
                     _transactionRow("Transaction Type:", "Transfer Money"),
                     _transactionRow("Transaction To:", "${phoneNumberinpcontroller.userName}"),
-                    _transactionRow("Transaction Number:", "CB17K2WWRT"),
+                    _transactionRow("Transaction Number:", "CK17K2MWLJ"),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Icon(Icons.qr_code, color: Color.fromARGB(255, 106, 183, 71), size: 15),
+                        Icon(Icons.qr_code, color: Color.fromARGB(255, 106, 183, 71), size: 19),
                         SizedBox(width: 5),
-                        Text("QR Code", style: TextStyle(color: Color.fromARGB(255, 106, 183, 71), fontSize: 13)),
+                        Text("QR Code", style: TextStyle(color: Color.fromARGB(255, 106, 183, 71), fontWeight: FontWeight.bold, fontSize: 19)),
                         SizedBox(width: 5),
-                        Icon(Icons.arrow_forward_ios, color: Color.fromARGB(255, 106, 183, 71), size: 13),
+                        Icon(Icons.arrow_forward_ios, color: Color.fromARGB(255, 106, 183, 71), size: 15),
                       ],
                     ),
                   ],
@@ -139,16 +142,17 @@ class _FinalPageState extends State<FinalPage> {
               ),
               Container(
                 width: double.infinity,
-                height:  100,
+                height:  110,
                 margin: EdgeInsets.symmetric(horizontal: 9, vertical: 5),
                 child: ClipRRect(
-                  borderRadius: BorderRadius.all(Radius.circular(8)),
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
                   child: Image.asset('images/t.jpg', fit: BoxFit.cover),
                 ),
               ),
               Container(
                 width: double.infinity,
                 height: screenHeight * 0.1,
+                margin: EdgeInsets.only(top: 35),
                 child: Center(
                   child: ElevatedButton(
                     onPressed: (){
@@ -162,7 +166,7 @@ class _FinalPageState extends State<FinalPage> {
                         borderRadius: BorderRadius.all(Radius.circular(8))
                       )
                     ),
-                    child: Text("Finished"),
+                    child: Text("Finished", style: TextStyle(fontSize: 19),),
                   ),
                 ),
               ),
@@ -177,8 +181,8 @@ class _FinalPageState extends State<FinalPage> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(title, style: TextStyle(color: Colors.grey, fontSize: 12)),
-        Text(value, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12)),
+        Text(title, style: TextStyle(color: Colors.grey, fontSize: 17)),
+        Text(value, style: TextStyle(fontSize: 17)),
       ],
     );
   }

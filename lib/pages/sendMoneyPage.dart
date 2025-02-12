@@ -50,10 +50,10 @@ class SendMoneyPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 244, 242, 242),
-        title: const Text("Send Money", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17.5)),
-        centerTitle: true,
+        title: const Text("Send Money", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22)),
+        centerTitle: false,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, size: 22, color: Colors.black),
+          icon: const Icon(Icons.arrow_back, size: 23, color: Colors.black),
           onPressed: () {
             Get.back();
           },
@@ -69,7 +69,7 @@ class SendMoneyPage extends StatelessWidget {
               child: Row(
                 children: [
                   const CircleAvatar(
-                    radius: 20,
+                    radius: 25,
                     backgroundColor: Color.fromARGB(255, 106, 183, 71),
                     child: Icon(Icons.person, color: Colors.white, size: 28),
                   ),
@@ -77,8 +77,8 @@ class SendMoneyPage extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Obx(() => Text("${phoneNumberinpController.userName ?? nullUsername}", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15))),
-                      Obx(() => Text("251${phoneNumberinpController.phoneNumber}", style: TextStyle(color: Colors.grey, fontSize: 10))),
+                      Obx(() => Text("${phoneNumberinpController.userName ?? nullUsername}", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20))),
+                      Obx(() => Text("251${phoneNumberinpController.phoneNumber}", style: TextStyle(color: Colors.grey, fontSize: 15))),
                     ],
                   ),
                 ],
@@ -102,7 +102,7 @@ class SendMoneyPage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text("Amount", style: TextStyle(fontSize: 12)),
+                    const Text("Amount", style: TextStyle(fontSize: 16)),
                     const SizedBox(height: 8),
                     Row(
                       children: [
@@ -129,7 +129,7 @@ class SendMoneyPage extends StatelessWidget {
                             ),
                           ),
                         ),
-                        const Text("(ETB)", style: TextStyle(color: Colors.grey, fontSize: 10)),
+                        const Text("(ETB)", style: TextStyle(color: Colors.grey, fontSize: 16)),
                       ],
                     ),
                   ],
@@ -142,7 +142,7 @@ class SendMoneyPage extends StatelessWidget {
             color: Colors.white,
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              child: Text("Add notes(optional)", style: TextStyle(color: Colors.blue, fontSize: 12)),
+              child: Text("Add notes(optional)", style: TextStyle(color: Colors.blue, fontSize: 16)),
             ),
           ),
           Expanded(child: Container(color: Colors.white)),
@@ -181,194 +181,201 @@ class SendMoneyPage extends StatelessWidget {
                           onPressed: () {
                             phoneNumberinpController.setAmount(int.tryParse(textController.text) ?? 0);
                             if (buttons[index] == "OK") {
-                              showModalBottomSheet(
-                                isScrollControlled: true, //allows you to control the height of the modal
-                                context: context,
-                                builder: (BuildContext context)  {
-                                  return Container(
-                                    height: screenHeight * 0.67,
-                                    width: double.infinity,
-                                    decoration: BoxDecoration(
-                                      color: Color.fromARGB(255, 244, 242, 242),
-                                      borderRadius: BorderRadius.only(
-                                        topLeft: Radius.circular(10),
-                                        topRight: Radius.circular(10),
+                              LoadingDialog loadingDialog = Get.put(LoadingDialog());
+                              loadingDialog.showLoadingDialog();
+                              Future.delayed(Duration (seconds: 4), () {
+                                Get.back();
+                                showModalBottomSheet(
+                                  isScrollControlled: true, //allows you to control the height of the modal
+                                  context: context,
+                                  builder: (BuildContext context)  {
+                                    return Container(
+                                      height: screenHeight * 0.6,
+                                      width: double.infinity,
+                                      decoration: BoxDecoration(
+                                        color: Color.fromARGB(255, 244, 242, 242),
+                                        borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(10),
+                                          topRight: Radius.circular(10),
+                                        ),
                                       ),
-                                    ),
-                                    child: Center(
-                                      child: Column(
-                                        children: [
-                                          Container(
-                                            width: double.infinity,
-                                            height: 50,
-                                            child: Row(
-                                              mainAxisAlignment: MainAxisAlignment.start,
-                                              crossAxisAlignment: CrossAxisAlignment.center,
-                                              children: [
-                                                ElevatedButton(
-                                                  onPressed: () {
-                                                    Navigator.pop(context);
-                                                  },
-                                                  style: ElevatedButton.styleFrom(
-                                                    elevation: 0,
-                                                    backgroundColor: Color.fromARGB(255, 244, 242, 242),
-                                                    shape: RoundedRectangleBorder(side: BorderSide.none)
-                                                  ),
-                                                  child: Icon(Icons.close, color: Colors.black),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          Center(
-                                            child:
-                                              Column(
+                                      child: Center(
+                                        child: Column(
+                                          children: [
+                                            Container(
+                                              width: double.infinity,
+                                              height: 50,
+                                              child: Row(
+                                                mainAxisAlignment: MainAxisAlignment.start,
+                                                crossAxisAlignment: CrossAxisAlignment.center,
                                                 children: [
-                                                  Obx(() => Text("Send Money to ${phoneNumberinpController.userName}", style: TextStyle(fontSize: 13, color: Colors.black))),
-                                                  Container(
-                                                    padding: EdgeInsets.all(8),
-                                                    child: Obx(() => 
-                                                      Text.rich(
-                                                        TextSpan(
-                                                          text: '${phoneNumberinpController.amount}.00',
-                                                          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black),
+                                                  ElevatedButton(
+                                                    onPressed: () {
+                                                      Navigator.pop(context);
+                                                    },
+                                                    style: ElevatedButton.styleFrom(
+                                                      elevation: 0,
+                                                      backgroundColor: Color.fromARGB(255, 244, 242, 242),
+                                                      shape: RoundedRectangleBorder(side: BorderSide.none)
+                                                    ),
+                                                    child: Icon(Icons.close, size: 25, color: Colors.black),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            Center(
+                                              child:
+                                                Column(
+                                                  children: [
+                                                    Obx(() => Text("Send Money to ${phoneNumberinpController.userName}", style: TextStyle(fontSize: 20, color: Colors.black87))),
+                                                    Container(
+                                                      padding: EdgeInsets.all(8),
+                                                      child: Obx(() => 
+                                                        Text.rich(
+                                                          TextSpan(
+                                                            text: '${phoneNumberinpController.amount}.00',
+                                                            style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold, color: Colors.black),
+                                                            children: [
+                                                              TextSpan(
+                                                                text: "ETB",
+                                                                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Container(
+                                                      padding : EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                                                      height: 130,
+                                                      width: double.infinity,
+                                                      alignment: Alignment.center,
+                                                      child: Container(
+                                                        width: 400,
+                                                        decoration: BoxDecoration(
+                                                          color: Colors.white,
+                                                          borderRadius: BorderRadius.all(Radius.circular(10))
+                                                        ),
+                                                        child : Column(
+                                                          mainAxisAlignment: MainAxisAlignment.spaceAround,
                                                           children: [
-                                                            TextSpan(
-                                                              text: ' ETB',
-                                                              style: TextStyle(fontSize: 12, fontWeight: FontWeight.normal, color: Colors.black),
+                                                            Container(
+                                                              padding: EdgeInsets.all(8),
+                                                              margin: EdgeInsets.symmetric(horizontal: 5),
+                                                              child: Row(
+                                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                children: [
+                                                                  Text("Original Amount", style: TextStyle(fontSize: 18, color: Colors.grey),),
+                                                                  Obx(() => Text("${phoneNumberinpController.amount}.00ETB", style: TextStyle(fontSize: 18, color: Colors.black, fontWeight: FontWeight.bold)))
+                                                                ],
+                                                              ),
                                                             ),
+                                                            Container(
+                                                              padding: EdgeInsets.all(8),
+                                                              margin: EdgeInsets.symmetric(horizontal: 5),
+                                                              child: Row(
+                                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                children: [
+                                                                  Text("Service fee", style: TextStyle(fontSize: 18, color: Colors.grey),),
+                                                                  Text("1.00ETB", style: TextStyle(fontSize: 18, color: Colors.black, fontWeight: FontWeight.bold))
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        )
+                                                      ),
+                                                    ),
+                                                    Container(
+                                                      padding : EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                                                      height: 130,
+                                                      width: double.infinity,
+                                                      alignment: Alignment.center,
+                                                      child: Container(
+                                                        width: 400,
+                                                        decoration: BoxDecoration(
+                                                          color: Colors.white,
+                                                          borderRadius: BorderRadius.all(Radius.circular(10))
+                                                        ),
+                                                        child: Column(
+                                                          children: [
+                                                            Container(
+                                                              width: double.infinity,
+                                                              height: 40,
+                                                              alignment: Alignment.centerLeft,
+                                                              padding: EdgeInsets.all(10),
+                                                              margin: EdgeInsets.symmetric(horizontal: 5),
+                                                              child: Text("Payment Method", style: TextStyle(fontSize: 18, color: Colors.grey),),
+                                                            ),
+                                                            Container(
+                                                              width: double.infinity,
+                                                              padding: EdgeInsets.symmetric(horizontal: 10),
+                                                              margin: EdgeInsets.symmetric(horizontal: 5),
+                                                              child: Row(
+                                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                crossAxisAlignment: CrossAxisAlignment.center,
+                                                                children: [
+                                                                  Icon(Icons.account_balance_wallet, color: Color.fromARGB(255, 106, 183, 71), size: 24,),
+                                                                  Container(
+                                                                    
+                                                                    // decoration: BoxDecoration(
+                                                                    //   border: Border.all(
+                                                                    //     color: Colors.black,
+                                                                    //     width: 1
+                                                                    //   )
+                                                                    // ),
+                                                                    child: Column(
+                                                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                                                      children: [
+                                                                        Text("Balance", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
+                                                                        Text("(Available Balance:9034.72ETB)", style: TextStyle(fontSize: 14, color: Colors.grey),)
+                                                                      ],
+                                                                    ),
+                                                                  ),
+                                                                  SizedBox(width: 80),
+                                                                  Icon(Icons.check_circle, color: Color.fromARGB(255, 106, 183, 71), size: 20,)
+                                                                ],
+                                                              ),
+                                                            )
                                                           ],
                                                         ),
                                                       ),
                                                     ),
-                                                  ),
-                                                  Container(
-                                                    padding: EdgeInsets.all(15),
-                                                    height: 120,
-                                                    width: double.infinity,
-                                                    alignment: Alignment.center,
-                                                    child: Container(
-                                                      width: 400,
-                                                      decoration: BoxDecoration(
-                                                        color: Colors.white,
-                                                        borderRadius: BorderRadius.all(Radius.circular(10))
-                                                      ),
-                                                      child : Column(
-                                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                                        children: [
-                                                          Container(
-                                                            padding: EdgeInsets.all(8),
-                                                            margin: EdgeInsets.symmetric(horizontal: 5),
-                                                            child: Row(
-                                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                              children: [
-                                                                Text("Original Amount", style: TextStyle(fontSize: 13, color: Colors.grey),),
-                                                                Obx(() => Text("${phoneNumberinpController.amount}.00ETB", style: TextStyle(fontSize: 13, color: Colors.black, fontWeight: FontWeight.bold)))
-                                                              ],
-                                                            ),
+                                                    Container(
+                                                      padding : EdgeInsets.symmetric(horizontal: 17, vertical: 3),
+                                                      margin: EdgeInsets.only(top: 10),
+                                                      child: ElevatedButton(
+                                                        onPressed: (){
+                                                          LoadingDialog loadingDialog = Get.put(LoadingDialog());
+                                                          loadingDialog.showLoadingDialog();
+                                                          Future.delayed(Duration (seconds: 8), () {
+                                                            Get.back();
+                                                            Get.toNamed('/finalPage');
+                                                          });
+                                                        },
+                                                        style : ElevatedButton.styleFrom(
+                                                          backgroundColor: Color.fromARGB(255, 106, 183, 71),
+                                                          foregroundColor: Colors.white,
+                                                          minimumSize: Size(screenWidth * 0.85, 50),
+                                                          shape : RoundedRectangleBorder(
+                                                            borderRadius: BorderRadius.circular(8)
                                                           ),
-                                                          Container(
-                                                            padding: EdgeInsets.all(8),
-                                                            margin: EdgeInsets.symmetric(horizontal: 5),
-                                                            child: Row(
-                                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                              children: [
-                                                                Text("Service fee", style: TextStyle(fontSize: 13, color: Colors.grey),),
-                                                                Text("1.00ETB", style: TextStyle(fontSize: 13, color: Colors.black, fontWeight: FontWeight.bold))
-                                                              ],
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      )
-                                                    ),
-                                                  ),
-                                                  Container(
-                                                    padding: EdgeInsets.all(15),
-                                                    height: 120,
-                                                    width: double.infinity,
-                                                    alignment: Alignment.center,
-                                                    child: Container(
-                                                      width: 400,
-                                                      decoration: BoxDecoration(
-                                                        color: Colors.white,
-                                                        borderRadius: BorderRadius.all(Radius.circular(10))
-                                                      ),
-                                                      child: Column(
-                                                        children: [
-                                                          Container(
-                                                            width: double.infinity,
-                                                            height: 40,
-                                                            alignment: Alignment.centerLeft,
-                                                            padding: EdgeInsets.all(10),
-                                                            margin: EdgeInsets.symmetric(horizontal: 5),
-                                                            child: Text("Payment Method", style: TextStyle(fontSize: 13, color: Colors.grey),),
-                                                          ),
-                                                          Container(
-                                                            width: double.infinity,
-                                                            padding: EdgeInsets.symmetric(horizontal: 10),
-                                                            margin: EdgeInsets.symmetric(horizontal: 5),
-                                                            child: Row(
-                                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                              crossAxisAlignment: CrossAxisAlignment.center,
-                                                              children: [
-                                                                Icon(Icons.account_balance_wallet, color: Color.fromARGB(255, 106, 183, 71), size: 20,),
-                                                                Container(
-                                                                  
-                                                                  // decoration: BoxDecoration(
-                                                                  //   border: Border.all(
-                                                                  //     color: Colors.black,
-                                                                  //     width: 1
-                                                                  //   )
-                                                                  // ),
-                                                                  child: Column(
-                                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                                                    children: [
-                                                                      Text("Balance", style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold),),
-                                                                      Text("(Available Balance:5094.72ETB)", style: TextStyle(fontSize: 10, color: Colors.grey),)
-                                                                    ],
-                                                                  ),
-                                                                ),
-                                                                SizedBox(width: 80),
-                                                                Icon(Icons.check_circle, color: Color.fromARGB(255, 106, 183, 71), size: 20,)
-                                                              ],
-                                                            ),
-                                                          )
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  Container(
-                                                    padding : EdgeInsets.all(15),
-                                                    child: ElevatedButton(
-                                                      onPressed: (){
-                                                        LoadingDialog loadingDialog = Get.put(LoadingDialog());
-                                                        loadingDialog.showLoadingDialog();
-                                                        Future.delayed(Duration (seconds: 1), () {
-                                                          Get.back();
-                                                          Get.toNamed('/finalPage');
-                                                        });
-                                                      },
-                                                      style : ElevatedButton.styleFrom(
-                                                        backgroundColor: Color.fromARGB(255, 106, 183, 71),
-                                                        foregroundColor: Colors.white,
-                                                        minimumSize: Size(screenWidth * 0.8, 50),
-                                                        shape : RoundedRectangleBorder(
-                                                          borderRadius: BorderRadius.circular(8)
                                                         ),
+                                                        child: Text("Send", style: TextStyle(fontSize: 20),)
                                                       ),
-                                                      child: Text("Send")
-                                                    ),
-                                                  )
-                                                ],
-                                              ),
-                                          ),
+                                                    )
+                                                  ],
+                                                ),
+                                            ),
 
-                                        ],
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                  );
-                                }
-                              );
+                                    );
+                                  }
+                                );
+                              });
+
                             } else if (buttons[index] == Icons.backspace_outlined) {
                               if (amount.value.isNotEmpty) {
                                 amount.value = amount.value.substring(0, amount.value.length - 1);
@@ -384,8 +391,8 @@ class SendMoneyPage extends StatelessWidget {
                             elevation: 0, // used to remove the box shadow
                           ),
                           child: buttons[index] is String
-                              ? Text(buttons[index], style: const TextStyle(fontSize: 14))
-                              : const Icon(Icons.backspace_outlined, color: Colors.black, size: 15),
+                              ? Text(buttons[index], style: const TextStyle(fontSize: 22))
+                              : const Icon(Icons.backspace_outlined, color: Colors.black, size: 18),
                         ),
                       );
                     },
