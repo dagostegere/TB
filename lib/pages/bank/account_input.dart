@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:telebirr/controller/phoneNumInpController.dart';
-import '../components/dialog.dart';
+import '../../components/dialog.dart';
 
-class PhoneNumberInput extends StatefulWidget {
-  const PhoneNumberInput({super.key});
+class AccountInput extends StatefulWidget {
+  const AccountInput({super.key});
 
   @override
-  State<PhoneNumberInput> createState() => _PhoneNumberInputState();
+  State<AccountInput> createState() => _AccountInputState();
 }
 
-class _PhoneNumberInputState extends State<PhoneNumberInput> {
+class _AccountInputState extends State<AccountInput> {
   @override
   final phoneNumberinpController = Get.find<PhoneNumberInputController>();
   final textController = TextEditingController();
@@ -37,7 +37,7 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                           children: [
                             Icon(Icons.arrow_back, size: 23, color: Colors.black),
                             SizedBox(width: 24), // For spacing
-                            Text("Send Money to Individuals", 
+                            Text("Transfer to Bank", 
                               style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                             ),
                           ],
@@ -63,7 +63,7 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                       padding: EdgeInsets.all(8),
                       child: Container(
                         width: double.infinity,
-                        height: 210,
+                        height: 265,
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.all(Radius.circular(8)),
@@ -73,15 +73,42 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 15),
-                              child: Text("Please Enter Mobile Number", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
+                              padding: EdgeInsets.symmetric(horizontal: 25),
+                              child: Text("Select Bank", style: TextStyle(fontSize: 16),),
                             ),
                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: 15),
                               child: Container(
                                 width: double.infinity,
-                                height: 55,
-                                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                                height: 45,
+                                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 3),
+                                decoration: BoxDecoration(
+                                  color: Colors.white, // Background color
+                                  borderRadius: BorderRadius.circular(8), // Rounded corners
+                                  border: Border.all(color: Color.fromARGB(255, 224, 225, 221), width: 2), // Border
+                                ),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text('Commercial Bank of Ethiopia', 
+                                      style: TextStyle(fontSize: 18, ),
+                                    ),
+                                    Icon(Icons.keyboard_arrow_down)
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 25),
+                              child: Text("Account No", style: TextStyle(fontSize: 16),),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 15),
+                              child: Container(
+                                width: double.infinity,
+                                height: 45,
+                                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 3),
                                 decoration: BoxDecoration(
                                   color: Colors.white, // Background color
                                   borderRadius: BorderRadius.circular(8), // Rounded corners
@@ -90,9 +117,6 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                                 child: Row(
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                    Text('+251', 
-                                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                                    ),
                                     const SizedBox(width: 8), // Space between country code and input
                                     Expanded(
                                       child: Column(
@@ -102,18 +126,17 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                                             keyboardType: TextInputType.phone, // Numeric keyboard
                                             controller: textController,
                                             decoration: InputDecoration(
-                                              hintText: 'Enter Mobile Number',
-                                              hintStyle: TextStyle(color: Colors.grey[600], fontSize: 20),
+                                              hintText: 'Enter Account Number',
+                                              hintStyle: TextStyle(color: Colors.grey[600], fontSize: 18),
                                               border: InputBorder.none, // Remove default underline
                                               isDense: true, // Reduce vertical padding
                                               contentPadding: EdgeInsets.zero, // Remove extra padding
                                             ),
-                                            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                                            style: const TextStyle(fontSize: 18,),
                                           ),
                                         ],
                                       ),
                                     ),
-                                    Image.asset('images/icon.jpg'),
                                   ],
                                 ),
                               ),
@@ -125,10 +148,10 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                                   LoadingDialog loadingDialog = Get.put(LoadingDialog());
                                   loadingDialog.showLoadingDialog();
 
-                                  phoneNumberinpController.setPhoneNumber(int.tryParse(textController.text) ?? 0);
+                                  phoneNumberinpController.setAccountNumber(int.tryParse(textController.text) ?? 0);
                                   Future.delayed(Duration (seconds: 4), () {
                                     Get.back();
-                                    Get.toNamed('sendMoney');
+                                    Get.toNamed('sendbank');
                                   });
                                 },
                                 style: ElevatedButton.styleFrom(
@@ -170,7 +193,7 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                             ),
                             IconButton(
                               onPressed: () {
-                                Get.toNamed('/accountinput');
+                                Get.toNamed('/phoneNumberInput');
                               },
                               icon: Icon(
                                 Icons.delete_forever_outlined,
@@ -200,9 +223,20 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                                   children: [
                                     Row(
                                       children: [
-                                        Icon(Icons.account_circle,color: const  Color.fromARGB(255, 141, 197, 64), size: 45),
-                                        SizedBox(width: 5),
-                                        Text("TESSEMA", style : TextStyle(fontSize: 19)),
+                                        Container(
+                                          width: 45,
+                                          height: 45,
+                                          child: Image.asset('images/cbe.jpg', fit: BoxFit.cover,),
+                                        ),
+                                        SizedBox(width: 13),
+                                        Column(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Text("TESSEMA WORKNEH ABATE", style : TextStyle(fontSize: 21)),
+                                            Text("Commercial Bank of Ethiopia(1000558789998)", style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.grey),)
+                                          ],
+                                        ),
                                       ],
                                     ),
                                     Icon(Icons.arrow_forward_ios, color: const  Color.fromARGB(255, 141, 197, 64), size: 15),
@@ -216,12 +250,23 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                                   children: [
                                     Row(
                                       children: [
-                                        Icon(Icons.account_circle, color: const Color.fromARGB(255, 141, 197, 64), size: 45),
-                                        SizedBox(width: 5),
-                                        Text("YAFET", style : TextStyle(fontSize: 19)),
+                                        Container(
+                                          width: 45,
+                                          height: 45,
+                                          child: Image.asset('images/cbe.jpg', fit: BoxFit.cover,),
+                                        ),
+                                        SizedBox(width: 13),
+                                        Column(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Text("TIGIST ALEMAYEHU ABEBE", style : TextStyle(fontSize: 21)),
+                                            Text("Commercial Bank of Ethiopia(1000127766544)", style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.grey),)
+                                          ],
+                                        ),
                                       ],
                                     ),
-                                    Icon(Icons.arrow_forward_ios, color: const Color.fromARGB(255, 203, 200, 200), size: 15),
+                                    Icon(Icons.arrow_forward_ios, color: const  Color.fromARGB(255, 141, 197, 64), size: 15),
                                   ],
                                 ),
                               ),
@@ -232,12 +277,23 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                                   children: [
                                     Row(
                                       children: [
-                                        Icon(Icons.account_circle, color: const Color.fromARGB(255, 141, 197, 64), size: 45),
-                                        SizedBox(width: 5),
-                                        Text("TEMESGEN", style : TextStyle(fontSize: 19)),
+                                        Container(
+                                          width: 45,
+                                          height: 45,
+                                          child: Image.asset('images/cbe.jpg', fit: BoxFit.cover,),
+                                        ),
+                                        SizedBox(width: 13),
+                                        Column(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Text("DAGIM TESHOME WORKNEH", style : TextStyle(fontSize: 21)),
+                                            Text("Commercial Bank of Ethiopia(1000225469442)", style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.grey),)
+                                          ],
+                                        ),
                                       ],
                                     ),
-                                    Icon(Icons.arrow_forward_ios, color: const Color.fromARGB(255, 203, 200, 200), size: 15),
+                                    Icon(Icons.arrow_forward_ios, color: const  Color.fromARGB(255, 141, 197, 64), size: 15),
                                   ],
                                 ),
                               ),
@@ -248,31 +304,29 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                                   children: [
                                     Row(
                                       children: [
-                                        Icon(Icons.account_circle,color: const Color.fromARGB(255, 141, 197, 64), size: 45),
-                                        SizedBox(width: 5),
-                                        Text("ESTIFANOS", style : TextStyle(fontSize: 19)),
+                                        Container(
+                                          width: 45,
+                                          height: 45,
+                                          child: Image.asset('images/cbe.jpg', fit: BoxFit.cover,),
+                                        ),
+                                        SizedBox(width: 13),
+                                        Column(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Text("NATNAEL SAMUEL CHANE", style : TextStyle(fontSize: 19)),
+                                            Text("Commercial Bank of Ethiopia(1000225289545)", style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.grey),)
+                                          ],
+                                        ),
                                       ],
                                     ),
-                                    Icon(Icons.arrow_forward_ios, color: const Color.fromARGB(255, 203, 200, 200), size: 15),
+                                    Icon(Icons.arrow_forward_ios, color: const  Color.fromARGB(255, 141, 197, 64), size: 15),
                                   ],
                                 ),
                               ),
-                              Padding(
-                                padding: EdgeInsets.all(8),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Icon(Icons.account_circle,color: const Color.fromARGB(255, 141, 197, 64), size: 45),
-                                        SizedBox(width: 5),
-                                        Text("AMANUEL", style : TextStyle(fontSize: 19)),
-                                      ],
-                                    ),
-                                    Icon(Icons.arrow_forward_ios, color: const Color.fromARGB(255, 203, 200, 200), size: 15),
-                                  ],
-                                ),
-                              ),
+                              
+                              
+                              
                             ],
                           )
                         ),

@@ -5,6 +5,9 @@ import '/pages/phoneNumInp.dart';
 import 'package:get/get.dart';
 import '/controller/phoneNumInpController.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'pages/bank/account_input.dart';
+import 'pages/bank/final_bank.dart';
+import 'pages/bank/sendbank.dart';
 // flutter run -d chrome --web-browser-flag "--disable-cache"
 void main() {
   runApp(const MyApp());
@@ -23,7 +26,10 @@ class MyApp extends StatelessWidget {
       getPages: [
         GetPage(name: '/phoneNumberInput', page: ()=> PhoneNumberInput()),
         GetPage(name: '/sendMoney', page: ()=> SendMoneyPage()),
-        GetPage(name: '/finalPage', page: () => FinalPage())
+        GetPage(name: '/finalPage', page: () => FinalPage()),
+        GetPage(name: '/finalbank', page: () => FinalBank()),
+        GetPage(name: '/sendbank', page: () => Sendbank()),
+        GetPage(name: '/accountinput', page: () => AccountInput()),
       ],
       initialBinding: BindingsBuilder(() {
         Get.put(PhoneNumberInputController());

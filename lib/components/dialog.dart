@@ -27,7 +27,7 @@ class LoadingDialog extends GetxController with GetSingleTickerProviderStateMixi
             borderRadius: BorderRadius.circular(5)
           ),
           child: SpinKitCircle(
-            color: const Color.fromARGB(255, 112, 206, 116),
+            color: const Color.fromARGB(255, 141, 197, 64),
             size: 35.0,
             controller: _animationController,
           ),

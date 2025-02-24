@@ -2,23 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:telebirr/controller/phoneNumInpController.dart';
 import 'package:telebirr/pages/phoneNumInp.dart';
-import '../components/dialog.dart';
+import '../../components/dialog.dart';
 import 'package:intl/intl.dart'; // number separator by comma (like this  = 1,000)
 
-class SendMoneyPage extends StatefulWidget {
+class Sendbank extends StatefulWidget {
 
-  SendMoneyPage({super.key});
+  Sendbank({super.key});
 
   @override
-  State<SendMoneyPage> createState() => _SendMoneyPageState();
+  State<Sendbank> createState() => _SendbankState();
 }
 
-class _SendMoneyPageState extends State<SendMoneyPage> {
+class _SendbankState extends State<Sendbank> {
   // FocusNode _focusNode = FocusNode(); 
   final List<dynamic> buttons = [
     "1", "2", "3", Icons.backspace_outlined, // Backspace icon
     "4", "5", "6", "", // Empty space to align
-    "7", "8", "9", "OK",
+    "7", "8", "9", "Transfer",
     "0", ".", ""
   ];
 
@@ -45,48 +45,44 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
   final textController = TextEditingController();
 
   void setName(String name) {
-    phoneNumberinpController.setUserName(name);
+    phoneNumberinpController.setAccountName(name);
   }
 
-  void setAmount(int amount) {
-    phoneNumberinpController.setAmount(amount);
-  }
 
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
-
-    if(phoneNumberinpController.phoneNumber.value == 986584082) {
-      setName("DAGIM");
+    if(phoneNumberinpController.accountNumber == 1000123456789) {
+      setName("DAGIM TESHOME WORKNEH"); //revolutionary
     }
-    if(phoneNumberinpController.phoneNumber.value == 983017778) {
-      setName("LIDIYA");
+    if(phoneNumberinpController.accountNumber == 1000225389229) {
+      setName("TIGIST WORKNEH ABATE"); //revolutionwater
     }
-    if(phoneNumberinpController.phoneNumber.value == 912458225) {
-      setName("SOFONIYAS");
+    if(phoneNumberinpController.accountNumber == 1000366066695) {
+      setName("ABIY HAGOS T/BIRHAN"); //revolutionsss
     }
-    if(phoneNumberinpController.phoneNumber.value == 900000000) {
-      setName("DAGMAWI");
+    if(phoneNumberinpController.accountNumber == 1000293169237) {
+      setName("BORA AMUSEMENT PARK EMEBET WOLDHER");
     }
-    if(phoneNumberinpController.phoneNumber.value == 945925292) {
-      setName("Feven");
+    if(phoneNumberinpController.accountNumber == 1000334613031) {
+      setName("AMBASSADOR GARMENT AND TRADE PLC");
     }
-    if(phoneNumberinpController.phoneNumber.value == 911902453) {
-      setName("Abrham");
-    } // ---
+    if(phoneNumberinpController.accountNumber == 1000435260199) {
+      setName("ESAYAS ADMASU TIKU");
+    } // smile burger
     
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 244, 242, 242),
-        title: const Text("Send Money", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22)),
+        title: const Text("Transfer to Bank", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22)),
         centerTitle: false,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, size: 23, color: Colors.black),
           onPressed: () {
-            Get.back(); 
+            Get.back();
           },
         ),
       ),
@@ -94,75 +90,103 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            color: Color.fromARGB(255, 244, 242, 242),
+            width: double.infinity,
+            height: 270,
+            color: Color(0xFFF4F4F4),
             child: Padding(
               padding: const EdgeInsets.all(16.0),
-              child: Row(
-                children: [
-                  const CircleAvatar(
-                    radius: 25,
-                    backgroundColor: Color.fromARGB(255, 141, 197, 64),
-                    child: Icon(Icons.person, color: Colors.white, size: 28),
-                  ),
-                  const SizedBox(width: 12),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Obx(() => Text("${phoneNumberinpController.userName ?? nullUsername}", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20))),
-                      Obx(() => Text("251${phoneNumberinpController.phoneNumber}", style: TextStyle(color: Colors.grey, fontSize: 15))),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Container(
-            color: Color.fromARGB(255, 244, 242, 242),
-            child: Container(
-              width: double.infinity,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(10),
-                  topRight: Radius.circular(10)
-                ),
-                color: Colors.white
-              ),
               child: Container(
-                margin: const EdgeInsets.symmetric(horizontal: 10),
-                padding: const EdgeInsets.all(13),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(8)),
+                  color: Colors.white,
+                ),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text("Amount", style: TextStyle(fontSize: 16)),
-                    const SizedBox(height: 8),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Container(
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                              border: Border(
-                                bottom: BorderSide(color: const Color.fromARGB(255, 148, 143, 143), width: 0.2)
-                              )
-                            ),
-                            child: TextField(
-                              keyboardType: TextInputType.none,
-                              // readOnly: true,
-                              decoration: const InputDecoration(
-                                border: InputBorder.none,
+                    Container(
+                      height: 100,
+                      decoration: BoxDecoration(
+                        color: Color(0xFF9B45E4),
+                        borderRadius: BorderRadius.only(topLeft: Radius.circular(8), topRight: Radius.circular(8))
+                      ),
+                      padding: EdgeInsets.all(20),
+                      child:  Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Container(
+                            width: 45,
+                            height: 45,
+                            child: Image.asset('images/cbe.jpg', fit: BoxFit.cover,),
+                          ),
+                          SizedBox(width: 7),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              // Obx(() => Text("${phoneNumberinpController.userName ?? nullUsername}", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20))),
+                              Text("${phoneNumberinpController.accountName == "BORA AMUSEMENT PARK EMEBET WOLDHER" ? "BORA AMUSEMENT PARK EMEB..." : phoneNumberinpController.accountName == "AMBASSADOR GARMENT AND TRADE PLC" ? "AMBASSADOR GARMENT AND TR..." : phoneNumberinpController.accountName}", style: TextStyle(color: const Color.fromARGB(255, 255, 255, 255), fontSize: 21, fontWeight: FontWeight.bold)),
+                              Obx(() => Text("Commercial Bank of Ethiopia(${phoneNumberinpController.accountNumber})", style: TextStyle(color:const Color.fromARGB(255, 216, 215, 215), fontSize: 16)))
+                              // Obx(() => Text("251${phoneNumberinpController.phoneNumber}", style: TextStyle(color: Colors.grey, fontSize: 15))),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      color: Color.fromARGB(255, 244, 242, 242),
+                      child: Container(
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(10),
+                            topRight: Radius.circular(10)
+                          ),
+                          color: Colors.white
+                        ),
+                        child: Container(
+                          margin: const EdgeInsets.symmetric(horizontal: 10),
+                          padding: const EdgeInsets.all(13),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text("Amount", style: TextStyle(fontSize: 18)),
+                              const SizedBox(height: 8),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: Container(
+                                      width: double.infinity,
+                                      decoration: BoxDecoration(
+                                        border: Border(
+                                          bottom: BorderSide(color: const Color.fromARGB(255, 148, 143, 143), width: 0.2)
+                                        )
+                                      ),
+                                      child: TextField(
+                                        keyboardType: TextInputType.none,
+                                        // readOnly: true,
+                                        decoration: const InputDecoration(
+                                          border: InputBorder.none,
+                                        ),
+                                        style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black),
+                                        controller: textController..text, // Use the SAME controller
+                                        onChanged: (value) {
+                                          // Update the amount in the controller
+                                          phoneNumberinpController.setBankAmount(int.tryParse(value) ?? 0);
+                                          // Update the observable amount so the text field can rebuild with the new value.
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                  const Text("(ETB)", style: TextStyle(color: Colors.grey, fontSize: 16)),
+                                ],
                               ),
-                              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black),
-                              controller: textController..text, // Use the SAME controller
-                              onChanged: (value) {
-                                // Update the amount in the controller
-                                phoneNumberinpController.setAmount(int.tryParse(value) ?? 0);
-                                // Update the observable amount so the text field can rebuild with the new value.
-                              },
-                            ),
+                              Container(
+                                padding: EdgeInsets.symmetric(vertical: 7),
+                                child: Text("Balance: 9084(ETB)", style: TextStyle(fontSize: 15, color: Color.fromARGB(255, 128, 112, 139))),
+                              ),
+                            ],
                           ),
                         ),
-                        const Text("(ETB)", style: TextStyle(color: Colors.grey, fontSize: 16)),
-                      ],
+                      ),
                     ),
                   ],
                 ),
@@ -171,13 +195,13 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
           ),
           Container(
             width: double.infinity,
-            color: Colors.white,
+            color: Color(0xFFF4F4F4),
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              child: Text("Add notes(optional)", style: TextStyle(color: Colors.blue, fontSize: 16)),
+              child: Text("Add notes(optional)", style: TextStyle(color: Color.fromARGB(255, 141, 197, 64), fontSize: 16)),
             ),
           ),
-          Expanded(child: Container(color: Colors.white)),
+          Expanded(child: Container(color: Color(0xFFF4F4F4))),
           Container(
             decoration: BoxDecoration(
               color: Colors.white,
@@ -186,11 +210,11 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
               children: [
                 Container(
                   width: double.infinity,
-                  color: Color.fromARGB(255, 244, 242, 242),
+                  color: Color(0xFFF7F7F7),
                   child: Icon(Icons.keyboard_arrow_down, size: 24, color: Colors.grey),
                 ),
                 Container(
-                  color: Color.fromARGB(255, 244, 242, 242),
+                  color: Color(0xFFF7F7F7),
                   child: GridView.builder(
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
@@ -211,8 +235,8 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
                         // height: 60, // Set the desired height for each button
                         child: ElevatedButton(
                           onPressed: () {
-                            phoneNumberinpController.setAmount(int.tryParse(textController.text) ?? 0);
-                            if (buttons[index] == "OK") {
+                            phoneNumberinpController.setBankAmount(int.tryParse(textController.text) ?? 0);
+                            if (buttons[index] == "Transfer") {
                               LoadingDialog loadingDialog = Get.put(LoadingDialog());
                               loadingDialog.showLoadingDialog();
                               Future.delayed(Duration (seconds: 1), () {
@@ -259,13 +283,13 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
                                               child:
                                                 Column(
                                                   children: [
-                                                    Obx(() => Text("Send Money to ${phoneNumberinpController.userName}", style: TextStyle(fontSize: 20, color: Colors.black87))),
+                                                    Text("Transfer to Bank", style: TextStyle(fontSize: 20, color: Colors.black87)),
                                                     Container(
                                                       padding: EdgeInsets.all(8),
                                                       child: Obx(() => 
                                                         Text.rich(
                                                           TextSpan(
-                                                            text: '${NumberFormat('#,###').format(phoneNumberinpController.amount.value)}.00',
+                                                            text: '${NumberFormat('#,###').format(phoneNumberinpController.bankAmount.value)}.00',
                                                             style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold, color: Colors.black),
                                                             children: [
                                                               TextSpan(
@@ -298,7 +322,7 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
                                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                                 children: [
                                                                   Text("Original Amount", style: TextStyle(fontSize: 18, color: Colors.grey),),
-                                                                  Text("${phoneNumberinpController.originalAmount}.00ETB", style: TextStyle(fontSize: 18, color: Colors.black, fontWeight: FontWeight.bold))
+                                                                  Text("${phoneNumberinpController.originalBankAmount}.00ETB", style: TextStyle(fontSize: 18, color: Colors.black, fontWeight: FontWeight.bold))
                                                                 ],
                                                               ),
                                                             ),
@@ -309,11 +333,11 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
                                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                                 children: [
                                                                   Text("Service fee", style: TextStyle(fontSize: 18, color: Colors.grey),),
-                                                                  Text(phoneNumberinpController.amount < 101 ? "1.00" : 
-                                                                    phoneNumberinpController.amount > 100 && phoneNumberinpController.amount < 600 ? "2.00" :
-                                                                    phoneNumberinpController.amount > 599 && phoneNumberinpController.amount < 3000 ? "4.00" :
-                                                                    phoneNumberinpController.amount > 2999 && phoneNumberinpController.amount < 5001 ? "6.00" :
-                                                                    "5.00", 
+                                                                  Text(phoneNumberinpController.bankAmount < 101 ? "1.00" : 
+                                                                    phoneNumberinpController.bankAmount > 99 && phoneNumberinpController.bankAmount < 500 ? "3.00" :
+                                                                    phoneNumberinpController.bankAmount >= 500 && phoneNumberinpController.bankAmount < 1000 ? "6.00" :
+                                                                    phoneNumberinpController.bankAmount >= 1000 && phoneNumberinpController.bankAmount < 5000 ? "7.00" :
+                                                                    "9.00", 
                                                                    style: TextStyle(fontSize: 18, color: Colors.black, fontWeight: FontWeight.bold))
                                                                 ],
                                                               ),
@@ -381,7 +405,7 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
                                                           loadingDialog.showLoadingDialog();
                                                           Future.delayed(Duration (seconds: 9), () {
                                                             Get.back();
-                                                            Get.toNamed('/finalPage');
+                                                            Get.toNamed('/finalbank');
                                                           });
                                                         },
                                                         style : ElevatedButton.styleFrom(
@@ -392,7 +416,7 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
                                                             borderRadius: BorderRadius.circular(8)
                                                           ),
                                                         ),
-                                                        child: Text("Send", style: TextStyle(fontSize: 20),)
+                                                        child: Text("Transfer", style: TextStyle(fontSize: 20),)
                                                       ),
                                                     )
                                                   ],
@@ -428,14 +452,14 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
                             }
                           },
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: buttons[index] == "OK" ? Color.fromARGB(255, 141, 197, 64) : Colors.white,
-                            foregroundColor: buttons[index] == "OK" ? Colors.white : Colors.black,
+                            backgroundColor: buttons[index] == "Transfer" ? Color.fromARGB(255, 141, 197, 64) : Colors.white,
+                            foregroundColor: buttons[index] == "Transfer" ? Colors.white : Colors.black,
                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3), side: BorderSide.none),
                             elevation: 0, // used to remove the box shadow
-                            fixedSize: buttons[index] == "OK" ? Size(100, 120) : Size(80, 80),
+                            fixedSize: buttons[index] == "Transfer" ? Size(100, 120) : Size(80, 80),
                           ),
                           child: buttons[index] is String
-                              ? Text(buttons[index], style: const TextStyle(fontSize: 22))
+                              ? Text(buttons[index], style: TextStyle(fontSize: buttons[index] == "Transfer" ? 12 : 22))
                               : const Icon(Icons.backspace_outlined, color: Colors.black, size: 18),
                         ),
                       ); // sized boxxxxxxxx

@@ -1,34 +1,35 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../controller/phoneNumInpController.dart';
+import '../../controller/phoneNumInpController.dart';
 import 'package:intl/intl.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'dart:math';
 
-class FinalPage extends StatefulWidget {
-  const FinalPage({super.key});
+class FinalBank extends StatefulWidget {
+  const FinalBank({super.key});
 
   @override
-  State<FinalPage> createState() => _FinalPageState();
+  State<FinalBank> createState() => _FinalBankState();
 }
 
-class _FinalPageState extends State<FinalPage> {
+class _FinalBankState extends State<FinalBank> {
   final phoneNumberinpcontroller = Get.find<PhoneNumberInputController>();
 
   String getCurrentDateTime() {
     DateTime now = DateTime.now();
     return DateFormat('yyyy/MM/dd HH:mm:ss').format(now);
   }
+  // Generate new Transaction numbers
   String generateTransactionNumber() {
-    const String letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    const String alphanumeric = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+    const String letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const String alphanumeric = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
     Random random = Random();
+    // generate the middle 6 digit numbers
+    String firstPart = List.generate(6, (index) => alphanumeric[random.nextInt(alphanumeric.length)]).join();
+    String last_two_letters = List.generate(2, (index) => letters[random.nextInt(letters.length)]).join();
 
-    String middle_six = List.generate(6, (index) => alphanumeric[random.nextInt(alphanumeric.length)]).join();
-    String lastTwo = List.generate(2, (index) => letters[random.nextInt(letters.length)]).join();
-
-    return "CB" + middle_six + lastTwo;
+    return 'CB' + firstPart + last_two_letters;
   }
 
   @override
@@ -110,7 +111,7 @@ class _FinalPageState extends State<FinalPage> {
                 alignment: Alignment.center,
                 child: Text.rich(
                   TextSpan( // ወደ ባንክ ሲሆን ማይነስ(-435) አይገባበትምምምምምምምምምምምምምምምምምምምምምምምምምም ከታች ያለው አስታውሥ
-                    text: '-' '${NumberFormat('#,###').format(phoneNumberinpcontroller.amount.value)}.00',
+                    text: '-' '${NumberFormat('#,###').format(phoneNumberinpcontroller.bankAmount.value)}.00',
                     style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold, color: Colors.black),
                     children: [
                       TextSpan(
@@ -129,15 +130,17 @@ class _FinalPageState extends State<FinalPage> {
               ),
               Container(
                 width: double.infinity,
-                height: screenHeight * 0.2,
+                height: screenHeight * 0.25,
                 margin: EdgeInsets.symmetric(horizontal: 30),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [ //2025/02/01 12:47:55
-                    _transactionRow("Transaction Time:", getCurrentDateTime()),
-                    _transactionRow("Transaction Type:", "Transfer Money"),
-                    _transactionRow("Transaction To:", "${phoneNumberinpcontroller.userName}"),
-                    _transactionRow("Transaction Number:", generateTransactionNumber()),
+                    _transactionRow("Transaction Number:", generateTransactionNumber(), 17),
+                    _transactionRow("Transaction Time:", getCurrentDateTime(), 17),
+                    _transactionRow("Transaction Type:", "Transfer to Bank", 17),
+                    _transactionRow("Transaction To:", "${phoneNumberinpcontroller.accountName}", phoneNumberinpcontroller.accountName == "BORA AMUSEMENT PARK EMEBET WOLDHER" ? 13 : phoneNumberinpcontroller.accountName ==  "AMBASSADOR GARMENT AND TRADE PLC" ? 15 : 17),
+                    _transactionRow("Bank Account Number:", "${phoneNumberinpcontroller.accountNumber}", 17),
+                    _transactionRow("Bank Name:", "Commercial Bank of Ethiopia", 17),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
@@ -167,7 +170,7 @@ class _FinalPageState extends State<FinalPage> {
                 child: Center(
                   child: ElevatedButton(
                     onPressed: (){
-                      Get.toNamed('/phoneNumberInput');
+                      Get.toNamed('/accountinput');
                     },
                     style: ElevatedButton.styleFrom(
                       minimumSize: Size(screenWidth * 0.4, 50),
@@ -188,12 +191,12 @@ class _FinalPageState extends State<FinalPage> {
     );
   }
 
-  Widget _transactionRow(String title, String value) {
+  Widget _transactionRow(String title, String value, double size) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(title, style: TextStyle(color: Colors.grey, fontSize: 17)),
-        Text(value, style: TextStyle(fontSize: 17)),
+        Text(title, style: TextStyle(color: Colors.grey, fontSize: 16)),
+        Text(value, style: TextStyle(fontSize: size)),
       ],
     );
   }
