@@ -4,7 +4,7 @@ import 'package:telebirr/controller/phoneNumInpController.dart';
 import 'package:telebirr/pages/phoneNumInp.dart';
 import '../components/dialog.dart';
 import 'package:intl/intl.dart'; // number separator by comma (like this  = 1,000)
-
+import 'telepin.dart';
 class SendMoneyPage extends StatefulWidget {
 
   SendMoneyPage({super.key});
@@ -60,23 +60,37 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
     if(phoneNumberinpController.phoneNumber.value == 986584082) {
       setName("DAGIM");
     }
-    if(phoneNumberinpController.phoneNumber.value == 983017778) {
-      setName("LIDIYA");
-    }
-    if(phoneNumberinpController.phoneNumber.value == 912458225) {
-      setName("SOFONIYAS");
-    }
-    if(phoneNumberinpController.phoneNumber.value == 900000000) {
-      setName("DAGMAWI");
-    }
     if(phoneNumberinpController.phoneNumber.value == 945925292) {
-      setName("Feven");
+      setName("Feven"); // sambusa
+    }
+    if(phoneNumberinpController.phoneNumber.value == 982323201) {
+      setName("Hana"); // tututu icecream
     }
     if(phoneNumberinpController.phoneNumber.value == 911902453) {
-      setName("Abrham");
+      setName("Abrham"); // abrsh
     } // ---
+    if(phoneNumberinpController.phoneNumber.value == 942475555) {
+      setName("Amanual"); 
+    } // feresegna
+    if(phoneNumberinpController.phoneNumber.value == 944282845) {
+      setName("SALIM");  // elfaz spot
+    } // feresegna
+    if(phoneNumberinpController.phoneNumber.value == 988812518) {
+      setName("BERSABEH");  // elfaz spot
+    } // feresegna
+    if(phoneNumberinpController.phoneNumber.value == 924657777) {
+      setName("Ambachew");  // kemekem 
+    } 
+    if(phoneNumberinpController.phoneNumber.value == 920746702) {
+      setName("Mekdes");  // 4kilo ertb spot 
+    } 
+    if(phoneNumberinpController.phoneNumber.value == 930594279) {
+      setName("Estifanos");  // weloyew 
+    } 
+    if(phoneNumberinpController.phoneNumber.value == 911244873) {
+      setName("Yonathan");  // bolecakkeee 
+    } 
     
-
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -377,12 +391,11 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
                                                       margin: EdgeInsets.only(top: 10),
                                                       child: ElevatedButton(
                                                         onPressed: (){
+                                                          Navigator.pop(context);
                                                           LoadingDialog loadingDialog = Get.put(LoadingDialog());
                                                           loadingDialog.showLoadingDialog();
-                                                          Future.delayed(Duration (seconds: 9), () {
-                                                            Get.back();
-                                                            Get.toNamed('/finalPage');
-                                                          });
+                                                          Get.back();
+                                                          TPin().show(context);
                                                         },
                                                         style : ElevatedButton.styleFrom(
                                                           backgroundColor: Color.fromARGB(255, 141, 197, 64),

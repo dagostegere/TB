@@ -4,7 +4,7 @@ import 'package:telebirr/controller/phoneNumInpController.dart';
 import 'package:telebirr/pages/phoneNumInp.dart';
 import '../../components/dialog.dart';
 import 'package:intl/intl.dart'; // number separator by comma (like this  = 1,000)
-
+import 'pin.dart';
 class Sendbank extends StatefulWidget {
 
   Sendbank({super.key});
@@ -54,23 +54,147 @@ class _SendbankState extends State<Sendbank> {
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
     if(phoneNumberinpController.accountNumber == 1000123456789) {
-      setName("DAGIM TESHOME WORKNEH"); //revolutionary
+      setName("TOLOSSA FEYESA BEDASA"); //revolutionary
     }
     if(phoneNumberinpController.accountNumber == 1000225389229) {
       setName("TIGIST WORKNEH ABATE"); //revolutionwater
     }
     if(phoneNumberinpController.accountNumber == 1000366066695) {
-      setName("ABIY HAGOS T/BIRHAN"); //revolutionsss
+      setName("ABIY HAGOS T/BIRHAN"); //revolutionsssssss sss
     }
     if(phoneNumberinpController.accountNumber == 1000293169237) {
       setName("BORA AMUSEMENT PARK EMEBET WOLDHER");
     }
     if(phoneNumberinpController.accountNumber == 1000334613031) {
       setName("AMBASSADOR GARMENT AND TRADE PLC");
+    } 
+    if(phoneNumberinpController.accountNumber == 1000139332238) {
+      setName("ALAZAR BEDILU TSEHAY"); // gotera
+    }
+    if(phoneNumberinpController.accountNumber == 1000473596478) {
+      setName("FRIENDSHIP SQUARE"); // friendship
+    }
+    if(phoneNumberinpController.accountNumber == 1000341620728) {
+      setName("BELAYAB FOODS PRODUCTION PLC"); // coldstone icecream
     }
     if(phoneNumberinpController.accountNumber == 1000435260199) {
-      setName("ESAYAS ADMASU TIKU");
-    } // smile burger
+      setName("ESAYAS ADMASU TIKU"); // smile
+    } // smileeeee
+    if(phoneNumberinpController.accountNumber == 1000349673758) {
+      setName("ABREHAM MESGAN KASAHUN"); // abrhamm
+    } 
+    if(phoneNumberinpController.accountNumber == 1000684695324) {
+      setName("Miss Mirtnesh Feleke Baji"); // omeedla
+    }
+    if(phoneNumberinpController.accountNumber == 1000307823105) {
+      setName("SELAMAWIT GEZAHAGN GESESE"); // sudan
+    }
+    if(phoneNumberinpController.accountNumber == 1000147219998) {
+      setName("SELAMAWIT AWOKE BANJAW"); // skatin
+    }
+    if(phoneNumberinpController.accountNumber == 1000358128727) {
+      setName("MEDHANIT DEMISSIE DEGU"); // skatin 2
+    }
+    if(phoneNumberinpController.accountNumber == 1000568299489) {
+      setName("WUBALEM GETACHEW ZERIHUN"); // terara grill
+    }
+    if(phoneNumberinpController.accountNumber == 1000572055788) {
+      setName("DIBORA ZERIHUN FIRISO"); // ROBA SPOTTTTTTTTT
+    }
+    if(phoneNumberinpController.accountNumber == 1000628059792) {
+      setName("FISEHA KIFLE AMARE"); // ROBA SPOTTTTTTTTT (4KILO RM)
+    }
+    if(phoneNumberinpController.accountNumber == 1000692613094) {
+      setName("Mr Alemneh Sintayehu Woldemikael"); //aman shola rm
+    }
+    if(phoneNumberinpController.accountNumber == 1000571170438) {
+      setName("BETHELEHEM BERHANE YEFRU"); //aman entoto (bole food)
+    }
+    if(phoneNumberinpController.accountNumber == 1000679755084) {
+      setName("KONDITOREI CAFE AND CAKE PLC"); // CAKE 
+    }
+    if(phoneNumberinpController.accountNumber == 1000169217398) {
+      setName("AYENEW MISGAN KASAHUN"); // ABRAHAM 
+    }
+    if(phoneNumberinpController.accountNumber == 1000309621593) {
+      setName("WOW BURGER PRODUCTION PLC"); // wowww 
+    }
+    if(phoneNumberinpController.accountNumber == 1000097366466) {
+      setName("MEKDES MULUGETA NAMAGA"); // 4kilo ertb 
+    }
+    if(phoneNumberinpController.accountNumber == 1000323680257) {
+      setName("FIREHIWOT TSEGAW ABEBE"); // bowlingggg 
+    }
+    if(phoneNumberinpController.accountNumber == 1000350526548) {
+      setName("MESERET MINWYELET MIHRETE"); // 4kilo food and coffe  
+    }
+    if(phoneNumberinpController.accountNumber == 1000235010732) {
+      setName("NIGIST ADMASU G/EGIZIYABHER"); // 4kilo ROBA RMM 
+    }
+    if(phoneNumberinpController.accountNumber == 1000004400201) {
+      setName("AMBACHEW TESFAYE HMARIAM"); // KEMEKEM 
+    }
+    if(phoneNumberinpController.accountNumber == 1000006955502) {
+      setName("BEKELE MOLLA HOTEL PLC"); // hibir 
+    }
+    if(phoneNumberinpController.accountNumber == 1000683265652) {
+      setName("THE ADDRESS TRADING PLC"); // bolenew 
+    }
+    if(phoneNumberinpController.accountNumber == 1000335853907) {
+      setName("BELAY SHIBERU BELAY"); // pastaw 
+    }
+    if(phoneNumberinpController.accountNumber == 1000420578389) {
+      setName("MONARCH HOTEL PLC");  
+    }
+    if(phoneNumberinpController.accountNumber == 1000629301333) {
+      setName("DARCO MANUFACTURING AND TRADING PLC"); // 4kilo icevream
+    }
+    if(phoneNumberinpController.accountNumber == 1000494090434) {
+      setName("BESRAT TILAHUN WELDEKIDAN"); // KBUR 
+    }
+    if(phoneNumberinpController.accountNumber == 1000313612914) {
+      setName("DELMELA TRADING PLC"); // mitmita 
+    }
+    if(phoneNumberinpController.accountNumber == 1000672488625) {
+      setName("BETHELHEM ANDARGE BIRKAYEHU"); //  noodle
+    }
+    if(phoneNumberinpController.accountNumber == 1000329745523) {
+      setName("GIRMA DEGU MAMAS KITCHEN"); //  
+    }
+    if(phoneNumberinpController.accountNumber == 1000516722278) {
+      setName("ANTENEH MEKONEN MENGESHA"); // 4kilo totalmadeya 
+    }
+    if(phoneNumberinpController.accountNumber == 1000222856748) {
+      setName("Mr Dawit Amare Hagos"); // aman burger spot bole 
+    }
+    if(phoneNumberinpController.accountNumber == 1000710348751) {
+      setName("MAK FAM TRADING PLC"); //PIZZA dicaprio
+    }
+    if(phoneNumberinpController.accountNumber == 1000313628543) {
+      setName("MELNARED TRADING PLC"); //woreda 8 supermarket
+    }
+    if(phoneNumberinpController.accountNumber == 1000001838613) {
+      setName("ANTICA PLC"); //miyamrew spot 
+    }
+    if(phoneNumberinpController.accountNumber == 1000539064359) {
+      setName("HANNA AFEWORK LEMMA"); //bole coffee
+    }
+    if(phoneNumberinpController.accountNumber == 1000706427329) {
+      setName("GO FRESH TRADING PLC"); // goooo fresh
+    }
+    if(phoneNumberinpController.accountNumber == 1000277101436) {
+      setName("TONG DA LPG &BITUMEN PLC-HOTEL"); // china
+    }
+    if(phoneNumberinpController.accountNumber == 1000056638467) {
+      setName("MIRTIE ABEBE WOLDEMACHAEL"); // china
+    }
+    if(phoneNumberinpController.accountNumber == 1000203271712) {
+      setName("EFFI NORDIC SPECIALIZED RESTAURANT"); // atlas rut
+    }
+    if(phoneNumberinpController.accountNumber == 1000403709356) {
+      setName("NAHOM MANALE TASSU"); // ATLAS YOS
+    }
+    
     
 
     return Scaffold(
@@ -123,7 +247,7 @@ class _SendbankState extends State<Sendbank> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               // Obx(() => Text("${phoneNumberinpController.userName ?? nullUsername}", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20))),
-                              Text("${phoneNumberinpController.accountName == "BORA AMUSEMENT PARK EMEBET WOLDHER" ? "BORA AMUSEMENT PARK EMEB..." : phoneNumberinpController.accountName == "AMBASSADOR GARMENT AND TRADE PLC" ? "AMBASSADOR GARMENT AND TR..." : phoneNumberinpController.accountName}", style: TextStyle(color: const Color.fromARGB(255, 255, 255, 255), fontSize: 21, fontWeight: FontWeight.bold)),
+                              Text("${phoneNumberinpController.accountName == "BORA AMUSEMENT PARK EMEBET WOLDHER" ? "BORA AMUSEMENT PARK EMEB..." : phoneNumberinpController.accountName == "AMBASSADOR GARMENT AND TRADE PLC" ? "AMBASSADOR GARMENT AND TR..." : phoneNumberinpController.accountName == "DARCO MANUFACTURING AND TRADING PLC" ? "DARCO MANUFACTURING AND TRA..." :  phoneNumberinpController.accountName == "EFFI NORDIC SPECIALIZED RESTAURANT" ? "EFFI NORDIC SPECIALIZED RES..." : phoneNumberinpController.accountName}", style: TextStyle(color: const Color.fromARGB(255, 255, 255, 255), fontSize: 21, fontWeight: FontWeight.bold)),
                               Obx(() => Text("Commercial Bank of Ethiopia(${phoneNumberinpController.accountNumber})", style: TextStyle(color:const Color.fromARGB(255, 216, 215, 215), fontSize: 16)))
                               // Obx(() => Text("251${phoneNumberinpController.phoneNumber}", style: TextStyle(color: Colors.grey, fontSize: 15))),
                             ],
@@ -400,14 +524,13 @@ class _SendbankState extends State<Sendbank> {
                                                       padding : EdgeInsets.symmetric(horizontal: 17, vertical: 3),
                                                       margin: EdgeInsets.only(top: 10),
                                                       child: ElevatedButton(
-                                                        onPressed: (){
+                                                       onPressed: () {
+                                                          Navigator.pop(context); // OR use Get.back() if this context is enough
                                                           LoadingDialog loadingDialog = Get.put(LoadingDialog());
                                                           loadingDialog.showLoadingDialog();
-                                                          Future.delayed(Duration (seconds: 9), () {
-                                                            Get.back();
-                                                            Get.toNamed('/finalbank');
-                                                          });
-                                                        },
+                                                          Get.back();
+                                                          Pin().show(context);
+                                                      },
                                                         style : ElevatedButton.styleFrom(
                                                           backgroundColor: Color.fromARGB(255, 141, 197, 64),
                                                           foregroundColor: Colors.white,

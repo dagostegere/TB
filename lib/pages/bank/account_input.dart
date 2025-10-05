@@ -187,9 +187,14 @@ class _AccountInputState extends State<AccountInput> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.center, // Align items in the center
                           children: [
-                            Text(
+                            GestureDetector(
+                              onTap: () {
+                                Get.toNamed('/addName');
+                              }, 
+                              child:  Text(
                               "Recent",
                               style: TextStyle(color: Colors.black, fontSize: 20),
+                              ),
                             ),
                             IconButton(
                               onPressed: () {

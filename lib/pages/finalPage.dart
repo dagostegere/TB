@@ -5,6 +5,7 @@ import '../controller/phoneNumInpController.dart';
 import 'package:intl/intl.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'dart:math';
+import 'dart:async';
 
 class FinalPage extends StatefulWidget {
   const FinalPage({super.key});
@@ -16,19 +17,59 @@ class FinalPage extends StatefulWidget {
 class _FinalPageState extends State<FinalPage> {
   final phoneNumberinpcontroller = Get.find<PhoneNumberInputController>();
 
+  late PageController _pageController;
+  int _currentPage = 0;
+  late Timer _timer;
+
+  final List<String> _imagePaths = [
+    'images/1.jpg',
+    'images/2.jpg',
+    'images/3.jpg',
+    'images/4.jpg',
+  ];
+
+  final int _maxPage = 1000;
+
+  @override
+  void initState() {
+    super.initState();
+    _currentPage = _maxPage ~/ 2;
+    _pageController = PageController(initialPage: _currentPage);
+
+    _timer = Timer.periodic(Duration(seconds: 4), (Timer timer) {
+      _currentPage++;
+      _pageController.animateToPage(
+        _currentPage,
+        duration: Duration(milliseconds: 500),
+        curve: Curves.easeInOut,
+      );
+
+      if (_currentPage >= _maxPage - 1) {
+        _currentPage = _maxPage ~/ 2;
+        _pageController.jumpToPage(_currentPage);
+      }
+    });
+  }
+
   String getCurrentDateTime() {
     DateTime now = DateTime.now();
-    return DateFormat('yyyy/MM/dd HH:mm:ss').format(now);
+    return DateFormat('HH:mm:ss').format(now);
   }
   String generateTransactionNumber() {
     const String letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    const String alphanumeric = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+    const String alphanumeric = "ABCDEHIJLMPRSTVXYZ1234567890";
     Random random = Random();
 
-    String middle_six = List.generate(6, (index) => alphanumeric[random.nextInt(alphanumeric.length)]).join();
-    String lastTwo = List.generate(2, (index) => letters[random.nextInt(letters.length)]).join();
+    String middle_six = List.generate(8, (index) => alphanumeric[random.nextInt(alphanumeric.length)]).join();
 
-    return "CB" + middle_six + lastTwo;
+    return "CJ" + middle_six;
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    _pageController.dispose();
+    super.dispose();
   }
 
   @override
@@ -134,7 +175,7 @@ class _FinalPageState extends State<FinalPage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [ //2025/02/01 12:47:55
-                    _transactionRow("Transaction Time:", getCurrentDateTime()),
+                    _transactionRow("Transaction Time:",  "2025/10/06" + " " + getCurrentDateTime()),
                     _transactionRow("Transaction Type:", "Transfer Money"),
                     _transactionRow("Transaction To:", "${phoneNumberinpcontroller.userName}"),
                     _transactionRow("Transaction Number:", generateTransactionNumber()),
@@ -153,11 +194,20 @@ class _FinalPageState extends State<FinalPage> {
               ),
               Container(
                 width: double.infinity,
-                height:  110,
+                height: 110,
                 margin: EdgeInsets.symmetric(horizontal: 9, vertical: 5),
                 child: ClipRRect(
                   borderRadius: BorderRadius.all(Radius.circular(10)),
-                  child: Image.asset('images/t.jpg', fit: BoxFit.cover),
+                  child: PageView.builder(
+                    controller: _pageController,
+                    itemBuilder: (context, index) {
+                      final imageIndex = index % _imagePaths.length;
+                      return Image.asset(
+                        _imagePaths[imageIndex],
+                        fit: BoxFit.cover,
+                      );
+                    },
+                  ),
                 ),
               ),
               Container(
