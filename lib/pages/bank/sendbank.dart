@@ -89,23 +89,14 @@ class _SendbankState extends State<Sendbank> {
     if(phoneNumberinpController.accountNumber == 1000307823105) {
       setName("SELAMAWIT GEZAHAGN GESESE"); // sudan
     }
-    if(phoneNumberinpController.accountNumber == 1000147219998) {
-      setName("SELAMAWIT AWOKE BANJAW"); // skatin
-    }
-    if(phoneNumberinpController.accountNumber == 1000358128727) {
-      setName("MEDHANIT DEMISSIE DEGU"); // skatin 2
-    }
     if(phoneNumberinpController.accountNumber == 1000568299489) {
       setName("WUBALEM GETACHEW ZERIHUN"); // terara grill
     }
     if(phoneNumberinpController.accountNumber == 1000572055788) {
-      setName("DIBORA ZERIHUN FIRISO"); // ROBA SPOTTTTTTTTT
+      setName("DIBORA ZERIHUN FIRISO"); // CHAOFAN
     }
     if(phoneNumberinpController.accountNumber == 1000628059792) {
       setName("FISEHA KIFLE AMARE"); // ROBA SPOTTTTTTTTT (4KILO RM)
-    }
-    if(phoneNumberinpController.accountNumber == 1000692613094) {
-      setName("Mr Alemneh Sintayehu Woldemikael"); //aman shola rm
     }
     if(phoneNumberinpController.accountNumber == 1000571170438) {
       setName("BETHELEHEM BERHANE YEFRU"); //aman entoto (bole food)
@@ -118,12 +109,6 @@ class _SendbankState extends State<Sendbank> {
     }
     if(phoneNumberinpController.accountNumber == 1000309621593) {
       setName("WOW BURGER PRODUCTION PLC"); // wowww 
-    }
-    if(phoneNumberinpController.accountNumber == 1000097366466) {
-      setName("MEKDES MULUGETA NAMAGA"); // 4kilo ertb 
-    }
-    if(phoneNumberinpController.accountNumber == 1000323680257) {
-      setName("FIREHIWOT TSEGAW ABEBE"); // bowlingggg 
     }
     if(phoneNumberinpController.accountNumber == 1000350526548) {
       setName("MESERET MINWYELET MIHRETE"); // 4kilo food and coffe  
@@ -164,9 +149,6 @@ class _SendbankState extends State<Sendbank> {
     if(phoneNumberinpController.accountNumber == 1000516722278) {
       setName("ANTENEH MEKONEN MENGESHA"); // 4kilo totalmadeya 
     }
-    if(phoneNumberinpController.accountNumber == 1000222856748) {
-      setName("Mr Dawit Amare Hagos"); // aman burger spot bole 
-    }
     if(phoneNumberinpController.accountNumber == 1000710348751) {
       setName("MAK FAM TRADING PLC"); //PIZZA dicaprio
     }
@@ -193,6 +175,33 @@ class _SendbankState extends State<Sendbank> {
     }
     if(phoneNumberinpController.accountNumber == 1000403709356) {
       setName("NAHOM MANALE TASSU"); // ATLAS YOS
+    }
+    if(phoneNumberinpController.accountNumber == 1000413077412) {
+      setName("MICKEY GENERAL INVESTMENT PLC"); // 2K HA
+    }
+    if(phoneNumberinpController.accountNumber == 1000723361412) {
+      setName("WOW BURGER PRODUCTION PLC"); // WOW 2ND
+    }
+    if(phoneNumberinpController.accountNumber == 1000697759418) {
+      setName("BAZRA COFFE ONE MEMBER PLC"); // WOW 2ND
+    }
+    if(phoneNumberinpController.accountNumber == 1000625049974) {
+      setName("ESETCO TRADING PLC"); // LEBU
+    }
+    if(phoneNumberinpController.accountNumber == 1000446797844) {
+      setName("CHALTU ADICHO KEBEDE"); // LEBU
+    }
+    if(phoneNumberinpController.accountNumber == 1000490301497) {
+      setName("AMNEN PHARMACEUTICALS PLC"); // LIN
+    }
+    if(phoneNumberinpController.accountNumber == 1000206103063) {
+      setName("Mr Sami Ali Ahmed"); // AMBASADOR 
+    }
+    if(phoneNumberinpController.accountNumber == 1000001812509) {
+      setName("MIDROC ETH PLC (SHERATON ADD.)"); // LIN
+    }
+    if(phoneNumberinpController.accountNumber == 1000704448272) {
+      setName("NONNA S PLC"); // PIZZA AMBASADOR
     }
     
     
@@ -363,7 +372,7 @@ class _SendbankState extends State<Sendbank> {
                             if (buttons[index] == "Transfer") {
                               LoadingDialog loadingDialog = Get.put(LoadingDialog());
                               loadingDialog.showLoadingDialog();
-                              Future.delayed(Duration (seconds: 1), () {
+                              Future.delayed(Duration (milliseconds: 500), () {
                                 Get.back();
                                 showModalBottomSheet(
                                   isScrollControlled: true, 

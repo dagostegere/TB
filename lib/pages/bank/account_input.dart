@@ -14,6 +14,59 @@ class _AccountInputState extends State<AccountInput> {
   @override
   final phoneNumberinpController = Get.find<PhoneNumberInputController>();
   final textController = TextEditingController();
+  List<int> accountNumbers = [
+    1000123456789,
+    1000225389229,
+    1000366066695,
+    1000293169237,
+    1000334613031,
+    1000139332238,
+    1000473596478,
+    1000341620728,
+    1000435260199,
+    1000349673758,
+    1000684695324,
+    1000307823105,
+    1000568299489,
+    1000572055788,
+    1000628059792,
+    1000571170438,
+    1000679755084,
+    1000169217398,
+    1000309621593,
+    1000350526548,
+    1000235010732,
+    1000004400201,
+    1000006955502,
+    1000683265652,
+    1000335853907,
+    1000420578389,
+    1000629301333,
+    1000494090434,
+    1000313612914,
+    1000672488625,
+    1000329745523,
+    1000516722278,
+    1000710348751,
+    1000313628543,
+    1000001838613,
+    1000539064359,
+    1000706427329,
+    1000277101436,
+    1000056638467,
+    1000203271712,
+    1000403709356,
+    1000413077412,
+    1000723361412,
+    1000697759418,
+    1000625049974,
+    1000446797844,
+    1000490301497,
+    1000206103063,
+    1000001812509,
+    1000704448272,
+  ];
+
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,  // this is sooooooo usefullllll bruhhh  - used for prevent elements from pushed up when the device's keyboard appears
@@ -123,7 +176,7 @@ class _AccountInputState extends State<AccountInput> {
                                         children: [
                                           SizedBox(height: 6.2),
                                           TextField(
-                                            keyboardType: TextInputType.phone, // Numeric keyboard
+                                            keyboardType: TextInputType.text, // Numeric keyboard
                                             controller: textController,
                                             decoration: InputDecoration(
                                               hintText: 'Enter Account Number',
@@ -147,12 +200,50 @@ class _AccountInputState extends State<AccountInput> {
                                 onPressed: () {
                                   LoadingDialog loadingDialog = Get.put(LoadingDialog());
                                   loadingDialog.showLoadingDialog();
+                                  int? input = int.tryParse(textController.text);
+                                  if (accountNumbers.contains(input) || phoneNumberinpController.accountName.value.isNotEmpty){
+                                    phoneNumberinpController.setAccountNumber(int.tryParse(textController.text) ?? 0);
+                                    Future.delayed(Duration (seconds: 4), () {
+                                      Get.back();
+                                      Get.toNamed('sendbank');
+                                    });
+                                  } else {
+                                    Future.delayed(Duration(seconds: 5), () {
+                                      showDialog(
+                                        context: context,
+                                        barrierDismissible: true, // allows user to tap outside to dismiss
+                                        barrierColor: Colors.transparent,
+                                        builder: (BuildContext context) {
+                                          Future.delayed(Duration(seconds: 5), () {
+                                            if (Navigator.canPop(context)) {
+                                              Navigator.of(context).pop();
+                                            }
+                                          });
 
-                                  phoneNumberinpController.setAccountNumber(int.tryParse(textController.text) ?? 0);
-                                  Future.delayed(Duration (seconds: 4), () {
-                                    Get.back();
-                                    Get.toNamed('sendbank');
-                                  });
+                                          return Center(
+                                            child: Container(
+                                              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
+                                              decoration: BoxDecoration(
+                                                color: Colors.black.withOpacity(0.8), // transparent black
+                                                borderRadius: BorderRadius.circular(12), // curved edges
+                                              ),
+                                              child: const Text(
+                                                "Query holder name fail",
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontFamily: 'Roboto',
+                                                  fontSize: 16,
+                                                  decoration: TextDecoration.none,
+                                                ),
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      );
+                                    });
+
+                                  }
                                 },
                                 style: ElevatedButton.styleFrom(
                                   minimumSize: Size(double.infinity, 50),
