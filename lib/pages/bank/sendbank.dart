@@ -203,6 +203,18 @@ class _SendbankState extends State<Sendbank> {
     if(phoneNumberinpController.accountNumber == 1000704448272) {
       setName("NONNA S PLC"); // PIZZA AMBASADOR
     }
+    if(phoneNumberinpController.accountNumber == 1000434061109) {
+      setName("TAFESE W.5KILO RESTAU AND LAUNGE"); //
+    }
+    if(phoneNumberinpController.accountNumber == 1000662056646) {
+      setName("BETHELHEM MELESSE SHISHIGE"); //
+    } //HIDAR
+    if(phoneNumberinpController.accountNumber == 1000711786116) {
+      setName("Miss Meron Fesha Yitbarek"); //
+    } //adorisi
+    if(phoneNumberinpController.accountNumber == 1000646095976) {
+      setName("ROMINA PLC"); //
+    } //adorisi
     
     
 
