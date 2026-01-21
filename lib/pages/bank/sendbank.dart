@@ -180,10 +180,10 @@ class _SendbankState extends State<Sendbank> {
       setName("MICKEY GENERAL INVESTMENT PLC"); // 2K HA
     }
     if(phoneNumberinpController.accountNumber == 1000723361412) {
-      setName("WOW BURGER PRODUCTION PLC"); // WOW 2ND
+      setName("WOW BURGER PRODUCTION PLC"); // WOW bole 
     }
     if(phoneNumberinpController.accountNumber == 1000697759418) {
-      setName("BAZRA COFFE ONE MEMBER PLC"); // WOW 2ND
+      setName("BAZRA COFFE ONE MEMBER PLC"); // bazra
     }
     if(phoneNumberinpController.accountNumber == 1000625049974) {
       setName("ESETCO TRADING PLC"); // LEBU
@@ -214,7 +214,16 @@ class _SendbankState extends State<Sendbank> {
     } //adorisi
     if(phoneNumberinpController.accountNumber == 1000646095976) {
       setName("ROMINA PLC"); //
-    } //adorisi
+    } //idk
+    if(phoneNumberinpController.accountNumber == 1000728750627) {
+      setName("MAGS CAFE PLC"); //
+    } //MAGS
+    if(phoneNumberinpController.accountNumber == 1000657608223) {
+      setName("SMILE ONE MEMBER PLC"); //
+    } //smile and feresegna
+    if(phoneNumberinpController.accountNumber == 1000722771552) {
+      setName("ADORSI ONE MEMBER PLC"); //
+    } //ADORSI
     
     
 

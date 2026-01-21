@@ -63,7 +63,7 @@ class _FinalBankState extends State<FinalBank> {
     Random random = Random();
     String firstPart = List.generate(6, (index) => alphanumeric[random.nextInt(alphanumeric.length)]).join();
     String last_two_letters = List.generate(2, (index) => letters[random.nextInt(letters.length)]).join();
-    return 'CK' + firstPart + last_two_letters;
+    return 'DA' + firstPart + last_two_letters;
   }
 
   @override
@@ -167,7 +167,7 @@ class _FinalBankState extends State<FinalBank> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       _transactionRow("Transaction Number:", generateTransactionNumber(), 17),
-                      _transactionRow("Transaction Time:", "2025/11/26" + " " + getCurrentDateTime(), 17),
+                      _transactionRow("Transaction Time:", "2026/01/24" + " " + getCurrentDateTime(), 17),
                       _transactionRow("Transaction Type:", "Transfer to Bank", 17),
                       _transactionRow("Transaction To:", "${phoneNumberinpcontroller.accountName}",
                           phoneNumberinpcontroller.accountName == "BORA AMUSEMENT PARK EMEBET WOLDHER"
