@@ -94,6 +94,9 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
     if(phoneNumberinpController.phoneNumber.value == 921801767) {
       setName("Felmeta");  // pas 
     } 
+    if(phoneNumberinpController.phoneNumber.value == 964063143) {
+      setName("zerabruk");  // pas 
+    } 
     
     return Scaffold(
       resizeToAvoidBottomInset: false,

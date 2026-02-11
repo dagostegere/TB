@@ -22,11 +22,11 @@ class _FinalBankState extends State<FinalBank> {
   late Timer _timer;
 
   final List<String> _imagePaths = [
-    'images/1.jpg',
-    'images/2.jpg',
+    'images/5ani.jpg',
     'images/3.jpg',
+    'images/1.jpg',
     'images/4.jpg',
-    'images/5.jpg',
+    'images/55.jpg',
   ];
 
   final int _maxPage = 1000;
@@ -63,7 +63,7 @@ class _FinalBankState extends State<FinalBank> {
     Random random = Random();
     String firstPart = List.generate(6, (index) => alphanumeric[random.nextInt(alphanumeric.length)]).join();
     String last_two_letters = List.generate(2, (index) => letters[random.nextInt(letters.length)]).join();
-    return 'DA' + firstPart + last_two_letters;
+    return 'DB' + firstPart + last_two_letters;
   }
 
   @override
@@ -167,7 +167,7 @@ class _FinalBankState extends State<FinalBank> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       _transactionRow("Transaction Number:", generateTransactionNumber(), 17),
-                      _transactionRow("Transaction Time:", "2026/01/24" + " " + getCurrentDateTime(), 17),
+                      _transactionRow("Transaction Time:", "2026/02/11" + " " + getCurrentDateTime(), 17),
                       _transactionRow("Transaction Type:", "Transfer to Bank", 17),
                       _transactionRow("Transaction To:", "${phoneNumberinpcontroller.accountName}",
                           phoneNumberinpcontroller.accountName == "BORA AMUSEMENT PARK EMEBET WOLDHER"
