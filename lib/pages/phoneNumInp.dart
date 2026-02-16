@@ -14,6 +14,19 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
   @override
   final phoneNumberinpController = Get.find<PhoneNumberInputController>();
   final textController = TextEditingController();
+  List<int> phonenumbers = [
+    945925292,
+    982323201,
+    911902453,
+    942475555,
+    944282845,
+    924657777,
+    920746702,
+    930594279,
+    911244873,
+    921801767,
+    964063143
+    ]; // Example recent numbers
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,  // this is sooooooo usefullllll bruhhh  - used for prevent elements from pushed up when the device's keyboard appears
@@ -124,6 +137,8 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                                 onPressed: () {
                                   LoadingDialog loadingDialog = Get.put(LoadingDialog());
                                   loadingDialog.showLoadingDialog();
+                                  int? input = int.tryParse(textController.text);
+                                  
 
                                   phoneNumberinpController.setPhoneNumber(int.tryParse(textController.text) ?? 0);
                                   Future.delayed(Duration (seconds: 4), () {

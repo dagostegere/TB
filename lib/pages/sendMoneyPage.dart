@@ -72,12 +72,6 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
     if(phoneNumberinpController.phoneNumber.value == 942475555) {
       setName("Amanual"); 
     } // feresegna
-    if(phoneNumberinpController.phoneNumber.value == 944282845) {
-      setName("SALIM");  // elfaz spot
-    } // feresegna
-    if(phoneNumberinpController.phoneNumber.value == 988812518) {
-      setName("BERSABEH");  // elfaz spot
-    } // feresegna
     if(phoneNumberinpController.phoneNumber.value == 924657777) {
       setName("Ambachew");  // kemekem 
     } 
