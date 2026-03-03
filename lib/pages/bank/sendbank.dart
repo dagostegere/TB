@@ -224,6 +224,9 @@ class _SendbankState extends State<Sendbank> {
     if(phoneNumberinpController.accountNumber == 1000722771552) {
       setName("ADORSI ONE MEMBER PLC"); //
     } //ADORSI
+    if(phoneNumberinpController.accountNumber == 1000432972368) {
+      setName("KOMARR PLC"); //
+    } //OLIVE
     
     
 
