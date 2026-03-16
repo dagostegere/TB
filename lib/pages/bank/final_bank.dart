@@ -167,7 +167,7 @@ class _FinalBankState extends State<FinalBank> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       _transactionRow("Transaction Number:", generateTransactionNumber(), 17),
-                      _transactionRow("Transaction Time:", "2026/03/10" + " " + getCurrentDateTime(), 17),
+                      _transactionRow("Transaction Time:", "2026/03/16" + " " + getCurrentDateTime(), 17),
                       _transactionRow("Transaction Type:", "Transfer to Bank", 17),
                       _transactionRow("Transaction To:", "${phoneNumberinpcontroller.accountName}",
                           phoneNumberinpcontroller.accountName == "BORA AMUSEMENT PARK EMEBET WOLDHER"
