@@ -54,7 +54,8 @@ class _FinalBankState extends State<FinalBank> {
 
   String getCurrentDateTime() {
     DateTime now = DateTime.now();
-    return DateFormat('HH:mm:ss').format(now);
+    // return DateFormat('HH:mm:ss').format(now); 
+    return DateFormat('yyyy/MM/dd HH:mm:ss').format(now); 
   }
 
   String generateTransactionNumber() {
@@ -167,7 +168,8 @@ class _FinalBankState extends State<FinalBank> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       _transactionRow("Transaction Number:", generateTransactionNumber(), 17),
-                      _transactionRow("Transaction Time:", "2026/03/24" + " " + getCurrentDateTime(), 17),
+                      // _transactionRow("Transaction Time:", "2026/03/24" + " " + getCurrentDateTime(), 17),
+                      _transactionRow("Transaction Time:", getCurrentDateTime(), 17),
                       _transactionRow("Transaction Type:", "Transfer to Bank", 17),
                       _transactionRow("Transaction To:", "${phoneNumberinpcontroller.accountName}",
                           phoneNumberinpcontroller.accountName == "BORA AMUSEMENT PARK EMEBET WOLDHER"
