@@ -113,9 +113,6 @@ class _SendbankState extends State<Sendbank> {
     if(phoneNumberinpController.accountNumber == 1000350526548) {
       setName("MESERET MINWYELET MIHRETE"); // 4kilo food and coffe  
     }
-    if(phoneNumberinpController.accountNumber == 1000235010732) {
-      setName("NIGIST ADMASU G/EGIZIYABHER"); // 4kilo ROBA RMM 
-    }
     if(phoneNumberinpController.accountNumber == 1000004400201) {
       setName("AMBACHEW TESFAYE HMARIAM"); // KEMEKEM 
     }
@@ -233,6 +230,15 @@ class _SendbankState extends State<Sendbank> {
     if(phoneNumberinpController.accountNumber == 1000322673691) {
       setName("Mr Selam Bereket Abreham"); //
     } //OLIVE
+    if(phoneNumberinpController.accountNumber == 1000597367426) {
+      setName("Miss Firut Asrat Birhanu"); //
+    } //OLIVE
+    if(phoneNumberinpController.accountNumber == 1000741463907) {
+      setName("ROKI RESTAURANT ONE MEMBER PLC"); //
+    } //OLIVE
+    if(phoneNumberinpController.accountNumber == 1000235010732) {
+      setName("NIGISTI ADMASU GEGZEABHE"); // 4kilo ROBA RMM 
+    }
     
     
 
