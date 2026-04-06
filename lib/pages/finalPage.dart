@@ -217,7 +217,7 @@ class _FinalPageState extends State<FinalPage> {
               ),
               Container(
                 width: double.infinity,
-                height: screenHeight * 0.1,
+                height: screenHeight * 0.07, // i changed thisss it was 0.1 - its for to make it up the finish button
                 margin: EdgeInsets.only(top: 35),
                 child: Center(
                   child: ElevatedButton(
