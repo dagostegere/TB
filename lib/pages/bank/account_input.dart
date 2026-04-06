@@ -101,7 +101,7 @@ class _AccountInputState extends State<AccountInput> {
                             Icon(Icons.arrow_back, size: 23, color: Colors.black),
                             SizedBox(width: 24), // For spacing
                             Text("Transfer to Bank", 
-                              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                             ),
                           ],
                         ),
@@ -137,7 +137,7 @@ class _AccountInputState extends State<AccountInput> {
                           children: [
                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: 25),
-                              child: Text("Select Bank", style: TextStyle(fontSize: 16),),
+                              child: Text("Select Bank", style: TextStyle(fontSize: 14),),
                             ),
                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: 15),
@@ -155,7 +155,7 @@ class _AccountInputState extends State<AccountInput> {
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text('Commercial Bank of Ethiopia', 
-                                      style: TextStyle(fontSize: 18, ),
+                                      style: TextStyle(fontSize: 16, ),
                                     ),
                                     Icon(Icons.keyboard_arrow_down)
                                   ],
@@ -164,7 +164,7 @@ class _AccountInputState extends State<AccountInput> {
                             ),
                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: 25),
-                              child: Text("Account No", style: TextStyle(fontSize: 16),),
+                              child: Text("Account No", style: TextStyle(fontSize: 14),),
                             ),
                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: 15),
@@ -186,11 +186,11 @@ class _AccountInputState extends State<AccountInput> {
                                         children: [
                                           SizedBox(height: 6.2),
                                           TextField(
-                                            keyboardType: TextInputType.text, // Numeric keyboard
+                                            keyboardType: TextInputType.number, // Numeric keyboard
                                             controller: textController,
                                             decoration: InputDecoration(
                                               hintText: 'Enter Account Number',
-                                              hintStyle: TextStyle(color: Colors.grey[600], fontSize: 18),
+                                              hintStyle: TextStyle(color: Colors.grey[600], fontSize: 16),
                                               border: InputBorder.none, // Remove default underline
                                               isDense: true, // Reduce vertical padding
                                               contentPadding: EdgeInsets.zero, // Remove extra padding
@@ -264,7 +264,7 @@ class _AccountInputState extends State<AccountInput> {
                                     borderRadius: BorderRadius.circular(8),
                                   ),
                                 ),
-                                child: Text("Next", style: TextStyle(fontSize: 19)),
+                                child: Text("Next", style: TextStyle(fontSize: 17)),
                               ),
                             )
                           ],
@@ -294,7 +294,7 @@ class _AccountInputState extends State<AccountInput> {
                               }, 
                               child:  Text(
                               "Recent",
-                              style: TextStyle(color: Colors.black, fontSize: 20),
+                              style: TextStyle(color: Colors.black, fontSize: 16),
                               ),
                             ),
                             IconButton(
@@ -304,7 +304,7 @@ class _AccountInputState extends State<AccountInput> {
                               icon: Icon(
                                 Icons.delete_forever_outlined,
                                 color: Color.fromARGB(255, 191, 190, 190),
-                                size: 24,
+                                size: 20,
                               ),
                               padding: EdgeInsets.zero, // Remove extra padding
                               constraints: BoxConstraints(), // Remove default constraints
@@ -330,8 +330,8 @@ class _AccountInputState extends State<AccountInput> {
                                     Row(
                                       children: [
                                         Container(
-                                          width: 45,
-                                          height: 45,
+                                          width: 40,
+                                          height: 40,
                                           child: Image.asset('images/cbe.jpg', fit: BoxFit.cover,),
                                         ),
                                         SizedBox(width: 13),
@@ -339,13 +339,13 @@ class _AccountInputState extends State<AccountInput> {
                                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                           crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
-                                            Text("TESSEMA WORKNEH ABATE", style : TextStyle(fontSize: 21)),
-                                            Text("Commercial Bank of Ethiopia(1000558789998)", style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.grey),)
+                                            Text("TESSEMA WORKNEH ABATE", style : TextStyle(fontSize: 18)),
+                                            Text("Commercial Bank of Ethiopia(1000558789998)", style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.grey),)
                                           ],
                                         ),
                                       ],
                                     ),
-                                    Icon(Icons.arrow_forward_ios, color: const  Color.fromARGB(255, 141, 197, 64), size: 15),
+                                    Icon(Icons.arrow_forward_ios, color: const  Color.fromARGB(255, 141, 197, 64), size: 12),
                                   ],
                                 ),
                               ),
@@ -357,8 +357,8 @@ class _AccountInputState extends State<AccountInput> {
                                     Row(
                                       children: [
                                         Container(
-                                          width: 45,
-                                          height: 45,
+                                          width: 40,
+                                          height: 40,
                                           child: Image.asset('images/cbe.jpg', fit: BoxFit.cover,),
                                         ),
                                         SizedBox(width: 13),
@@ -366,13 +366,13 @@ class _AccountInputState extends State<AccountInput> {
                                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                           crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
-                                            Text("TIGIST ALEMAYEHU ABEBE", style : TextStyle(fontSize: 21)),
-                                            Text("Commercial Bank of Ethiopia(1000127766544)", style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.grey),)
+                                            Text("TIGIST ALEMAYEHU ABEBE", style : TextStyle(fontSize: 18)),
+                                            Text("Commercial Bank of Ethiopia(1000127766544)", style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.grey),)
                                           ],
                                         ),
                                       ],
                                     ),
-                                    Icon(Icons.arrow_forward_ios, color: const  Color.fromARGB(255, 141, 197, 64), size: 15),
+                                    Icon(Icons.arrow_forward_ios, color: const  Color.fromARGB(255, 141, 197, 64), size: 12),
                                   ],
                                 ),
                               ),
@@ -384,8 +384,8 @@ class _AccountInputState extends State<AccountInput> {
                                     Row(
                                       children: [
                                         Container(
-                                          width: 45,
-                                          height: 45,
+                                          width: 40,
+                                          height: 40,
                                           child: Image.asset('images/cbe.jpg', fit: BoxFit.cover,),
                                         ),
                                         SizedBox(width: 13),
@@ -393,13 +393,13 @@ class _AccountInputState extends State<AccountInput> {
                                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                           crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
-                                            Text("DAGIM TESHOME WORKNEH", style : TextStyle(fontSize: 21)),
-                                            Text("Commercial Bank of Ethiopia(1000225469442)", style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.grey),)
+                                            Text("DAGIM TESHOME WORKNEH", style : TextStyle(fontSize: 18)),
+                                            Text("Commercial Bank of Ethiopia(1000225469442)", style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.grey),)
                                           ],
                                         ),
                                       ],
                                     ),
-                                    Icon(Icons.arrow_forward_ios, color: const  Color.fromARGB(255, 141, 197, 64), size: 15),
+                                    Icon(Icons.arrow_forward_ios, color: const  Color.fromARGB(255, 141, 197, 64), size: 12),
                                   ],
                                 ),
                               ),
@@ -411,8 +411,8 @@ class _AccountInputState extends State<AccountInput> {
                                     Row(
                                       children: [
                                         Container(
-                                          width: 45,
-                                          height: 45,
+                                          width: 40,
+                                          height: 40,
                                           child: Image.asset('images/cbe.jpg', fit: BoxFit.cover,),
                                         ),
                                         SizedBox(width: 13),
@@ -420,13 +420,13 @@ class _AccountInputState extends State<AccountInput> {
                                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                           crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
-                                            Text("NATNAEL SAMUEL CHANE", style : TextStyle(fontSize: 19)),
-                                            Text("Commercial Bank of Ethiopia(1000225289545)", style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.grey),)
+                                            Text("NATNAEL SAMUEL CHANE", style : TextStyle(fontSize: 17)),
+                                            Text("Commercial Bank of Ethiopia(1000225289545)", style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.grey),)
                                           ],
                                         ),
                                       ],
                                     ),
-                                    Icon(Icons.arrow_forward_ios, color: const  Color.fromARGB(255, 141, 197, 64), size: 15),
+                                    Icon(Icons.arrow_forward_ios, color: const  Color.fromARGB(255, 141, 197, 64), size: 12),
                                   ],
                                 ),
                               ),
