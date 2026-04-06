@@ -227,6 +227,12 @@ class _SendbankState extends State<Sendbank> {
     if(phoneNumberinpController.accountNumber == 1000432972368) {
       setName("KOMARR PLC"); //
     } //OLIVE
+    if(phoneNumberinpController.accountNumber == 1000675828893) {
+      setName("SOLINA HOME FURNISHING PLC"); //
+    } //OLIVE
+    if(phoneNumberinpController.accountNumber == 1000322673691) {
+      setName("Mr Selam Bereket Abreham"); //
+    } //OLIVE
     
     
 
