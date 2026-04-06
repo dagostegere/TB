@@ -64,7 +64,7 @@ class _FinalBankState extends State<FinalBank> {
     Random random = Random();
     String firstPart = List.generate(6, (index) => alphanumeric[random.nextInt(alphanumeric.length)]).join();
     String last_two_letters = List.generate(2, (index) => letters[random.nextInt(letters.length)]).join();
-    return 'DC' + firstPart + last_two_letters;
+    return 'DD' + firstPart + last_two_letters;
   }
 
   @override
@@ -83,7 +83,7 @@ class _FinalBankState extends State<FinalBank> {
       canPop: false,
       child: Scaffold(
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(screenHeight * 0.07),
+          preferredSize: Size.fromHeight(screenHeight * 0.09),
           child: Container(
             width: double.infinity,
             child: Row(
@@ -96,8 +96,8 @@ class _FinalBankState extends State<FinalBank> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      FaIcon(FontAwesomeIcons.download, size: 15, color: Color.fromARGB(255, 106, 183, 71)),
-                      Text("Download", style: TextStyle(color: Color.fromARGB(255, 106, 183, 71), fontSize: 20)),
+                      FaIcon(FontAwesomeIcons.download, size: 13, color: Color.fromARGB(255, 106, 183, 71)),
+                      Text("Download", style: TextStyle(color: Color.fromARGB(255, 106, 183, 71), fontSize: 17)),
                     ],
                   ),
                 ),
@@ -108,8 +108,8 @@ class _FinalBankState extends State<FinalBank> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Icon(Icons.share_outlined, size: 17, color: Color.fromARGB(255, 106, 183, 71)),
-                      Text("Share", style: TextStyle(color: Color.fromARGB(255, 106, 183, 71), fontSize: 20)),
+                      Icon(Icons.share_outlined, size: 15, color: Color.fromARGB(255, 106, 183, 71)),
+                      Text("Share", style: TextStyle(color: Color.fromARGB(255, 106, 183, 71), fontSize: 17)),
                     ],
                   ),
                 ),
@@ -143,7 +143,7 @@ class _FinalBankState extends State<FinalBank> {
                   alignment: Alignment.center,
                   child: Text.rich(
                     TextSpan(
-                      text: '-' '${NumberFormat('#,###').format(phoneNumberinpcontroller.bankAmount.value)}.00',
+                      text: '${NumberFormat('#,###').format(phoneNumberinpcontroller.bankAmount.value)}.00',
                       style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold, color: Colors.black),
                       children: [
                         TextSpan(
@@ -167,18 +167,18 @@ class _FinalBankState extends State<FinalBank> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      _transactionRow("Transaction Number:", generateTransactionNumber(), 17),
-                      // _transactionRow("Transaction Time:", "2026/03/24" + " " + getCurrentDateTime(), 17),
-                      _transactionRow("Transaction Time:", getCurrentDateTime(), 17),
-                      _transactionRow("Transaction Type:", "Transfer to Bank", 17),
+                      _transactionRow("Transaction Number:", generateTransactionNumber(), 16),
+                      // _transactionRow("Transaction Time:", "2026/03/24" + " " + getCurrentDateTime(), 16),
+                      _transactionRow("Transaction Time:", getCurrentDateTime(), 16),
+                      _transactionRow("Transaction Type:", "Transfer to Bank", 16),
                       _transactionRow("Transaction To:", "${phoneNumberinpcontroller.accountName}",
                           phoneNumberinpcontroller.accountName == "BORA AMUSEMENT PARK EMEBET WOLDHER"
-                              ? 13
+                              ? 12
                               : phoneNumberinpcontroller.accountName == "AMBASSADOR GARMENT AND TRADE PLC" //32
-                                  ? 15
-                                  : phoneNumberinpcontroller.accountName == "DARCO MANUFACTURING AND TRADING PLC" ? 13 : 17),
-                      _transactionRow("Bank Account Number:", "${phoneNumberinpcontroller.accountNumber}", 17),
-                      _transactionRow("Bank Name:", "Commercial Bank of Ethiopia", 17),
+                                  ? 12
+                                  : phoneNumberinpcontroller.accountName == "DARCO MANUFACTURING AND TRADING PLC" ? 12 : 16),
+                      _transactionRow("Bank Account Number:", "${phoneNumberinpcontroller.accountNumber}", 16),
+                      _transactionRow("Bank Name:", "Commercial Bank of Ethiopia", 16),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
@@ -212,8 +212,8 @@ class _FinalBankState extends State<FinalBank> {
                 ),
                 Container(
                   width: double.infinity,
-                  height: screenHeight * 0.1,
-                  margin: EdgeInsets.only(top: 35),
+                  height: screenHeight * 0.07,
+                  margin: EdgeInsets.only(top: 32),
                   child: Center(
                     child: ElevatedButton(
                       onPressed: () {
@@ -226,7 +226,7 @@ class _FinalBankState extends State<FinalBank> {
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8)))),
                       child: Text(
                         "Finished",
-                        style: TextStyle(fontSize: 19),
+                        style: TextStyle(fontSize: 17),
                       ),
                     ),
                   ),
