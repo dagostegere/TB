@@ -212,7 +212,7 @@ class _FinalBankState extends State<FinalBank> {
                 ),
                 Container(
                   width: double.infinity,
-                  height: screenHeight * 0.07,
+                  height: screenHeight * 0.12,
                   margin: EdgeInsets.only(top: 32),
                   child: Center(
                     child: ElevatedButton(
