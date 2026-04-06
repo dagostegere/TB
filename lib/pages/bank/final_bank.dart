@@ -83,7 +83,7 @@ class _FinalBankState extends State<FinalBank> {
       canPop: false,
       child: Scaffold(
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(screenHeight * 0.07),
+          preferredSize: Size.fromHeight(screenHeight * 0.06),
           child: Container(
             width: double.infinity,
             child: Row(
@@ -133,7 +133,7 @@ class _FinalBankState extends State<FinalBank> {
                     children: [
                       FaIcon(FontAwesomeIcons.solidCircleCheck, size: 50, color: Color.fromARGB(255, 141, 197, 64)),
                       SizedBox(height: 10),
-                      Text("Successful", style: TextStyle(color: Color.fromARGB(255, 106, 183, 71), fontSize: 20))
+                      Text("Successful", style: TextStyle(color: Color.fromARGB(255, 106, 183, 71), fontSize: 18))
                     ],
                   ),
                 ),
@@ -144,7 +144,7 @@ class _FinalBankState extends State<FinalBank> {
                   child: Text.rich(
                     TextSpan(
                       text: '${NumberFormat('#,###').format(phoneNumberinpcontroller.bankAmount.value)}.00',
-                      style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold, color: Colors.black),
+                      style: TextStyle(fontSize: 39, fontWeight: FontWeight.w600, color: Colors.black),
                       children: [
                         TextSpan(
                           text: ' (ETB)',
@@ -182,11 +182,11 @@ class _FinalBankState extends State<FinalBank> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          Icon(Icons.qr_code, color: Color.fromARGB(255, 106, 183, 71), size: 19),
+                          Icon(Icons.qr_code, color: Color.fromARGB(255, 106, 183, 71), size: 16),
                           SizedBox(width: 5),
-                          Text("QR Code", style: TextStyle(color: Color.fromARGB(255, 106, 183, 71), fontWeight: FontWeight.bold, fontSize: 19)),
+                          Text("QR Code", style: TextStyle(color: Color.fromARGB(255, 106, 183, 71), fontWeight: FontWeight.w600, fontSize: 15)),
                           SizedBox(width: 5),
-                          Icon(Icons.arrow_forward_ios, color: Color.fromARGB(255, 106, 183, 71), size: 15),
+                          Icon(Icons.arrow_forward_ios, color: Color.fromARGB(255, 106, 183, 71), size: 13),
                         ],
                       ),
                     ],
@@ -220,7 +220,7 @@ class _FinalBankState extends State<FinalBank> {
                         Get.toNamed('/accountinput');
                       },
                       style: ElevatedButton.styleFrom(
-                          minimumSize: Size(screenWidth * 0.4, 50),
+                          minimumSize: Size(screenWidth * 0.4, 48),
                           backgroundColor: Color.fromARGB(255, 141, 197, 64),
                           foregroundColor: Colors.white,
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8)))),
