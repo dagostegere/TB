@@ -56,7 +56,7 @@ class Pin {
                         const SizedBox(height: 10),
                         const Text(
                           'Enter PIN',
-                          style: TextStyle(fontSize: 19, fontWeight: FontWeight.w400),
+                          style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
                         ),
                         const SizedBox(height: 8),
                         Text.rich(
@@ -64,7 +64,7 @@ class Pin {
                             children: [
                               TextSpan(
                                 text: '${NumberFormat('#,###').format(phoneNumberinpController.bankAmount.value)}.00 ',
-                                style: const TextStyle(fontSize: 33, fontWeight: FontWeight.w600),
+                                style: const TextStyle(fontSize: 34, fontWeight: FontWeight.w600),
                               ),
                               TextSpan(
                                 text: 'ETB',
