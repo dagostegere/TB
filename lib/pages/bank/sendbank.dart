@@ -452,18 +452,18 @@ class _SendbankState extends State<Sendbank> {
                                               child:
                                                 Column(
                                                   children: [
-                                                    Text("Transfer to Bank", style: TextStyle(fontSize: 20, color: Colors.black87)),
+                                                    Text("Transfer to Bank", style: TextStyle(fontSize: 17, color: Colors.black87)),
                                                     Container(
                                                       padding: EdgeInsets.all(8),
                                                       child: Obx(() => 
                                                         Text.rich(
                                                           TextSpan(
                                                             text: '${NumberFormat('#,###').format(phoneNumberinpController.bankAmount.value)}.00',
-                                                            style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold, color: Colors.black),
+                                                            style: TextStyle(fontSize: 38, fontWeight: FontWeight.bold, color: Colors.black),
                                                             children: [
                                                               TextSpan(
                                                                 text: "ETB",
-                                                                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black),
+                                                                style: TextStyle(fontSize: 17, color: Colors.black),
                                                               ),
                                                             ],
                                                           ),
@@ -490,8 +490,8 @@ class _SendbankState extends State<Sendbank> {
                                                               child: Row(
                                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                                 children: [
-                                                                  Text("Original Amount", style: TextStyle(fontSize: 18, color: Colors.grey),),
-                                                                  Text("${phoneNumberinpController.originalBankAmount}.00ETB", style: TextStyle(fontSize: 18, color: Colors.black, fontWeight: FontWeight.bold))
+                                                                  Text("Original Amount", style: TextStyle(fontSize: 15, color: Colors.grey),),
+                                                                  Text("${phoneNumberinpController.originalBankAmount}.00ETB", style: TextStyle(fontSize: 15, color: Colors.black, fontWeight: FontWeight.w600))
                                                                 ],
                                                               ),
                                                             ),
@@ -501,13 +501,13 @@ class _SendbankState extends State<Sendbank> {
                                                               child: Row(
                                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                                 children: [
-                                                                  Text("Service fee", style: TextStyle(fontSize: 18, color: Colors.grey),),
+                                                                  Text("Service fee", style: TextStyle(fontSize: 15, color: Colors.grey),),
                                                                   Text(phoneNumberinpController.bankAmount < 101 ? "1.00" : 
                                                                     phoneNumberinpController.bankAmount > 99 && phoneNumberinpController.bankAmount < 500 ? "3.00" :
                                                                     phoneNumberinpController.bankAmount >= 500 && phoneNumberinpController.bankAmount < 1000 ? "6.00" :
                                                                     phoneNumberinpController.bankAmount >= 1000 && phoneNumberinpController.bankAmount < 5000 ? "7.00" :
                                                                     "9.00", 
-                                                                   style: TextStyle(fontSize: 18, color: Colors.black, fontWeight: FontWeight.bold))
+                                                                   style: TextStyle(fontSize: 15, color: Colors.black, fontWeight: FontWeight.w600))
                                                                 ],
                                                               ),
                                                             ),
@@ -534,7 +534,7 @@ class _SendbankState extends State<Sendbank> {
                                                               alignment: Alignment.centerLeft,
                                                               padding: EdgeInsets.all(10),
                                                               margin: EdgeInsets.symmetric(horizontal: 5),
-                                                              child: Text("Payment Method", style: TextStyle(fontSize: 18, color: Colors.grey),),
+                                                              child: Text("Payment Method", style: TextStyle(fontSize: 15, color: Colors.grey),),
                                                             ),
                                                             Container(
                                                               width: double.infinity,
@@ -551,7 +551,7 @@ class _SendbankState extends State<Sendbank> {
                                                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                                       crossAxisAlignment: CrossAxisAlignment.start,
                                                                       children: [
-                                                                        Text("Balance", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
+                                                                        Text("Balance", style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),),
                                                                         Text("(Available Balance:9034.72ETB)", style: TextStyle(fontSize: 14, color: Colors.grey),)
                                                                       ],
                                                                     ),
@@ -584,7 +584,7 @@ class _SendbankState extends State<Sendbank> {
                                                             borderRadius: BorderRadius.circular(8)
                                                           ),
                                                         ),
-                                                        child: Text("Transfer", style: TextStyle(fontSize: 20),)
+                                                        child: Text("Transfer", style: TextStyle(fontSize: 18),)
                                                       ),
                                                     )
                                                   ],
