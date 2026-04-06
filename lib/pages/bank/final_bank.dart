@@ -167,18 +167,18 @@ class _FinalBankState extends State<FinalBank> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      _transactionRow("Transaction Number:", generateTransactionNumber(), 16),
+                      _transactionRow("Transaction Number:", generateTransactionNumber(), 15),
                       // _transactionRow("Transaction Time:", "2026/03/24" + " " + getCurrentDateTime(), 16),
-                      _transactionRow("Transaction Time:", getCurrentDateTime(), 16),
-                      _transactionRow("Transaction Type:", "Transfer to Bank", 16),
+                      _transactionRow("Transaction Time:", getCurrentDateTime(), 15),
+                      _transactionRow("Transaction Type:", "Transfer to Bank", 15),
                       _transactionRow("Transaction To:", "${phoneNumberinpcontroller.accountName}",
                           phoneNumberinpcontroller.accountName == "BORA AMUSEMENT PARK EMEBET WOLDHER"
-                              ? 12
+                              ? 8
                               : phoneNumberinpcontroller.accountName == "AMBASSADOR GARMENT AND TRADE PLC" //32
-                                  ? 12
-                                  : phoneNumberinpcontroller.accountName == "DARCO MANUFACTURING AND TRADING PLC" ? 12 : 16),
-                      _transactionRow("Bank Account Number:", "${phoneNumberinpcontroller.accountNumber}", 16),
-                      _transactionRow("Bank Name:", "Commercial Bank of Ethiopia", 16),
+                                  ? 8
+                                  : phoneNumberinpcontroller.accountName == "DARCO MANUFACTURING AND TRADING PLC" ? 8 : 15),
+                      _transactionRow("Bank Account Number:", "${phoneNumberinpcontroller.accountNumber}", 15),
+                      _transactionRow("Bank Name:", "Commercial Bank of Ethiopia", 15),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
