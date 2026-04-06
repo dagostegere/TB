@@ -56,7 +56,7 @@ class Pin {
                         const SizedBox(height: 10),
                         const Text(
                           'Enter PIN',
-                          style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                          style: TextStyle(fontSize: 19, fontWeight: FontWeight.w400),
                         ),
                         const SizedBox(height: 8),
                         Text.rich(
@@ -64,11 +64,11 @@ class Pin {
                             children: [
                               TextSpan(
                                 text: '${NumberFormat('#,###').format(phoneNumberinpController.bankAmount.value)}.00 ',
-                                style: const TextStyle(fontSize: 30, fontWeight: FontWeight.w600),
+                                style: const TextStyle(fontSize: 33, fontWeight: FontWeight.w600),
                               ),
                               TextSpan(
                                 text: 'ETB',
-                                style: const TextStyle(fontSize: 15),
+                                style: const TextStyle(fontSize: 16),
                               ),
                             ],
                           ),
@@ -88,7 +88,7 @@ class Pin {
                               child: Text(
                                 index < pin.length ? '●' : '',
                                 style: const TextStyle(
-                                  fontSize: 16,
+                                  fontSize: 13,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -117,7 +117,7 @@ class Pin {
                             if (pin.length == 6) {
                               LoadingDialog loadingDialog = Get.put(LoadingDialog());
                               loadingDialog.showLoadingDialog();
-                              Future.delayed(const Duration(seconds: 8), () {
+                              Future.delayed(const Duration(seconds: 4), () {
                                 Get.back();
                                 Get.toNamed('/finalbank');
                               });
@@ -178,10 +178,10 @@ class NumberPad extends StatelessWidget {
             ),
             alignment: Alignment.center,
             child: key == '←'
-                ? const Icon(Icons.backspace_outlined, color: Color.fromARGB(255, 87, 86, 86), size: 18,)
+                ? const Icon(Icons.backspace_outlined, color: Color.fromARGB(255, 87, 86, 86), size: 17,)
                 : Text(
                     key,
-                    style: const TextStyle(fontSize: 21),
+                    style: const TextStyle(fontSize: 20),
                   ),
           ),
         );
