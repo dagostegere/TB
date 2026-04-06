@@ -64,7 +64,7 @@ class _FinalPageState extends State<FinalPage> {
 
     String middle_six = List.generate(8, (index) => alphanumeric[random.nextInt(alphanumeric.length)]).join();
 
-    return "DC" + middle_six;
+    return "DD" + middle_six;
   }
 
   @override
@@ -155,12 +155,12 @@ class _FinalPageState extends State<FinalPage> {
                 alignment: Alignment.center,
                 child: Text.rich(
                   TextSpan( // ወደ ባንክ ሲሆን ማይነስ(-435) አይገባበትምምምምምምምምምምምምምምምምምምምምምምምምምም ከታች ያለው አስታውሥ
-                    text: '-' '${NumberFormat('#,###').format(phoneNumberinpcontroller.amount.value)}.00',
-                    style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold, color: Colors.black),
+                    text: '${NumberFormat('#,###').format(phoneNumberinpcontroller.amount.value)}.00',
+                    style: TextStyle(fontSize: 43, fontWeight: FontWeight.bold, color: Colors.black),
                     children: [
                       TextSpan(
                         text: ' (ETB)',
-                        style: TextStyle(fontSize: 15, fontWeight: FontWeight.normal, color: Colors.black),
+                        style: TextStyle(fontSize: 17, fontWeight: FontWeight.normal, color: Colors.black),
                       ),
                     ],
                   ),
@@ -232,7 +232,7 @@ class _FinalPageState extends State<FinalPage> {
                         borderRadius: BorderRadius.all(Radius.circular(8))
                       )
                     ),
-                    child: Text("Finished", style: TextStyle(fontSize: 19),),
+                    child: Text("Finished", style: TextStyle(fontSize: 18),),
                   ),
                 ),
               ),
@@ -248,8 +248,8 @@ class _FinalPageState extends State<FinalPage> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(title, style: TextStyle(color: Colors.grey, fontSize: 17)),
-        Text(value, style: TextStyle(fontSize: 17)),
+        Text(title, style: TextStyle(color: Colors.grey, fontSize: 16)),
+        Text(value, style: TextStyle(fontSize: 16)),
       ],
     );
   }
