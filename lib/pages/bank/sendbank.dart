@@ -452,18 +452,18 @@ class _SendbankState extends State<Sendbank> {
                                               child:
                                                 Column(
                                                   children: [
-                                                    Text("Transfer to Bank", style: TextStyle(fontSize: 18, color: Colors.black87)),
+                                                    Text("Transfer to Bank", style: TextStyle(fontSize: 17, color: Colors.black87)),
                                                     Container(
                                                       padding: EdgeInsets.all(8),
                                                       child: Obx(() => 
                                                         Text.rich(
                                                           TextSpan(
                                                             text: '${NumberFormat('#,###').format(phoneNumberinpController.bankAmount.value)}.00',
-                                                            style: TextStyle(fontSize: 38, fontWeight: FontWeight.bold, color: Colors.black),
+                                                            style: TextStyle(fontSize: 36, fontWeight: FontWeight.w600, color: Colors.black),
                                                             children: [
                                                               TextSpan(
                                                                 text: "ETB",
-                                                                style: TextStyle(fontSize: 17, color: Colors.black),
+                                                                style: TextStyle(fontSize: 16, color: Colors.black),
                                                               ),
                                                             ],
                                                           ),
