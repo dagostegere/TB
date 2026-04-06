@@ -83,7 +83,7 @@ class _FinalBankState extends State<FinalBank> {
       canPop: false,
       child: Scaffold(
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(screenHeight * 0.09),
+          preferredSize: Size.fromHeight(screenHeight * 0.12),
           child: Container(
             width: double.infinity,
             child: Row(
