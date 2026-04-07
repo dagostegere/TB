@@ -48,10 +48,10 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Icon(Icons.arrow_back, size: 23, color: Colors.black),
+                            Icon(Icons.arrow_back, size: 20, color: Colors.black),
                             SizedBox(width: 24), // For spacing
                             Text("Send Money to Individuals", 
-                              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                              style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
                             ),
                           ],
                         ),
@@ -87,13 +87,13 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                           children: [
                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: 15),
-                              child: Text("Please Enter Mobile Number", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
+                              child: Text("Mobile Number", style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),), //was 18
                             ),
                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: 15),
                               child: Container(
                                 width: double.infinity,
-                                height: 55,
+                                height: 53, //was 55
                                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                                 decoration: BoxDecoration(
                                   color: Colors.white, // Background color
@@ -104,24 +104,24 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Text('+251', 
-                                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                                      style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold), // was 20
                                     ),
                                     const SizedBox(width: 8), // Space between country code and input
                                     Expanded(
                                       child: Column(
                                         children: [
-                                          SizedBox(height: 6.2),
+                                          SizedBox(height: 6.2),//was 6.1
                                           TextField(
                                             keyboardType: TextInputType.phone, // Numeric keyboard
                                             controller: textController,
                                             decoration: InputDecoration(
                                               hintText: 'Enter Mobile Number',
-                                              hintStyle: TextStyle(color: Colors.grey[600], fontSize: 20),
+                                              hintStyle: TextStyle(color: Colors.grey[600], fontSize: 14), //was 20
                                               border: InputBorder.none, // Remove default underline
                                               isDense: true, // Reduce vertical padding
                                               contentPadding: EdgeInsets.zero, // Remove extra padding
                                             ),
-                                            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                                            style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold), //was 20
                                           ),
                                         ],
                                       ),
@@ -141,13 +141,13 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                                   
 
                                   phoneNumberinpController.setPhoneNumber(int.tryParse(textController.text) ?? 0);
-                                  Future.delayed(Duration (seconds: 4), () {
+                                  Future.delayed(Duration (seconds: 3), () {
                                     Get.back();
                                     Get.toNamed('sendMoney');
                                   });
                                 },
                                 style: ElevatedButton.styleFrom(
-                                  minimumSize: Size(double.infinity, 50),
+                                  minimumSize: Size(double.infinity, 48), //was 50
                                   // backgroundColor: Color.fromARGB(255, 195, 193, 193),
                                   backgroundColor: Color.fromARGB(255, 141, 197, 64),
                                   foregroundColor: Colors.white,
@@ -155,7 +155,7 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                                     borderRadius: BorderRadius.circular(8),
                                   ),
                                 ),
-                                child: Text("Next", style: TextStyle(fontSize: 19)),
+                                child: Text("Next", style: TextStyle(fontSize: 17)), // was 17
                               ),
                             )
                           ],
@@ -181,7 +181,7 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                           children: [
                             Text(
                               "Recent",
-                              style: TextStyle(color: Colors.black, fontSize: 20),
+                              style: TextStyle(color: Colors.black, fontSize: 15), //was 20
                             ),
                             IconButton(
                               onPressed: () {
@@ -190,7 +190,7 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                               icon: Icon(
                                 Icons.delete_forever_outlined,
                                 color: Color.fromARGB(255, 191, 190, 190),
-                                size: 24,
+                                size: 20,//was 20
                               ),
                               padding: EdgeInsets.zero, // Remove extra padding
                               constraints: BoxConstraints(), // Remove default constraints
@@ -215,12 +215,12 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                                   children: [
                                     Row(
                                       children: [
-                                        Icon(Icons.account_circle,color: const  Color.fromARGB(255, 141, 197, 64), size: 45),
+                                        Icon(Icons.account_circle,color: const  Color.fromARGB(255, 141, 197, 64), size: 40), // the size was 45
                                         SizedBox(width: 5),
-                                        Text("TESSEMA", style : TextStyle(fontSize: 19)),
+                                        Text("TESSEMA", style : TextStyle(fontSize: 15)), // all of was 19
                                       ],
                                     ),
-                                    Icon(Icons.arrow_forward_ios, color: const  Color.fromARGB(255, 141, 197, 64), size: 15),
+                                    Icon(Icons.arrow_forward_ios, color: const  Color.fromARGB(255, 141, 197, 64), size: 12), //was 15
                                   ],
                                 ),
                               ),
@@ -231,12 +231,12 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                                   children: [
                                     Row(
                                       children: [
-                                        Icon(Icons.account_circle, color: const Color.fromARGB(255, 141, 197, 64), size: 45),
+                                        Icon(Icons.account_circle, color: const Color.fromARGB(255, 141, 197, 64), size: 40),
                                         SizedBox(width: 5),
-                                        Text("YAFET", style : TextStyle(fontSize: 19)),
+                                        Text("YAFET", style : TextStyle(fontSize: 15)),
                                       ],
                                     ),
-                                    Icon(Icons.arrow_forward_ios, color: const Color.fromARGB(255, 203, 200, 200), size: 15),
+                                    Icon(Icons.arrow_forward_ios, color: const Color.fromARGB(255, 203, 200, 200), size: 12),
                                   ],
                                 ),
                               ),
@@ -247,12 +247,12 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                                   children: [
                                     Row(
                                       children: [
-                                        Icon(Icons.account_circle, color: const Color.fromARGB(255, 141, 197, 64), size: 45),
+                                        Icon(Icons.account_circle, color: const Color.fromARGB(255, 141, 197, 64), size: 40),
                                         SizedBox(width: 5),
-                                        Text("TEMESGEN", style : TextStyle(fontSize: 19)),
+                                        Text("TEMESGEN", style : TextStyle(fontSize: 15)),
                                       ],
                                     ),
-                                    Icon(Icons.arrow_forward_ios, color: const Color.fromARGB(255, 203, 200, 200), size: 15),
+                                    Icon(Icons.arrow_forward_ios, color: const Color.fromARGB(255, 203, 200, 200), size: 12),
                                   ],
                                 ),
                               ),
@@ -263,12 +263,12 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                                   children: [
                                     Row(
                                       children: [
-                                        Icon(Icons.account_circle,color: const Color.fromARGB(255, 141, 197, 64), size: 45),
+                                        Icon(Icons.account_circle,color: const Color.fromARGB(255, 141, 197, 64), size: 40),
                                         SizedBox(width: 5),
-                                        Text("ESTIFANOS", style : TextStyle(fontSize: 19)),
+                                        Text("ESTIFANOS", style : TextStyle(fontSize: 15)),
                                       ],
                                     ),
-                                    Icon(Icons.arrow_forward_ios, color: const Color.fromARGB(255, 203, 200, 200), size: 15),
+                                    Icon(Icons.arrow_forward_ios, color: const Color.fromARGB(255, 203, 200, 200), size: 12),
                                   ],
                                 ),
                               ),
@@ -279,12 +279,12 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                                   children: [
                                     Row(
                                       children: [
-                                        Icon(Icons.account_circle,color: const Color.fromARGB(255, 141, 197, 64), size: 45),
+                                        Icon(Icons.account_circle,color: const Color.fromARGB(255, 141, 197, 64), size: 40),
                                         SizedBox(width: 5),
-                                        Text("AMANUEL", style : TextStyle(fontSize: 19)),
+                                        Text("AMANUEL", style : TextStyle(fontSize: 15)),
                                       ],
                                     ),
-                                    Icon(Icons.arrow_forward_ios, color: const Color.fromARGB(255, 203, 200, 200), size: 15),
+                                    Icon(Icons.arrow_forward_ios, color: const Color.fromARGB(255, 203, 200, 200), size: 12),
                                   ],
                                 ),
                               ),
