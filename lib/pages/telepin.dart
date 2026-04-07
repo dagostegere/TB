@@ -117,7 +117,7 @@ class TPin {
                             if (pin.length == 6) {
                               LoadingDialog loadingDialog = Get.put(LoadingDialog());
                               loadingDialog.showLoadingDialog();
-                              Future.delayed(const Duration(seconds: 3), () {
+                              Future.delayed(const Duration(seconds: 2), () {
                                 Get.back();
                                 Get.toNamed('/finalPage');
                               });
