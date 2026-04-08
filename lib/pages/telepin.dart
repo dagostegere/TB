@@ -88,7 +88,7 @@ class TPin {
                               child: Text(
                                 index < pin.length ? '●' : '',
                                 style: const TextStyle(
-                                  fontSize: 14, // 20
+                                  fontSize: 11, // 20
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
