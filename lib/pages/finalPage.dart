@@ -54,9 +54,9 @@ class _FinalPageState extends State<FinalPage> {
 
   String getCurrentDateTime() {
     DateTime now = DateTime.now();
-    // return DateFormat('HH:mm:ss').format(now);
     return DateFormat('yyyy/MM/dd HH:mm:ss').format(now);
   }
+
   String generateTransactionNumber() {
     const String letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     const String alphanumeric = "ABCDEHIJLMPRSTVXYZ1234567890";
@@ -81,6 +81,9 @@ class _FinalPageState extends State<FinalPage> {
     
     return PopScope(
       canPop: false,
+      onPopInvoked: (didPop) {
+        // 🔒 Block ALL back actions (button + gesture)
+      },
       child: Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(screenHeight * 0.12),
@@ -96,7 +99,6 @@ class _FinalPageState extends State<FinalPage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    // Icon(Icons.downloading_rounded, size: 17, color: Color.fromARGB(255, 106, 183, 71)),
                     FaIcon(FontAwesomeIcons.download, size: 15, color: Color.fromARGB(255, 106, 183, 71)),
                     Text("Download",
                       style: TextStyle(
@@ -142,7 +144,6 @@ class _FinalPageState extends State<FinalPage> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    // Icon(Icons.check_circle, size: 50, color : Color.fromARGB(255, 106, 183, 71)),
                     FaIcon(FontAwesomeIcons.solidCircleCheck, size: 50, color: Color.fromARGB(255, 141, 197, 64)),
                     SizedBox(height: 10),
                     Text("Successful", style: TextStyle(color: Color.fromARGB(255, 106, 183, 71), fontSize: 20))
@@ -154,7 +155,7 @@ class _FinalPageState extends State<FinalPage> {
                 height: screenHeight * 0.1,
                 alignment: Alignment.center,
                 child: Text.rich(
-                  TextSpan( // ወደ ባንክ ሲሆን ማይነስ(-435) አይገባበትምምምምምምምምምምምምምምምምምምምምምምምምምም ከታች ያለው አስታውሥ
+                  TextSpan(
                     text: '${NumberFormat('#,###').format(phoneNumberinpcontroller.amount.value)}.00',
                     style: TextStyle(fontSize: 43, fontWeight: FontWeight.bold, color: Colors.black),
                     children: [
@@ -178,8 +179,7 @@ class _FinalPageState extends State<FinalPage> {
                 margin: EdgeInsets.symmetric(horizontal: 30),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [ //2025/02/01 12:47:55
-                    // _transactionRow("Transaction Time:",  "2026/03/24" + " " + getCurrentDateTime()),
+                  children: [
                     _transactionRow("Transaction Time:", getCurrentDateTime()),
                     _transactionRow("Transaction Type:", "Transfer Money"),
                     _transactionRow("Transaction To:", "${phoneNumberinpcontroller.userName}"),
@@ -217,7 +217,7 @@ class _FinalPageState extends State<FinalPage> {
               ),
               Container(
                 width: double.infinity,
-                height: screenHeight * 0.07, // i changed thisss it was 0.1 - its for to make it up the finish button
+                height: screenHeight * 0.07,
                 margin: EdgeInsets.only(top: 35),
                 child: Center(
                   child: ElevatedButton(
