@@ -117,7 +117,7 @@ class Pin {
                             if (pin.length == 6) {
                               LoadingDialog loadingDialog = Get.put(LoadingDialog());
                               loadingDialog.showLoadingDialog();
-                              Future.delayed(const Duration(seconds: 4), () {
+                              Future.delayed(const Duration(seconds: 2), () {
                                 Get.back();
                                 Get.toNamed('/finalbank');
                               });
