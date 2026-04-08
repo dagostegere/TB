@@ -1,11 +1,11 @@
 workflows:
-  ios-build:
-    name: iOS Debug Build (No Signing)
+  ios-free-build:
+    name: iOS Build (Unsigned IPA)
     environment:
       flutter: stable
       xcode: latest
     scripts:
       - flutter pub get
-      - flutter build ios --release --no-codesign
+      - flutter build ipa --no-codesign
     artifacts:
-      - build/ios/iphoneos/*.app
+      - build/ios/ipa/*.ipa
