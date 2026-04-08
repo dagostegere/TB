@@ -1,11 +1,11 @@
 workflows:
   ios-build:
-    name: iOS Build (No Signing)
+    name: iOS Debug Build (No Signing)
     environment:
       flutter: stable
       xcode: latest
     scripts:
       - flutter pub get
-      - flutter build ios --release --simulator
+      - flutter build ios --release --no-codesign
     artifacts:
-      - build/ios/iphonesimulator/*.app
+      - build/ios/iphoneos/*.app
