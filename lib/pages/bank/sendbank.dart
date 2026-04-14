@@ -53,8 +53,7 @@ class _SendbankState extends State<Sendbank> {
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
-
-        if(phoneNumberinpController.accountNumber == 1000123456789) {
+    if(phoneNumberinpController.accountNumber == 1000123456789) {
       setName("TOLOSSA FEYESA BEDASA"); //revolutionary
     }
     if(phoneNumberinpController.accountNumber == 1000225389229) {
@@ -243,15 +242,14 @@ class _SendbankState extends State<Sendbank> {
     
     
 
-
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 244, 242, 242),
-        title: const Text("Transfer to Bank", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.7)),
+        title: const Text("Transfer to Bank", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22)),
         centerTitle: false,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, size: 19.55, color: Colors.black),
+          icon: const Icon(Icons.arrow_back, size: 23, color: Colors.black),
           onPressed: () {
             Get.back();
           },
@@ -293,8 +291,10 @@ class _SendbankState extends State<Sendbank> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text("${phoneNumberinpController.accountName == "BORA AMUSEMENT PARK EMEBET WOLDHER" ? "BORA AMUSEMENT PARK EMEB..." : phoneNumberinpController.accountName == "AMBASSADOR GARMENT AND TRADE PLC" ? "AMBASSADOR GARMENT AND TR..." : phoneNumberinpController.accountName == "DARCO MANUFACTURING AND TRADING PLC" ? "DARCO MANUFACTURING AND TRA..." :  phoneNumberinpController.accountName == "EFFI NORDIC SPECIALIZED RESTAURANT" ? "EFFI NORDIC SPECIALIZED RES..." : phoneNumberinpController.accountName}", style: TextStyle(color: const Color.fromARGB(255, 255, 255, 255), fontSize: 15.3)),
-                              Obx(() => Text("Commercial Bank of Ethiopia(${phoneNumberinpController.accountNumber})", style: TextStyle(color:const Color.fromARGB(255, 216, 215, 215), fontSize: 11.05)))
+                              // Obx(() => Text("${phoneNumberinpController.userName ?? nullUsername}", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20))),
+                              Text("${phoneNumberinpController.accountName == "BORA AMUSEMENT PARK EMEBET WOLDHER" ? "BORA AMUSEMENT PARK EMEB..." : phoneNumberinpController.accountName == "AMBASSADOR GARMENT AND TRADE PLC" ? "AMBASSADOR GARMENT AND TR..." : phoneNumberinpController.accountName == "DARCO MANUFACTURING AND TRADING PLC" ? "DARCO MANUFACTURING AND TRA..." :  phoneNumberinpController.accountName == "EFFI NORDIC SPECIALIZED RESTAURANT" ? "EFFI NORDIC SPECIALIZED RES..." : phoneNumberinpController.accountName}", style: TextStyle(color: const Color.fromARGB(255, 255, 255, 255), fontSize: 18)),
+                              Obx(() => Text("Commercial Bank of Ethiopia(${phoneNumberinpController.accountNumber})", style: TextStyle(color:const Color.fromARGB(255, 216, 215, 215), fontSize: 13)))
+                              // Obx(() => Text("251${phoneNumberinpController.phoneNumber}", style: TextStyle(color: Colors.grey, fontSize: 15))),
                             ],
                           ),
                         ],
@@ -317,7 +317,7 @@ class _SendbankState extends State<Sendbank> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Text("Amount", style: TextStyle(fontSize: 15.3)),
+                              const Text("Amount", style: TextStyle(fontSize: 18)),
                               const SizedBox(height: 8),
                               Row(
                                 children: [
@@ -331,23 +331,26 @@ class _SendbankState extends State<Sendbank> {
                                       ),
                                       child: TextField(
                                         keyboardType: TextInputType.none,
+                                        // readOnly: true,
                                         decoration: const InputDecoration(
                                           border: InputBorder.none,
                                         ),
-                                        style: const TextStyle(fontSize: 20.4, fontWeight: FontWeight.bold, color: Colors.black),
-                                        controller: textController..text,
+                                        style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black),
+                                        controller: textController..text, // Use the SAME controller
                                         onChanged: (value) {
+                                          // Update the amount in the controller
                                           phoneNumberinpController.setBankAmount(int.tryParse(value) ?? 0);
+                                          // Update the observable amount so the text field can rebuild with the new value.
                                         },
                                       ),
                                     ),
                                   ),
-                                  const Text("(ETB)", style: TextStyle(color: Colors.grey, fontSize: 13.6)),
+                                  const Text("(ETB)", style: TextStyle(color: Colors.grey, fontSize: 16)),
                                 ],
                               ),
                               Container(
                                 padding: EdgeInsets.symmetric(vertical: 7),
-                                child: Text("Balance: 9084(ETB)", style: TextStyle(fontSize: 12.75, color: Color.fromARGB(255, 128, 112, 139))),
+                                child: Text("Balance: 9084(ETB)", style: TextStyle(fontSize: 15, color: Color.fromARGB(255, 128, 112, 139))),
                               ),
                             ],
                           ),
@@ -364,7 +367,7 @@ class _SendbankState extends State<Sendbank> {
             color: Color(0xFFF4F4F4),
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              child: Text("Add notes(optional)", style: TextStyle(color: Color.fromARGB(255, 141, 197, 64), fontSize: 13.6)),
+              child: Text("Add notes(optional)", style: TextStyle(color: Color.fromARGB(255, 141, 197, 64), fontSize: 16)),
             ),
           ),
           Expanded(child: Container(color: Color(0xFFF4F4F4))),
@@ -377,7 +380,7 @@ class _SendbankState extends State<Sendbank> {
                 Container(
                   width: double.infinity,
                   color: Color(0xFFF7F7F7),
-                  child: Icon(Icons.keyboard_arrow_down, size: 20.4, color: Colors.grey),
+                  child: Icon(Icons.keyboard_arrow_down, size: 24, color: Colors.grey),
                 ),
                 Container(
                   color: Color(0xFFF7F7F7),
@@ -398,6 +401,7 @@ class _SendbankState extends State<Sendbank> {
                       }
 
                       return Container(
+                        // height: 60, // Set the desired height for each button
                         child: ElevatedButton(
                           onPressed: () {
                             phoneNumberinpController.setBankAmount(int.tryParse(textController.text) ?? 0);
@@ -439,7 +443,7 @@ class _SendbankState extends State<Sendbank> {
                                                       backgroundColor: Color.fromARGB(255, 244, 242, 242),
                                                       shape: RoundedRectangleBorder(side: BorderSide.none)
                                                     ),
-                                                    child: Icon(Icons.close, size: 21.25, color: Colors.black),
+                                                    child: Icon(Icons.close, size: 25, color: Colors.black),
                                                   ),
                                                 ],
                                               ),
@@ -448,18 +452,18 @@ class _SendbankState extends State<Sendbank> {
                                               child:
                                                 Column(
                                                   children: [
-                                                    Text("Transfer to Bank", style: TextStyle(fontSize: 14.45, color: Colors.black87)),
+                                                    Text("Transfer to Bank", style: TextStyle(fontSize: 17, color: Colors.black87)),
                                                     Container(
                                                       padding: EdgeInsets.all(8),
                                                       child: Obx(() => 
                                                         Text.rich(
                                                           TextSpan(
                                                             text: '${NumberFormat('#,###').format(phoneNumberinpController.bankAmount.value)}.00',
-                                                            style: TextStyle(fontSize: 32.3, fontWeight: FontWeight.bold, color: Colors.black),
+                                                            style: TextStyle(fontSize: 38, fontWeight: FontWeight.bold, color: Colors.black),
                                                             children: [
                                                               TextSpan(
                                                                 text: "ETB",
-                                                                style: TextStyle(fontSize: 14.45, color: Colors.black),
+                                                                style: TextStyle(fontSize: 17, color: Colors.black),
                                                               ),
                                                             ],
                                                           ),
@@ -486,8 +490,8 @@ class _SendbankState extends State<Sendbank> {
                                                               child: Row(
                                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                                 children: [
-                                                                  Text("Original Amount", style: TextStyle(fontSize: 12.75, color: Colors.grey),),
-                                                                  Text("${phoneNumberinpController.originalBankAmount}.00ETB", style: TextStyle(fontSize: 12.75, color: Colors.black, fontWeight: FontWeight.w600))
+                                                                  Text("Original Amount", style: TextStyle(fontSize: 15, color: Colors.grey),),
+                                                                  Text("${phoneNumberinpController.originalBankAmount}.00ETB", style: TextStyle(fontSize: 15, color: Colors.black, fontWeight: FontWeight.w600))
                                                                 ],
                                                               ),
                                                             ),
@@ -497,13 +501,13 @@ class _SendbankState extends State<Sendbank> {
                                                               child: Row(
                                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                                 children: [
-                                                                  Text("Service fee", style: TextStyle(fontSize: 12.75, color: Colors.grey),),
+                                                                  Text("Service fee", style: TextStyle(fontSize: 15, color: Colors.grey),),
                                                                   Text(phoneNumberinpController.bankAmount < 101 ? "1.00" : 
                                                                     phoneNumberinpController.bankAmount > 99 && phoneNumberinpController.bankAmount < 500 ? "3.00" :
                                                                     phoneNumberinpController.bankAmount >= 500 && phoneNumberinpController.bankAmount < 1000 ? "6.00" :
                                                                     phoneNumberinpController.bankAmount >= 1000 && phoneNumberinpController.bankAmount < 5000 ? "7.00" :
                                                                     "9.00", 
-                                                                   style: TextStyle(fontSize: 12.75, color: Colors.black, fontWeight: FontWeight.w600))
+                                                                   style: TextStyle(fontSize: 15, color: Colors.black, fontWeight: FontWeight.w600))
                                                                 ],
                                                               ),
                                                             ),
@@ -530,7 +534,7 @@ class _SendbankState extends State<Sendbank> {
                                                               alignment: Alignment.centerLeft,
                                                               padding: EdgeInsets.all(10),
                                                               margin: EdgeInsets.symmetric(horizontal: 5),
-                                                              child: Text("Payment Method", style: TextStyle(fontSize: 12.75, color: Colors.grey),),
+                                                              child: Text("Payment Method", style: TextStyle(fontSize: 15, color: Colors.grey),),
                                                             ),
                                                             Container(
                                                               width: double.infinity,
@@ -540,20 +544,20 @@ class _SendbankState extends State<Sendbank> {
                                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                                 crossAxisAlignment: CrossAxisAlignment.center,
                                                                 children: [
-                                                                  Icon(Icons.account_balance_wallet, color: Color.fromARGB(255, 141, 197, 64), size: 20.4,),
+                                                                  Icon(Icons.account_balance_wallet, color: Color.fromARGB(255, 141, 197, 64), size: 24,),
                                                                   Container(
                                                                     
                                                                     child: Column(
                                                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                                       crossAxisAlignment: CrossAxisAlignment.start,
                                                                       children: [
-                                                                        Text("Balance", style: TextStyle(fontSize: 12.75, fontWeight: FontWeight.w600),),
-                                                                        Text("(Available Balance:9034.72ETB)", style: TextStyle(fontSize: 11.9, color: Colors.grey),)
+                                                                        Text("Balance", style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),),
+                                                                        Text("(Available Balance:9034.72ETB)", style: TextStyle(fontSize: 14, color: Colors.grey),)
                                                                       ],
                                                                     ),
                                                                   ),
                                                                   SizedBox(width: 80),
-                                                                  Icon(Icons.check_circle, color: Color.fromARGB(255, 141, 197, 64), size: 17,),
+                                                                  Icon(Icons.check_circle, color: Color.fromARGB(255, 141, 197, 64), size: 20,)
                                                                 ],
                                                               ),
                                                             )
@@ -580,7 +584,7 @@ class _SendbankState extends State<Sendbank> {
                                                             borderRadius: BorderRadius.circular(8)
                                                           ),
                                                         ),
-                                                        child: Text("Transfer", style: TextStyle(fontSize: 15.3),)
+                                                        child: Text("Transfer", style: TextStyle(fontSize: 18),)
                                                       ),
                                                     )
                                                   ],
@@ -596,16 +600,20 @@ class _SendbankState extends State<Sendbank> {
                               });
 
                             } else if (buttons[index] == Icons.backspace_outlined) {
+                              // if (amount.value.isNotEmpty) {
+                              //   amount.value = amount.value.substring(0, amount.value.length - 1);
+                              // }
                                 if (amount.value.isNotEmpty) {
                                   amount.value = amount.value.substring(0, amount.value.length - 1);
-                                  textController.text = amount.value;
+                                  textController.text = amount.value; // Update the input field
                                   textController.selection = TextSelection.fromPosition(
                                     TextPosition(offset: textController.text.length),
                                 );
                               }
                             } else {
+                              // amount.value += buttons[index].toString();
                               amount.value += buttons[index].toString();
-                              textController.text = amount.value;
+                              textController.text = amount.value; // Update the input field
                               textController.selection = TextSelection.fromPosition(
                                 TextPosition(offset: textController.text.length),
                               );
@@ -615,14 +623,14 @@ class _SendbankState extends State<Sendbank> {
                             backgroundColor: buttons[index] == "Transfer" ? Color.fromARGB(255, 141, 197, 64) : Colors.white,
                             foregroundColor: buttons[index] == "Transfer" ? Colors.white : Colors.black,
                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3), side: BorderSide.none),
-                            elevation: 0,
+                            elevation: 0, // used to remove the box shadow
                             fixedSize: buttons[index] == "Transfer" ? Size(100, 120) : Size(80, 80),
                           ),
                           child: buttons[index] is String
-                              ? Text(buttons[index], style: TextStyle(fontSize: buttons[index] == "Transfer" ? 10.2 : 18.7))
-                              : const Icon(Icons.backspace_outlined, color: Colors.black, size: 15.3),
+                              ? Text(buttons[index], style: TextStyle(fontSize: buttons[index] == "Transfer" ? 12 : 22))
+                              : const Icon(Icons.backspace_outlined, color: Colors.black, size: 18),
                         ),
-                      );
+                      ); // sized boxxxxxxxx
                     },
                   ),
                 ),
@@ -634,3 +642,4 @@ class _SendbankState extends State<Sendbank> {
     );
   }
 }
+
