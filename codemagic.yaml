@@ -8,8 +8,7 @@ workflows:
       cocoapods: default
     scripts:
       - name: Get packages
-        script: |
-          flutter pub get
+        script: flutter pub get
 
       - name: Pod install
         script: |
@@ -23,11 +22,21 @@ workflows:
       - name: Build unsigned IPA
         script: |
           set -e
-          flutter build ios --release --no-codesign
-          ls -la build/ios/iphoneos/
+          xcodebuild \
+            -workspace ios/Runner.xcworkspace \
+            -scheme Runner \
+            -configuration Release \
+            -sdk iphoneos \
+            -derivedDataPath build/ios/output \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_IDENTITY="" \
+            DEVELOPMENT_TEAM="" \
+            clean build
+          APP_PATH=$(find build/ios/output -name "*.app" | head -1)
+          echo "Found app at: $APP_PATH"
           mkdir -p build/ios/unsigned/Payload
-          cp -r build/ios/iphoneos/Runner.app build/ios/unsigned/Payload/
-          ls -la build/ios/unsigned/Payload/
+          cp -r "$APP_PATH" build/ios/unsigned/Payload/
           cd build/ios/unsigned
           zip -r Runner.ipa Payload
           ls -lh Runner.ipa
