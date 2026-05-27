@@ -13,10 +13,17 @@ jobs:
             export PATH="$PATH:`pwd`/flutter/bin"
             flutter doctor
       - run:
+          name: Disable Signing
+          command: |
+            cd ios
+            sed -i '' 's/PRODUCT_BUNDLE_IDENTIFIER = .*/PRODUCT_BUNDLE_IDENTIFIER = com.example.telebirr;/' Runner.xcodeproj/project.pbxproj
+            sed -i '' 's/CODE_SIGN_STYLE = Automatic/CODE_SIGN_STYLE = Manual/' Runner.xcodeproj/project.pbxproj
+            sed -i '' 's/DEVELOPMENT_TEAM = .*/DEVELOPMENT_TEAM = "";/' Runner.xcodeproj/project.pbxproj
+      - run:
           name: Build iOS
           command: |
             export PATH="$PATH:`pwd`/flutter/bin"
-            flutter build ios --no-codesign
+            flutter build ios --no-codesign --release
 
 workflows:
   build:
