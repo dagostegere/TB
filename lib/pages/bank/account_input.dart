@@ -366,7 +366,7 @@ class _AccountInputState extends State<AccountInput> {
 
                                           TextField(
 
-                                            keyboardType: TextInputType.text,
+                                            keyboardType: TextInputType.number,
 
                                             controller: textController,
 
