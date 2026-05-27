@@ -19,6 +19,7 @@ class _FinalBankState extends State<FinalBank> {
 
   late PageController _pageController;
   int _currentPage = 0;
+  int _realIndex = 0;
   late Timer _timer;
 
   final List<String> _imagePaths = [
@@ -200,6 +201,11 @@ class _FinalBankState extends State<FinalBank> {
                     borderRadius: BorderRadius.all(Radius.circular(10)),
                     child: PageView.builder(
                       controller: _pageController,
+                      onPageChanged: (index) {
+                        setState(() {
+                          _realIndex = index % _imagePaths.length;
+                        });
+                      },
                       itemBuilder: (context, index) {
                         final imageIndex = index % _imagePaths.length;
                         return Image.asset(
@@ -209,6 +215,27 @@ class _FinalBankState extends State<FinalBank> {
                       },
                     ),
                   ),
+                ),
+                SizedBox(height: 4),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: List.generate(_imagePaths.length, (index) {
+                    return Container(
+                      margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.006),
+                      width: screenWidth * 0.02,
+                      height: screenWidth * 0.02,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: _realIndex == index
+                            ? Color.fromARGB(255, 141, 197, 64)
+                            : Colors.transparent,
+                        border: Border.all(
+                          color: Color.fromARGB(255, 141, 197, 64),
+                          width: 1.5,
+                        ),
+                      ),
+                    );
+                  }),
                 ),
                 Container(
                   width: double.infinity,
