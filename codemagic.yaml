@@ -3,7 +3,7 @@ workflows:
     name: Unsigned IPA
     max_build_duration: 60
     environment:
-      flutter: 3.44.0
+      flutter: 3.22.3
       xcode: latest
       cocoapods: default
     scripts:
@@ -22,21 +22,9 @@ workflows:
       - name: Build unsigned IPA
         script: |
           set -e
-          xcodebuild \
-            -workspace ios/Runner.xcworkspace \
-            -scheme Runner \
-            -configuration Release \
-            -sdk iphoneos \
-            -derivedDataPath build/ios/output \
-            CODE_SIGNING_ALLOWED=NO \
-            CODE_SIGNING_REQUIRED=NO \
-            CODE_SIGN_IDENTITY="" \
-            DEVELOPMENT_TEAM="" \
-            clean build
-          APP_PATH=$(find build/ios/output -name "*.app" | head -1)
-          echo "Found app at: $APP_PATH"
+          flutter build ios --release --no-codesign
           mkdir -p build/ios/unsigned/Payload
-          cp -r "$APP_PATH" build/ios/unsigned/Payload/
+          cp -r build/ios/iphoneos/Runner.app build/ios/unsigned/Payload/
           cd build/ios/unsigned
           zip -r Runner.ipa Payload
           ls -lh Runner.ipa
