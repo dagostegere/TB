@@ -292,7 +292,8 @@ class _SendbankState extends State<Sendbank> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               // Obx(() => Text("${phoneNumberinpController.userName ?? nullUsername}", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20))),
-                              Text("${phoneNumberinpController.accountName == "BORA AMUSEMENT PARK EMEBET WOLDHER" ? "BORA AMUSEMENT PARK EMEB..." : phoneNumberinpController.accountName == "AMBASSADOR GARMENT AND TRADE PLC" ? "AMBASSADOR GARMENT AND TR..." : phoneNumberinpController.accountName == "DARCO MANUFACTURING AND TRADING PLC" ? "DARCO MANUFACTURING AND TRA..." :  phoneNumberinpController.accountName == "EFFI NORDIC SPECIALIZED RESTAURANT" ? "EFFI NORDIC SPECIALIZED RES..." : phoneNumberinpController.accountName}", style: TextStyle(color: const Color.fromARGB(255, 255, 255, 255), fontSize: 18)),
+                              //Text("${phoneNumberinpController.accountName == "BORA AMUSEMENT PARK EMEBET WOLDHER" ? "BORA AMUSEMENT PARK EMEB..." : phoneNumberinpController.accountName == "AMBASSADOR GARMENT AND TRADE PLC" ? "AMBASSADOR GARMENT AND TR..." : phoneNumberinpController.accountName == "DARCO MANUFACTURING AND TRADING PLC" ? "DARCO MANUFACTURING AND TRA..." :  phoneNumberinpController.accountName == "EFFI NORDIC SPECIALIZED RESTAURANT" ? "EFFI NORDIC SPECIALIZED RES..." : phoneNumberinpController.accountName}", style: TextStyle(color: const Color.fromARGB(255, 255, 255, 255), fontSize: 18)),
+                              Text("${phoneNumberinpController.accountName == "BORA AMUSEMENT PARK EMEBET WOLDHER" ? "BORA AMUSEMENT PARK EMEB..." : phoneNumberinpController.accountName == "AMBASSADOR GARMENT AND TRADE PLC" ? "AMBASSADOR GARMENT AND TRA..." : phoneNumberinpController.accountName == "DARCO MANUFACTURING AND TRADING PLC" ? "DARCO MANUFACTURING AND TRA..." :  phoneNumberinpController.accountName == "EFFI NORDIC SPECIALIZED RESTAURANT" ? "EFFI NORDIC SPECIALIZED RES..." : phoneNumberinpController.accountName}", style: TextStyle(color: const Color.fromARGB(255, 255, 255, 255), fontSize: phoneNumberinpController.accountName == "AMBASSADOR GARMENT AND TRADE PLC" || phoneNumberinpController.accountName == "DARCO MANUFACTURING AND TRADING PLC" ? 16.5 : 18)),
                               Obx(() => Text("Commercial Bank of Ethiopia(${phoneNumberinpController.accountNumber})", style: TextStyle(color:const Color.fromARGB(255, 216, 215, 215), fontSize: 13)))
                               // Obx(() => Text("251${phoneNumberinpController.phoneNumber}", style: TextStyle(color: Colors.grey, fontSize: 15))),
                             ],
@@ -459,11 +460,11 @@ class _SendbankState extends State<Sendbank> {
                                                         Text.rich(
                                                           TextSpan(
                                                             text: '${NumberFormat('#,###').format(phoneNumberinpController.bankAmount.value)}.00',
-                                                            style: TextStyle(fontSize: 38, fontWeight: FontWeight.bold, color: Colors.black),
+                                                            style: TextStyle(fontSize: 36, fontWeight: FontWeight.w600, color: Colors.black),
                                                             children: [
                                                               TextSpan(
                                                                 text: "ETB",
-                                                                style: TextStyle(fontSize: 17, color: Colors.black),
+                                                                style: TextStyle(fontSize: 16, color: Colors.black),
                                                               ),
                                                             ],
                                                           ),
@@ -490,8 +491,8 @@ class _SendbankState extends State<Sendbank> {
                                                               child: Row(
                                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                                 children: [
-                                                                  Text("Original Amount", style: TextStyle(fontSize: 15, color: Colors.grey),),
-                                                                  Text("${phoneNumberinpController.originalBankAmount}.00ETB", style: TextStyle(fontSize: 15, color: Colors.black, fontWeight: FontWeight.w600))
+                                                                  Text("Original Amount", style: TextStyle(fontSize: 16, color: Colors.grey),),
+                                                                  Text("${phoneNumberinpController.originalBankAmount}.00ETB", style: TextStyle(fontSize: 16, color: Colors.black, fontWeight: FontWeight.w600))
                                                                 ],
                                                               ),
                                                             ),
@@ -501,13 +502,13 @@ class _SendbankState extends State<Sendbank> {
                                                               child: Row(
                                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                                 children: [
-                                                                  Text("Service fee", style: TextStyle(fontSize: 15, color: Colors.grey),),
+                                                                  Text("Service fee", style: TextStyle(fontSize: 16, color: Colors.grey),),
                                                                   Text(phoneNumberinpController.bankAmount < 101 ? "1.00" : 
                                                                     phoneNumberinpController.bankAmount > 99 && phoneNumberinpController.bankAmount < 500 ? "3.00" :
                                                                     phoneNumberinpController.bankAmount >= 500 && phoneNumberinpController.bankAmount < 1000 ? "6.00" :
                                                                     phoneNumberinpController.bankAmount >= 1000 && phoneNumberinpController.bankAmount < 5000 ? "7.00" :
                                                                     "9.00", 
-                                                                   style: TextStyle(fontSize: 15, color: Colors.black, fontWeight: FontWeight.w600))
+                                                                   style: TextStyle(fontSize: 16, color: Colors.black, fontWeight: FontWeight.w600))
                                                                 ],
                                                               ),
                                                             ),
@@ -534,7 +535,7 @@ class _SendbankState extends State<Sendbank> {
                                                               alignment: Alignment.centerLeft,
                                                               padding: EdgeInsets.all(10),
                                                               margin: EdgeInsets.symmetric(horizontal: 5),
-                                                              child: Text("Payment Method", style: TextStyle(fontSize: 15, color: Colors.grey),),
+                                                              child: Text("Payment Method", style: TextStyle(fontSize: 16, color: Colors.grey),),
                                                             ),
                                                             Container(
                                                               width: double.infinity,

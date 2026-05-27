@@ -56,7 +56,7 @@ class TPin {
                         const SizedBox(height: 10),
                         const Text(
                           'Enter PIN',
-                          style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                          style: TextStyle(fontSize: 16), //20 n theres fontwyt w600
                         ),
                         const SizedBox(height: 8),
                         Text.rich(
@@ -64,7 +64,7 @@ class TPin {
                             children: [
                               TextSpan(
                                 text: '${NumberFormat('#,###').format(phoneNumberinpController.amount.value)}.00 ',
-                                style: const TextStyle(fontSize: 34, fontWeight: FontWeight.bold),
+                                style: const TextStyle(fontSize: 30, fontWeight: FontWeight.w600),//3- n bold
                               ),
                               TextSpan(
                                 text: 'ETB',
@@ -88,7 +88,7 @@ class TPin {
                               child: Text(
                                 index < pin.length ? '●' : '',
                                 style: const TextStyle(
-                                  fontSize: 20,
+                                  fontSize: 11, // 20
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -117,7 +117,7 @@ class TPin {
                             if (pin.length == 6) {
                               LoadingDialog loadingDialog = Get.put(LoadingDialog());
                               loadingDialog.showLoadingDialog();
-                              Future.delayed(const Duration(seconds: 5), () {
+                              Future.delayed(const Duration(seconds: 2), () {
                                 Get.back();
                                 Get.toNamed('/finalPage');
                               });
@@ -178,10 +178,10 @@ class NumberPad extends StatelessWidget {
             ),
             alignment: Alignment.center,
             child: key == '←'
-                ? const Icon(Icons.backspace_outlined, color: Color.fromARGB(255, 87, 86, 86), size: 20,)
+                ? const Icon(Icons.backspace_outlined, color: Color.fromARGB(255, 87, 86, 86), size: 18,) //20
                 : Text(
                     key,
-                    style: const TextStyle(fontSize: 24),
+                    style: const TextStyle(fontSize: 20), //24
                   ),
           ),
         );

@@ -83,7 +83,7 @@ class _FinalBankState extends State<FinalBank> {
       canPop: false,
       child: Scaffold(
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(screenHeight * 0.12),
+          preferredSize: Size.fromHeight(screenHeight * 0.06),
           child: Container(
             width: double.infinity,
             child: Row(
@@ -133,7 +133,7 @@ class _FinalBankState extends State<FinalBank> {
                     children: [
                       FaIcon(FontAwesomeIcons.solidCircleCheck, size: 50, color: Color.fromARGB(255, 141, 197, 64)),
                       SizedBox(height: 10),
-                      Text("Successful", style: TextStyle(color: Color.fromARGB(255, 106, 183, 71), fontSize: 20))
+                      Text("Successful", style: TextStyle(color: Color.fromARGB(255, 106, 183, 71), fontSize: 18))
                     ],
                   ),
                 ),
@@ -144,7 +144,7 @@ class _FinalBankState extends State<FinalBank> {
                   child: Text.rich(
                     TextSpan(
                       text: '${NumberFormat('#,###').format(phoneNumberinpcontroller.bankAmount.value)}.00',
-                      style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold, color: Colors.black),
+                      style: TextStyle(fontSize: 39, fontWeight: FontWeight.w600, color: Colors.black),
                       children: [
                         TextSpan(
                           text: ' (ETB)',
@@ -167,26 +167,26 @@ class _FinalBankState extends State<FinalBank> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      _transactionRow("Transaction Number:", generateTransactionNumber(), 16),
+                      _transactionRow("Transaction Number:", generateTransactionNumber(), 15),
                       // _transactionRow("Transaction Time:", "2026/03/24" + " " + getCurrentDateTime(), 16),
-                      _transactionRow("Transaction Time:", getCurrentDateTime(), 16),
-                      _transactionRow("Transaction Type:", "Transfer to Bank", 16),
+                      _transactionRow("Transaction Time:", getCurrentDateTime(), 15),
+                      _transactionRow("Transaction Type:", "Transfer to Bank", 15),
                       _transactionRow("Transaction To:", "${phoneNumberinpcontroller.accountName}",
                           phoneNumberinpcontroller.accountName == "BORA AMUSEMENT PARK EMEBET WOLDHER"
                               ? 12
                               : phoneNumberinpcontroller.accountName == "AMBASSADOR GARMENT AND TRADE PLC" //32
                                   ? 12
-                                  : phoneNumberinpcontroller.accountName == "DARCO MANUFACTURING AND TRADING PLC" ? 12 : 16),
-                      _transactionRow("Bank Account Number:", "${phoneNumberinpcontroller.accountNumber}", 16),
-                      _transactionRow("Bank Name:", "Commercial Bank of Ethiopia", 16),
+                                  : phoneNumberinpcontroller.accountName == "DARCO MANUFACTURING AND TRADING PLC" ? 11.5 : 15),
+                      _transactionRow("Bank Account Number:", "${phoneNumberinpcontroller.accountNumber}", 15),
+                      _transactionRow("Bank Name:", "Commercial Bank of Ethiopia", 15),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          Icon(Icons.qr_code, color: Color.fromARGB(255, 106, 183, 71), size: 19),
+                          Icon(Icons.qr_code, color: Color.fromARGB(255, 106, 183, 71), size: 16),
                           SizedBox(width: 5),
-                          Text("QR Code", style: TextStyle(color: Color.fromARGB(255, 106, 183, 71), fontWeight: FontWeight.bold, fontSize: 19)),
+                          Text("QR Code", style: TextStyle(color: Color.fromARGB(255, 106, 183, 71), fontWeight: FontWeight.w600, fontSize: 15)),
                           SizedBox(width: 5),
-                          Icon(Icons.arrow_forward_ios, color: Color.fromARGB(255, 106, 183, 71), size: 15),
+                          Icon(Icons.arrow_forward_ios, color: Color.fromARGB(255, 106, 183, 71), size: 13),
                         ],
                       ),
                     ],
@@ -212,7 +212,7 @@ class _FinalBankState extends State<FinalBank> {
                 ),
                 Container(
                   width: double.infinity,
-                  height: screenHeight * 0.07,
+                  height: screenHeight * 0.12,
                   margin: EdgeInsets.only(top: 32),
                   child: Center(
                     child: ElevatedButton(
@@ -220,7 +220,7 @@ class _FinalBankState extends State<FinalBank> {
                         Get.toNamed('/accountinput');
                       },
                       style: ElevatedButton.styleFrom(
-                          minimumSize: Size(screenWidth * 0.4, 50),
+                          minimumSize: Size(screenWidth * 0.4, 48),
                           backgroundColor: Color.fromARGB(255, 141, 197, 64),
                           foregroundColor: Colors.white,
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8)))),
