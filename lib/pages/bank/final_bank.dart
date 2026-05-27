@@ -176,7 +176,7 @@ class _FinalBankState extends State<FinalBank> {
                               ? 12
                               : phoneNumberinpcontroller.accountName == "AMBASSADOR GARMENT AND TRADE PLC" //32
                                   ? 12
-                                  : phoneNumberinpcontroller.accountName == "DARCO MANUFACTURING AND TRADING PLC" ? 11.5 : 15),
+                                  : phoneNumberinpcontroller.accountName == "DARCO MANUFACTURING AND TRADING PLC" ? 11 : 15),
                       _transactionRow("Bank Account Number:", "${phoneNumberinpcontroller.accountNumber}", 15),
                       _transactionRow("Bank Name:", "Commercial Bank of Ethiopia", 15),
                       Row(
