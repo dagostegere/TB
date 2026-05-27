@@ -64,7 +64,7 @@ class _FinalPageState extends State<FinalPage> {
 
     String middle_six = List.generate(8, (index) => alphanumeric[random.nextInt(alphanumeric.length)]).join();
 
-    return "DD" + middle_six;
+    return "DF" + middle_six;
   }
 
   @override
