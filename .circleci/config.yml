@@ -13,10 +13,10 @@ jobs:
             export PATH="$PATH:`pwd`/flutter/bin"
             flutter doctor
       - run:
-          name: Build IPA
+          name: Build iOS
           command: |
             export PATH="$PATH:`pwd`/flutter/bin"
-            flutter build ipa --no-codesign
+            flutter build ios --no-codesign
 
 workflows:
   build:
