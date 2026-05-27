@@ -171,12 +171,12 @@ class _FinalBankState extends State<FinalBank> {
                       // _transactionRow("Transaction Time:", "2026/03/24" + " " + getCurrentDateTime(), 16),
                       _transactionRow("Transaction Time:", getCurrentDateTime(), 15),
                       _transactionRow("Transaction Type:", "Transfer to Bank", 15),
-                      _transactionRow("Transaction To:", "${phoneNumberinpcontroller.accountName}",
+                      _transactionRow(phoneNumberinpcontroller.accountName == "DARCO MANUFACTURING AND TRADING PLC" ? "T..." : "Transaction To:" , "${phoneNumberinpcontroller.accountName}",
                           phoneNumberinpcontroller.accountName == "BORA AMUSEMENT PARK EMEBET WOLDHER"
                               ? 12
                               : phoneNumberinpcontroller.accountName == "AMBASSADOR GARMENT AND TRADE PLC" //32
                                   ? 12
-                                  : phoneNumberinpcontroller.accountName == "DARCO MANUFACTURING AND TRADING PLC" ? 11 : 15),
+                                  : phoneNumberinpcontroller.accountName == "DARCO MANUFACTURING AND TRADING PLC" ? 15 : 15),
                       _transactionRow("Bank Account Number:", "${phoneNumberinpcontroller.accountNumber}", 15),
                       _transactionRow("Bank Name:", "Commercial Bank of Ethiopia", 15),
                       Row(
