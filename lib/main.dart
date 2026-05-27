@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/phoneNumberInput', page: ()=> PhoneNumberInput()),
         GetPage(name: '/sendMoney', page: ()=> SendMoneyPage()),
         GetPage(name: '/finalPage', page: () => FinalPage()),
-        GetPage(name: '/finalbank', page: () => FinalBank()),
+        GetPage(name: '/finalbank', page: () => FinalBank(), transition: Transition.downToUp),
         GetPage(name: '/sendbank', page: () => Sendbank()),
         GetPage(name: '/accountinput', page: () => AccountInput()),
         GetPage(name: '/addName', page: () => Add()),

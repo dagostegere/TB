@@ -125,7 +125,7 @@ class Pin {
                                 Get.back();
                                 Get.toNamed(
                                   '/finalbank',
-                                  transition: Transition.downToUp,
+                                  // transition: Transition.downToUp,
                                 );
                               });
                             }
