@@ -21,13 +21,14 @@ class _FinalBankState extends State<FinalBank> {
   int _currentPage = 0;
   int _realIndex = 0;
   late Timer _timer;
+  late String _transactionNumber;
+  late String _transactionTime;
 
   final List<String> _imagePaths = [
     'images/5ani.jpg',
     'images/3.jpg',
     'images/1.jpg',
     'images/4.jpg',
-    'images/55.jpg',
   ];
 
   final int _maxPage = 1000;
@@ -35,6 +36,8 @@ class _FinalBankState extends State<FinalBank> {
   @override
   void initState() {
     super.initState();
+    _transactionNumber = generateTransactionNumber();
+    _transactionTime = getCurrentDateTime();
     _currentPage = _maxPage ~/ 2;
     _pageController = PageController(initialPage: _currentPage);
 
@@ -168,9 +171,9 @@ class _FinalBankState extends State<FinalBank> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      _transactionRow("Transaction Number:", generateTransactionNumber(), 15),
+                      _transactionRow("Transaction Number:", _transactionNumber, 15),
                       // _transactionRow("Transaction Time:", "2026/03/24" + " " + getCurrentDateTime(), 16),
-                      _transactionRow("Transaction Time:", getCurrentDateTime(), 15),
+                      _transactionRow("Transaction Time:", _transactionTime, 15),
                       _transactionRow("Transaction Type:", "Transfer to Bank", 15),
                       _transactionRow(phoneNumberinpcontroller.accountName == "DARCO MANUFACTURING AND TRADING PLC" ? "T..." : "Transaction To:" , "${phoneNumberinpcontroller.accountName}",
                           phoneNumberinpcontroller.accountName == "BORA AMUSEMENT PARK EMEBET WOLDHER"
