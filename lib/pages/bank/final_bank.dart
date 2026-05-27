@@ -64,7 +64,7 @@ class _FinalBankState extends State<FinalBank> {
     Random random = Random();
     String firstPart = List.generate(6, (index) => alphanumeric[random.nextInt(alphanumeric.length)]).join();
     String last_two_letters = List.generate(2, (index) => letters[random.nextInt(letters.length)]).join();
-    return 'DD' + firstPart + last_two_letters;
+    return 'DF' + firstPart + last_two_letters;
   }
 
   @override
@@ -176,7 +176,7 @@ class _FinalBankState extends State<FinalBank> {
                               ? 12
                               : phoneNumberinpcontroller.accountName == "AMBASSADOR GARMENT AND TRADE PLC" //32
                                   ? 12
-                                  : phoneNumberinpcontroller.accountName == "DARCO MANUFACTURING AND TRADING PLC" ? 12 : 15),
+                                  : phoneNumberinpcontroller.accountName == "DARCO MANUFACTURING AND TRADING PLC" ? 11.7 : 15),
                       _transactionRow("Bank Account Number:", "${phoneNumberinpcontroller.accountNumber}", 15),
                       _transactionRow("Bank Name:", "Commercial Bank of Ethiopia", 15),
                       Row(
