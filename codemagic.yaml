@@ -1,15 +1,33 @@
-- name: Build unsigned IPA
+workflows:
+  unsigned-ipa:
+    name: Unsigned IPA
+    max_build_duration: 60
+    environment:
+      flutter: 3.22.3
+      xcode: latest
+      cocoapods: default
+    scripts:
+      - name: Get packages
+        script: flutter pub get
+
+      - name: Pod install
+        script: |
+          cd ios
+          if [ -f "Podfile" ]; then
+            pod install
+          else
+            echo "No Podfile, skipping"
+          fi
+
+      - name: Disable signing
+        script: |
+          sed -i '' 's/DEVELOPMENT_TEAM = [A-Z0-9]*;/DEVELOPMENT_TEAM = "";/g' ios/Runner.xcodeproj/project.pbxproj
+          sed -i '' 's/CODE_SIGN_IDENTITY = "iPhone Developer";/CODE_SIGN_IDENTITY = "";/g' ios/Runner.xcodeproj/project.pbxproj
+          sed -i '' 's/CODE_SIGN_IDENTITY = "Apple Development";/CODE_SIGN_IDENTITY = "";/g' ios/Runner.xcodeproj/project.pbxproj
+
+      - name: Build unsigned IPA
         script: |
           set -e
-          
-          # Disable signing in the project file
-          cd ios
-          sed -i '' 's/DEVELOPMENT_TEAM = [A-Z0-9]*;/DEVELOPMENT_TEAM = "";/g' Runner.xcodeproj/project.pbxproj
-          sed -i '' 's/CODE_SIGN_IDENTITY = "iPhone Developer";/CODE_SIGN_IDENTITY = "";/g' Runner.xcodeproj/project.pbxproj
-          sed -i '' 's/CODE_SIGN_IDENTITY = "Apple Development";/CODE_SIGN_IDENTITY = "";/g' Runner.xcodeproj/project.pbxproj
-          cd ..
-          
-          # Build with xcodebuild
           xcodebuild \
             -workspace ios/Runner.xcworkspace \
             -scheme Runner \
@@ -21,8 +39,6 @@
             CODE_SIGN_IDENTITY="" \
             DEVELOPMENT_TEAM="" \
             clean build
-          
-          # Package into IPA
           APP_PATH=$(find build/ios/output -name "*.app" | head -1)
           echo "Found app at: $APP_PATH"
           mkdir -p build/ios/unsigned/Payload
@@ -30,3 +46,6 @@
           cd build/ios/unsigned
           zip -r Runner.ipa Payload
           ls -lh Runner.ipa
+
+    artifacts:
+      - build/ios/unsigned/Runner.ipa
