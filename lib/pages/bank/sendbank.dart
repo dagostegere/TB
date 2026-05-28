@@ -15,12 +15,6 @@ class Sendbank extends StatefulWidget {
 
 class _SendbankState extends State<Sendbank> {
   // FocusNode _focusNode = FocusNode(); 
-  final List<dynamic> buttons = [
-    "1", "2", "3", Icons.backspace_outlined, // Backspace icon
-    "4", "5", "6", "", // Empty space to align
-    "7", "8", "9", "Transfer",
-    "0", ".", ""
-  ];
 
   @override
   // void initState() {
@@ -242,6 +236,255 @@ class _SendbankState extends State<Sendbank> {
     
     
 
+    // Helper to build a single number/backspace button
+    Widget _buildKey(dynamic label, {double? widthFactor}) {
+      return Expanded(
+        flex: widthFactor != null ? 2 : 1,
+        child: Container(
+          margin: EdgeInsets.all(5),
+          child: ElevatedButton(
+            onPressed: () {
+              phoneNumberinpController.setBankAmount(int.tryParse(textController.text) ?? 0);
+              if (label == Icons.backspace_outlined) {
+                if (amount.value.isNotEmpty) {
+                  amount.value = amount.value.substring(0, amount.value.length - 1);
+                  textController.text = amount.value;
+                  textController.selection = TextSelection.fromPosition(
+                    TextPosition(offset: textController.text.length),
+                  );
+                }
+              } else {
+                amount.value += label.toString();
+                textController.text = amount.value;
+                textController.selection = TextSelection.fromPosition(
+                  TextPosition(offset: textController.text.length),
+                );
+              }
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.white,
+              foregroundColor: Colors.black,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3), side: BorderSide.none),
+              elevation: 0,
+              padding: EdgeInsets.symmetric(vertical: 18),
+            ),
+            child: label is String
+                ? Text(label, style: TextStyle(fontSize: 22))
+                : const Icon(Icons.backspace_outlined, color: Colors.black, size: 18),
+          ),
+        ),
+      );
+    }
+
+    // The tall Transfer button spanning 3 rows
+    Widget _buildTransferButton() {
+      return Container(
+        margin: EdgeInsets.all(5),
+        child: ElevatedButton(
+          onPressed: () {
+            phoneNumberinpController.setBankAmount(int.tryParse(textController.text) ?? 0);
+            LoadingDialog loadingDialog = Get.put(LoadingDialog());
+            loadingDialog.showLoadingDialog();
+            Future.delayed(Duration(milliseconds: 500), () {
+              Get.back();
+              showModalBottomSheet(
+                isScrollControlled: true,
+                context: context,
+                builder: (BuildContext context) {
+                  return Container(
+                    height: screenHeight * 0.6,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 244, 242, 242),
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(10),
+                        topRight: Radius.circular(10),
+                      ),
+                    ),
+                    child: Center(
+                      child: Column(
+                        children: [
+                          Container(
+                            width: double.infinity,
+                            height: 50,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                ElevatedButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    elevation: 0,
+                                    backgroundColor: Color.fromARGB(255, 244, 242, 242),
+                                    shape: RoundedRectangleBorder(side: BorderSide.none)
+                                  ),
+                                  child: Icon(Icons.close, size: 25, color: Colors.black),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Center(
+                            child: Column(
+                              children: [
+                                Text("Transfer to Bank", style: TextStyle(fontSize: 17, color: Colors.black87)),
+                                Container(
+                                  padding: EdgeInsets.all(8),
+                                  child: Obx(() =>
+                                    Text.rich(
+                                      TextSpan(
+                                        text: '${NumberFormat('#,###').format(phoneNumberinpController.bankAmount.value)}.00',
+                                        style: TextStyle(fontSize: 36, fontWeight: FontWeight.w600, color: Colors.black),
+                                        children: [
+                                          TextSpan(
+                                            text: "ETB",
+                                            style: TextStyle(fontSize: 16, color: Colors.black),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                                  height: 130,
+                                  width: double.infinity,
+                                  alignment: Alignment.center,
+                                  child: Container(
+                                    width: 400,
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.all(Radius.circular(10))
+                                    ),
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                      children: [
+                                        Container(
+                                          padding: EdgeInsets.all(8),
+                                          margin: EdgeInsets.symmetric(horizontal: 5),
+                                          child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text("Original Amount", style: TextStyle(fontSize: 16, color: Colors.grey)),
+                                              Text("${phoneNumberinpController.originalBankAmount}.00ETB", style: TextStyle(fontSize: 16, color: Colors.black, fontWeight: FontWeight.w600))
+                                            ],
+                                          ),
+                                        ),
+                                        Container(
+                                          padding: EdgeInsets.all(8),
+                                          margin: EdgeInsets.symmetric(horizontal: 5),
+                                          child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text("Service fee", style: TextStyle(fontSize: 16, color: Colors.grey)),
+                                              Text(phoneNumberinpController.bankAmount < 101 ? "1.00" :
+                                                phoneNumberinpController.bankAmount > 99 && phoneNumberinpController.bankAmount < 500 ? "3.00" :
+                                                phoneNumberinpController.bankAmount >= 500 && phoneNumberinpController.bankAmount < 1000 ? "6.00" :
+                                                phoneNumberinpController.bankAmount >= 1000 && phoneNumberinpController.bankAmount < 5000 ? "7.00" :
+                                                "9.00",
+                                               style: TextStyle(fontSize: 16, color: Colors.black, fontWeight: FontWeight.w600))
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    )
+                                  ),
+                                ),
+                                Container(
+                                  padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                                  height: 130,
+                                  width: double.infinity,
+                                  alignment: Alignment.center,
+                                  child: Container(
+                                    width: 400,
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.all(Radius.circular(10))
+                                    ),
+                                    child: Column(
+                                      children: [
+                                        Container(
+                                          width: double.infinity,
+                                          height: 40,
+                                          alignment: Alignment.centerLeft,
+                                          padding: EdgeInsets.all(10),
+                                          margin: EdgeInsets.symmetric(horizontal: 5),
+                                          child: Text("Payment Method", style: TextStyle(fontSize: 16, color: Colors.grey)),
+                                        ),
+                                        Container(
+                                          width: double.infinity,
+                                          padding: EdgeInsets.symmetric(horizontal: 10),
+                                          margin: EdgeInsets.symmetric(horizontal: 5),
+                                          child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            crossAxisAlignment: CrossAxisAlignment.center,
+                                            children: [
+                                              Icon(Icons.account_balance_wallet, color: Color.fromARGB(255, 141, 197, 64), size: 24),
+                                              Container(
+                                                child: Column(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text("Balance", style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600)),
+                                                    Text("(Available Balance:9034.72ETB)", style: TextStyle(fontSize: 14, color: Colors.grey))
+                                                  ],
+                                                ),
+                                              ),
+                                              SizedBox(width: 80),
+                                              Icon(Icons.check_circle, color: Color.fromARGB(255, 141, 197, 64), size: 20)
+                                            ],
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  padding: EdgeInsets.symmetric(horizontal: 17, vertical: 3),
+                                  margin: EdgeInsets.only(top: 10),
+                                  child: ElevatedButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                      LoadingDialog loadingDialog = Get.put(LoadingDialog());
+                                      loadingDialog.showLoadingDialog();
+                                      Get.back();
+                                      Pin().show(context);
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: Color.fromARGB(255, 141, 197, 64),
+                                      foregroundColor: Colors.white,
+                                      minimumSize: Size(screenWidth * 0.85, 50),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(8)
+                                      ),
+                                    ),
+                                    child: Text("Transfer", style: TextStyle(fontSize: 18))
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                }
+              );
+            });
+          },
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Color.fromARGB(255, 141, 197, 64),
+            foregroundColor: Colors.white,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3), side: BorderSide.none),
+            elevation: 0,
+            padding: EdgeInsets.zero,
+          ),
+          child: Text("Transfer", style: TextStyle(fontSize: 16)),
+        ),
+      );
+    }
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -278,24 +521,21 @@ class _SendbankState extends State<Sendbank> {
                         borderRadius: BorderRadius.only(topLeft: Radius.circular(8), topRight: Radius.circular(8))
                       ),
                       padding: EdgeInsets.all(20),
-                      child:  Row(
+                      child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Container(
                             width: 45,
                             height: 45,
-                            child: Image.asset('images/cbe.jpg', fit: BoxFit.cover,),
+                            child: Image.asset('images/cbe.jpg', fit: BoxFit.cover),
                           ),
                           SizedBox(width: 7),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              // Obx(() => Text("${phoneNumberinpController.userName ?? nullUsername}", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20))),
-                              //Text("${phoneNumberinpController.accountName == "BORA AMUSEMENT PARK EMEBET WOLDHER" ? "BORA AMUSEMENT PARK EMEB..." : phoneNumberinpController.accountName == "AMBASSADOR GARMENT AND TRADE PLC" ? "AMBASSADOR GARMENT AND TR..." : phoneNumberinpController.accountName == "DARCO MANUFACTURING AND TRADING PLC" ? "DARCO MANUFACTURING AND TRA..." :  phoneNumberinpController.accountName == "EFFI NORDIC SPECIALIZED RESTAURANT" ? "EFFI NORDIC SPECIALIZED RES..." : phoneNumberinpController.accountName}", style: TextStyle(color: const Color.fromARGB(255, 255, 255, 255), fontSize: 18)),
                               Text("${phoneNumberinpController.accountName == "BORA AMUSEMENT PARK EMEBET WOLDHER" ? "BORA AMUSEMENT PARK EMEB..." : phoneNumberinpController.accountName == "AMBASSADOR GARMENT AND TRADE PLC" ? "AMBASSADOR GARMENT AND TRA..." : phoneNumberinpController.accountName == "DARCO MANUFACTURING AND TRADING PLC" ? "DARCO MANUFACTURING AND TRA..." :  phoneNumberinpController.accountName == "EFFI NORDIC SPECIALIZED RESTAURANT" ? "EFFI NORDIC SPECIALIZED RES..." : phoneNumberinpController.accountName}", style: TextStyle(color: const Color.fromARGB(255, 255, 255, 255), fontSize: phoneNumberinpController.accountName == "AMBASSADOR GARMENT AND TRADE PLC" || phoneNumberinpController.accountName == "DARCO MANUFACTURING AND TRADING PLC" ? 16.5 : 18)),
-                              Obx(() => Text("Commercial Bank of Ethiopia(${phoneNumberinpController.accountNumber})", style: TextStyle(color:const Color.fromARGB(255, 216, 215, 215), fontSize: 13)))
-                              // Obx(() => Text("251${phoneNumberinpController.phoneNumber}", style: TextStyle(color: Colors.grey, fontSize: 15))),
+                              Obx(() => Text("Commercial Bank of Ethiopia(${phoneNumberinpController.accountNumber})", style: TextStyle(color: const Color.fromARGB(255, 216, 215, 215), fontSize: 13)))
                             ],
                           ),
                         ],
@@ -332,16 +572,13 @@ class _SendbankState extends State<Sendbank> {
                                       ),
                                       child: TextField(
                                         keyboardType: TextInputType.none,
-                                        // readOnly: true,
                                         decoration: const InputDecoration(
                                           border: InputBorder.none,
                                         ),
                                         style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black),
-                                        controller: textController..text, // Use the SAME controller
+                                        controller: textController..text,
                                         onChanged: (value) {
-                                          // Update the amount in the controller
                                           phoneNumberinpController.setBankAmount(int.tryParse(value) ?? 0);
-                                          // Update the observable amount so the text field can rebuild with the new value.
                                         },
                                       ),
                                     ),
@@ -385,254 +622,319 @@ class _SendbankState extends State<Sendbank> {
                 ),
                 Container(
                   color: Color(0xFFF7F7F7),
-                  child: GridView.builder(
-                    shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
-                    padding: EdgeInsets.all(16),
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 4,
-                      mainAxisSpacing: 10,
-                      crossAxisSpacing: 10,
-                      childAspectRatio: 1.8, 
-                    ),
-                    itemCount: buttons.length,
-                    itemBuilder: (context, index) {
-                      if (buttons[index] == "") {
-                        return SizedBox.shrink(); 
-                      }
-
-                      return Container(
-                        // height: 60, // Set the desired height for each button
-                        child: ElevatedButton(
-                          onPressed: () {
-                            phoneNumberinpController.setBankAmount(int.tryParse(textController.text) ?? 0);
-                            if (buttons[index] == "Transfer") {
-                              LoadingDialog loadingDialog = Get.put(LoadingDialog());
-                              loadingDialog.showLoadingDialog();
-                              Future.delayed(Duration (milliseconds: 500), () {
-                                Get.back();
-                                showModalBottomSheet(
-                                  isScrollControlled: true, 
-                                  context: context,
-                                  builder: (BuildContext context)  {
-                                    return Container(
-                                      height: screenHeight * 0.6,
-                                      width: double.infinity,
-                                      decoration: BoxDecoration(
-                                        color: Color.fromARGB(255, 244, 242, 242),
-                                        borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(10),
-                                          topRight: Radius.circular(10),
+                  padding: EdgeInsets.all(11),
+                  child: IntrinsicHeight(
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        // Left 3 columns: rows of number keys
+                        Expanded(
+                          flex: 3,
+                          child: Column(
+                            children: [
+                              // Row 1: 1, 2, 3
+                              Row(
+                                children: [
+                                  _buildKey("1"),
+                                  _buildKey("2"),
+                                  _buildKey("3"),
+                                ],
+                              ),
+                              // Row 2: 4, 5, 6
+                              Row(
+                                children: [
+                                  _buildKey("4"),
+                                  _buildKey("5"),
+                                  _buildKey("6"),
+                                ],
+                              ),
+                              // Row 3: 7, 8, 9
+                              Row(
+                                children: [
+                                  _buildKey("7"),
+                                  _buildKey("8"),
+                                  _buildKey("9"),
+                                ],
+                              ),
+                              // Row 4: 0 (wide, spans 2 cols), .
+                              Row(
+                                children: [
+                                  // 0 spans 2 columns
+                                  Expanded(
+                                    flex: 2,
+                                    child: Container(
+                                      margin: EdgeInsets.all(5),
+                                      child: ElevatedButton(
+                                        onPressed: () {
+                                          phoneNumberinpController.setBankAmount(int.tryParse(textController.text) ?? 0);
+                                          amount.value += "0";
+                                          textController.text = amount.value;
+                                          textController.selection = TextSelection.fromPosition(
+                                            TextPosition(offset: textController.text.length),
+                                          );
+                                        },
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: Colors.white,
+                                          foregroundColor: Colors.black,
+                                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3), side: BorderSide.none),
+                                          elevation: 0,
+                                          padding: EdgeInsets.symmetric(vertical: 18),
                                         ),
+                                        child: Text("0", style: TextStyle(fontSize: 22)),
                                       ),
-                                      child: Center(
-                                        child: Column(
-                                          children: [
-                                            Container(
+                                    ),
+                                  ),
+                                  // dot
+                                  _buildKey("."),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                        // Right column: backspace (top) + Transfer (tall, spans 3 rows)
+                        SizedBox(
+                          width: (screenWidth - 22) / 4, // same width as one key column
+                          child: Column(
+                            children: [
+                              // Backspace button
+                              Container(
+                                margin: EdgeInsets.all(5),
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    phoneNumberinpController.setBankAmount(int.tryParse(textController.text) ?? 0);
+                                    if (amount.value.isNotEmpty) {
+                                      amount.value = amount.value.substring(0, amount.value.length - 1);
+                                      textController.text = amount.value;
+                                      textController.selection = TextSelection.fromPosition(
+                                        TextPosition(offset: textController.text.length),
+                                      );
+                                    }
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.white,
+                                    foregroundColor: Colors.black,
+                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3), side: BorderSide.none),
+                                    elevation: 0,
+                                    padding: EdgeInsets.symmetric(vertical: 18),
+                                    minimumSize: Size(double.infinity, 0),
+                                  ),
+                                  child: const Icon(Icons.backspace_outlined, color: Colors.black, size: 18),
+                                ),
+                              ),
+                              // Transfer button — fills remaining height (rows 2, 3, 4)
+                              Expanded(
+                                child: Container(
+                                  margin: EdgeInsets.all(5),
+                                  width: double.infinity,
+                                  child: ElevatedButton(
+                                    onPressed: () {
+                                      phoneNumberinpController.setBankAmount(int.tryParse(textController.text) ?? 0);
+                                      LoadingDialog loadingDialog = Get.put(LoadingDialog());
+                                      loadingDialog.showLoadingDialog();
+                                      Future.delayed(Duration(milliseconds: 500), () {
+                                        Get.back();
+                                        showModalBottomSheet(
+                                          isScrollControlled: true,
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return Container(
+                                              height: screenHeight * 0.6,
                                               width: double.infinity,
-                                              height: 50,
-                                              child: Row(
-                                                mainAxisAlignment: MainAxisAlignment.start,
-                                                crossAxisAlignment: CrossAxisAlignment.center,
-                                                children: [
-                                                  ElevatedButton(
-                                                    onPressed: () {
-                                                      Navigator.pop(context);
-                                                    },
-                                                    style: ElevatedButton.styleFrom(
-                                                      elevation: 0,
-                                                      backgroundColor: Color.fromARGB(255, 244, 242, 242),
-                                                      shape: RoundedRectangleBorder(side: BorderSide.none)
-                                                    ),
-                                                    child: Icon(Icons.close, size: 25, color: Colors.black),
-                                                  ),
-                                                ],
+                                              decoration: BoxDecoration(
+                                                color: Color.fromARGB(255, 244, 242, 242),
+                                                borderRadius: BorderRadius.only(
+                                                  topLeft: Radius.circular(10),
+                                                  topRight: Radius.circular(10),
+                                                ),
                                               ),
-                                            ),
-                                            Center(
-                                              child:
-                                                Column(
+                                              child: Center(
+                                                child: Column(
                                                   children: [
-                                                    Text("Transfer to Bank", style: TextStyle(fontSize: 17, color: Colors.black87)),
                                                     Container(
-                                                      padding: EdgeInsets.all(8),
-                                                      child: Obx(() => 
-                                                        Text.rich(
-                                                          TextSpan(
-                                                            text: '${NumberFormat('#,###').format(phoneNumberinpController.bankAmount.value)}.00',
-                                                            style: TextStyle(fontSize: 36, fontWeight: FontWeight.w600, color: Colors.black),
-                                                            children: [
-                                                              TextSpan(
-                                                                text: "ETB",
-                                                                style: TextStyle(fontSize: 16, color: Colors.black),
-                                                              ),
-                                                            ],
+                                                      width: double.infinity,
+                                                      height: 50,
+                                                      child: Row(
+                                                        mainAxisAlignment: MainAxisAlignment.start,
+                                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                                        children: [
+                                                          ElevatedButton(
+                                                            onPressed: () {
+                                                              Navigator.pop(context);
+                                                            },
+                                                            style: ElevatedButton.styleFrom(
+                                                              elevation: 0,
+                                                              backgroundColor: Color.fromARGB(255, 244, 242, 242),
+                                                              shape: RoundedRectangleBorder(side: BorderSide.none)
+                                                            ),
+                                                            child: Icon(Icons.close, size: 25, color: Colors.black),
                                                           ),
-                                                        ),
+                                                        ],
                                                       ),
                                                     ),
-                                                    Container(
-                                                      padding : EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-                                                      height: 130,
-                                                      width: double.infinity,
-                                                      alignment: Alignment.center,
-                                                      child: Container(
-                                                        width: 400,
-                                                        decoration: BoxDecoration(
-                                                          color: Colors.white,
-                                                          borderRadius: BorderRadius.all(Radius.circular(10))
-                                                        ),
-                                                        child : Column(
-                                                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                                          children: [
-                                                            Container(
-                                                              padding: EdgeInsets.all(8),
-                                                              margin: EdgeInsets.symmetric(horizontal: 5),
-                                                              child: Row(
-                                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                                children: [
-                                                                  Text("Original Amount", style: TextStyle(fontSize: 16, color: Colors.grey),),
-                                                                  Text("${phoneNumberinpController.originalBankAmount}.00ETB", style: TextStyle(fontSize: 16, color: Colors.black, fontWeight: FontWeight.w600))
-                                                                ],
+                                                    Center(
+                                                      child: Column(
+                                                        children: [
+                                                          Text("Transfer to Bank", style: TextStyle(fontSize: 17, color: Colors.black87)),
+                                                          Container(
+                                                            padding: EdgeInsets.all(8),
+                                                            child: Obx(() =>
+                                                              Text.rich(
+                                                                TextSpan(
+                                                                  text: '${NumberFormat('#,###').format(phoneNumberinpController.bankAmount.value)}.00',
+                                                                  style: TextStyle(fontSize: 36, fontWeight: FontWeight.w600, color: Colors.black),
+                                                                  children: [
+                                                                    TextSpan(
+                                                                      text: "ETB",
+                                                                      style: TextStyle(fontSize: 16, color: Colors.black),
+                                                                    ),
+                                                                  ],
+                                                                ),
                                                               ),
                                                             ),
-                                                            Container(
-                                                              padding: EdgeInsets.all(8),
-                                                              margin: EdgeInsets.symmetric(horizontal: 5),
-                                                              child: Row(
-                                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                                children: [
-                                                                  Text("Service fee", style: TextStyle(fontSize: 16, color: Colors.grey),),
-                                                                  Text(phoneNumberinpController.bankAmount < 101 ? "1.00" : 
-                                                                    phoneNumberinpController.bankAmount > 99 && phoneNumberinpController.bankAmount < 500 ? "3.00" :
-                                                                    phoneNumberinpController.bankAmount >= 500 && phoneNumberinpController.bankAmount < 1000 ? "6.00" :
-                                                                    phoneNumberinpController.bankAmount >= 1000 && phoneNumberinpController.bankAmount < 5000 ? "7.00" :
-                                                                    "9.00", 
-                                                                   style: TextStyle(fontSize: 16, color: Colors.black, fontWeight: FontWeight.w600))
-                                                                ],
+                                                          ),
+                                                          Container(
+                                                            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                                                            height: 130,
+                                                            width: double.infinity,
+                                                            alignment: Alignment.center,
+                                                            child: Container(
+                                                              width: 400,
+                                                              decoration: BoxDecoration(
+                                                                color: Colors.white,
+                                                                borderRadius: BorderRadius.all(Radius.circular(10))
                                                               ),
-                                                            ),
-                                                          ],
-                                                        )
-                                                      ),
-                                                    ),
-                                                    Container(
-                                                      padding : EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-                                                      height: 130,
-                                                      width: double.infinity,
-                                                      alignment: Alignment.center,
-                                                      child: Container(
-                                                        width: 400,
-                                                        decoration: BoxDecoration(
-                                                          color: Colors.white,
-                                                          borderRadius: BorderRadius.all(Radius.circular(10))
-                                                        ),
-                                                        child: Column(
-                                                          children: [
-                                                            Container(
-                                                              width: double.infinity,
-                                                              height: 40,
-                                                              alignment: Alignment.centerLeft,
-                                                              padding: EdgeInsets.all(10),
-                                                              margin: EdgeInsets.symmetric(horizontal: 5),
-                                                              child: Text("Payment Method", style: TextStyle(fontSize: 16, color: Colors.grey),),
-                                                            ),
-                                                            Container(
-                                                              width: double.infinity,
-                                                              padding: EdgeInsets.symmetric(horizontal: 10),
-                                                              margin: EdgeInsets.symmetric(horizontal: 5),
-                                                              child: Row(
-                                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                                crossAxisAlignment: CrossAxisAlignment.center,
+                                                              child: Column(
+                                                                mainAxisAlignment: MainAxisAlignment.spaceAround,
                                                                 children: [
-                                                                  Icon(Icons.account_balance_wallet, color: Color.fromARGB(255, 141, 197, 64), size: 24,),
                                                                   Container(
-                                                                    
-                                                                    child: Column(
+                                                                    padding: EdgeInsets.all(8),
+                                                                    margin: EdgeInsets.symmetric(horizontal: 5),
+                                                                    child: Row(
                                                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                                      crossAxisAlignment: CrossAxisAlignment.start,
                                                                       children: [
-                                                                        Text("Balance", style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),),
-                                                                        Text("(Available Balance:9034.72ETB)", style: TextStyle(fontSize: 14, color: Colors.grey),)
+                                                                        Text("Original Amount", style: TextStyle(fontSize: 16, color: Colors.grey)),
+                                                                        Text("${phoneNumberinpController.originalBankAmount}.00ETB", style: TextStyle(fontSize: 16, color: Colors.black, fontWeight: FontWeight.w600))
                                                                       ],
                                                                     ),
                                                                   ),
-                                                                  SizedBox(width: 80),
-                                                                  Icon(Icons.check_circle, color: Color.fromARGB(255, 141, 197, 64), size: 20,)
+                                                                  Container(
+                                                                    padding: EdgeInsets.all(8),
+                                                                    margin: EdgeInsets.symmetric(horizontal: 5),
+                                                                    child: Row(
+                                                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                      children: [
+                                                                        Text("Service fee", style: TextStyle(fontSize: 16, color: Colors.grey)),
+                                                                        Text(phoneNumberinpController.bankAmount < 101 ? "1.00" :
+                                                                          phoneNumberinpController.bankAmount > 99 && phoneNumberinpController.bankAmount < 500 ? "3.00" :
+                                                                          phoneNumberinpController.bankAmount >= 500 && phoneNumberinpController.bankAmount < 1000 ? "6.00" :
+                                                                          phoneNumberinpController.bankAmount >= 1000 && phoneNumberinpController.bankAmount < 5000 ? "7.00" :
+                                                                          "9.00",
+                                                                         style: TextStyle(fontSize: 16, color: Colors.black, fontWeight: FontWeight.w600))
+                                                                      ],
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              )
+                                                            ),
+                                                          ),
+                                                          Container(
+                                                            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                                                            height: 130,
+                                                            width: double.infinity,
+                                                            alignment: Alignment.center,
+                                                            child: Container(
+                                                              width: 400,
+                                                              decoration: BoxDecoration(
+                                                                color: Colors.white,
+                                                                borderRadius: BorderRadius.all(Radius.circular(10))
+                                                              ),
+                                                              child: Column(
+                                                                children: [
+                                                                  Container(
+                                                                    width: double.infinity,
+                                                                    height: 40,
+                                                                    alignment: Alignment.centerLeft,
+                                                                    padding: EdgeInsets.all(10),
+                                                                    margin: EdgeInsets.symmetric(horizontal: 5),
+                                                                    child: Text("Payment Method", style: TextStyle(fontSize: 16, color: Colors.grey)),
+                                                                  ),
+                                                                  Container(
+                                                                    width: double.infinity,
+                                                                    padding: EdgeInsets.symmetric(horizontal: 10),
+                                                                    margin: EdgeInsets.symmetric(horizontal: 5),
+                                                                    child: Row(
+                                                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                                                      children: [
+                                                                        Icon(Icons.account_balance_wallet, color: Color.fromARGB(255, 141, 197, 64), size: 24),
+                                                                        Container(
+                                                                          child: Column(
+                                                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                                                            children: [
+                                                                              Text("Balance", style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600)),
+                                                                              Text("(Available Balance:9034.72ETB)", style: TextStyle(fontSize: 14, color: Colors.grey))
+                                                                            ],
+                                                                          ),
+                                                                        ),
+                                                                        SizedBox(width: 80),
+                                                                        Icon(Icons.check_circle, color: Color.fromARGB(255, 141, 197, 64), size: 20)
+                                                                      ],
+                                                                    ),
+                                                                  )
                                                                 ],
                                                               ),
-                                                            )
-                                                          ],
-                                                        ),
+                                                            ),
+                                                          ),
+                                                          Container(
+                                                            padding: EdgeInsets.symmetric(horizontal: 17, vertical: 3),
+                                                            margin: EdgeInsets.only(top: 10),
+                                                            child: ElevatedButton(
+                                                              onPressed: () {
+                                                                Navigator.pop(context);
+                                                                LoadingDialog loadingDialog = Get.put(LoadingDialog());
+                                                                loadingDialog.showLoadingDialog();
+                                                                Get.back();
+                                                                Pin().show(context);
+                                                              },
+                                                              style: ElevatedButton.styleFrom(
+                                                                backgroundColor: Color.fromARGB(255, 141, 197, 64),
+                                                                foregroundColor: Colors.white,
+                                                                minimumSize: Size(screenWidth * 0.85, 50),
+                                                                shape: RoundedRectangleBorder(
+                                                                  borderRadius: BorderRadius.circular(8)
+                                                                ),
+                                                              ),
+                                                              child: Text("Transfer", style: TextStyle(fontSize: 18))
+                                                            ),
+                                                          )
+                                                        ],
                                                       ),
                                                     ),
-                                                    Container(
-                                                      padding : EdgeInsets.symmetric(horizontal: 17, vertical: 3),
-                                                      margin: EdgeInsets.only(top: 10),
-                                                      child: ElevatedButton(
-                                                       onPressed: () {
-                                                          Navigator.pop(context); // OR use Get.back() if this context is enough
-                                                          LoadingDialog loadingDialog = Get.put(LoadingDialog());
-                                                          loadingDialog.showLoadingDialog();
-                                                          Get.back();
-                                                          Pin().show(context);
-                                                      },
-                                                        style : ElevatedButton.styleFrom(
-                                                          backgroundColor: Color.fromARGB(255, 141, 197, 64),
-                                                          foregroundColor: Colors.white,
-                                                          minimumSize: Size(screenWidth * 0.85, 50),
-                                                          shape : RoundedRectangleBorder(
-                                                            borderRadius: BorderRadius.circular(8)
-                                                          ),
-                                                        ),
-                                                        child: Text("Transfer", style: TextStyle(fontSize: 18),)
-                                                      ),
-                                                    )
                                                   ],
                                                 ),
-                                            ),
-
-                                          ],
-                                        ),
-                                      ),
-                                    );
-                                  }
-                                );
-                              });
-
-                            } else if (buttons[index] == Icons.backspace_outlined) {
-                              // if (amount.value.isNotEmpty) {
-                              //   amount.value = amount.value.substring(0, amount.value.length - 1);
-                              // }
-                                if (amount.value.isNotEmpty) {
-                                  amount.value = amount.value.substring(0, amount.value.length - 1);
-                                  textController.text = amount.value; // Update the input field
-                                  textController.selection = TextSelection.fromPosition(
-                                    TextPosition(offset: textController.text.length),
-                                );
-                              }
-                            } else {
-                              // amount.value += buttons[index].toString();
-                              amount.value += buttons[index].toString();
-                              textController.text = amount.value; // Update the input field
-                              textController.selection = TextSelection.fromPosition(
-                                TextPosition(offset: textController.text.length),
-                              );
-                            }
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: buttons[index] == "Transfer" ? Color.fromARGB(255, 141, 197, 64) : Colors.white,
-                            foregroundColor: buttons[index] == "Transfer" ? Colors.white : Colors.black,
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3), side: BorderSide.none),
-                            elevation: 0, // used to remove the box shadow
-                            fixedSize: buttons[index] == "Transfer" ? Size(100, 120) : Size(80, 80),
+                                              ),
+                                            );
+                                          }
+                                        );
+                                      });
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: Color.fromARGB(255, 141, 197, 64),
+                                      foregroundColor: Colors.white,
+                                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3), side: BorderSide.none),
+                                      elevation: 0,
+                                      padding: EdgeInsets.zero,
+                                    ),
+                                    child: Text("Transfer", style: TextStyle(fontSize: 16)),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
-                          child: buttons[index] is String
-                              ? Text(buttons[index], style: TextStyle(fontSize: buttons[index] == "Transfer" ? 12 : 22))
-                              : const Icon(Icons.backspace_outlined, color: Colors.black, size: 18),
                         ),
-                      ); // sized boxxxxxxxx
-                    },
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -643,4 +945,3 @@ class _SendbankState extends State<Sendbank> {
     );
   }
 }
-
