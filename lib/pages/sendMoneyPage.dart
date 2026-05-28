@@ -200,7 +200,7 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
                 ),
                 Container(
                   color: Color.fromARGB(255, 244, 242, 242),
-                  padding: EdgeInsets.all(11),
+                  padding: EdgeInsets.all(7),
                   child: IntrinsicHeight(
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -241,7 +241,7 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
                                   Expanded(
                                     flex: 2,
                                     child: Container(
-                                      margin: EdgeInsets.all(5),
+                                      margin: EdgeInsets.all(3),
                                       child: ElevatedButton(
                                         onPressed: () {
                                           phoneNumberinpController.setAmount(int.tryParse(textController.text) ?? 0);
@@ -256,7 +256,7 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
                                           foregroundColor: Colors.black,
                                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3), side: BorderSide.none),
                                           elevation: 0,
-                                          padding: EdgeInsets.symmetric(vertical: 18),
+                                          padding: EdgeInsets.symmetric(vertical: 11),
                                         ),
                                         child: Text("0", style: const TextStyle(fontSize: 22)),
                                       ),
@@ -276,7 +276,7 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
                             children: [
                               // Backspace button
                               Container(
-                                margin: EdgeInsets.all(5),
+                                margin: EdgeInsets.all(3),
                                 child: ElevatedButton(
                                   onPressed: () {
                                     phoneNumberinpController.setAmount(int.tryParse(textController.text) ?? 0);
@@ -293,7 +293,7 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
                                     foregroundColor: Colors.black,
                                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3), side: BorderSide.none),
                                     elevation: 0,
-                                    padding: EdgeInsets.symmetric(vertical: 18),
+                                    padding: EdgeInsets.symmetric(vertical: 11),
                                     minimumSize: Size(double.infinity, 0),
                                   ),
                                   child: const Icon(Icons.backspace_outlined, color: Colors.black, size: 18),
@@ -302,7 +302,7 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
                               // OK button — fills remaining height (rows 2, 3, 4)
                               Expanded(
                                 child: Container(
-                                  margin: EdgeInsets.all(5),
+                                  margin: EdgeInsets.all(3),
                                   width: double.infinity,
                                   child: ElevatedButton(
                                     onPressed: () {
@@ -526,7 +526,7 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
   Widget _buildKey(BuildContext context, String label) {
     return Expanded(
       child: Container(
-        margin: EdgeInsets.all(5),
+        margin: EdgeInsets.all(3),
         child: ElevatedButton(
           onPressed: () {
             phoneNumberinpController.setAmount(int.tryParse(textController.text) ?? 0);
@@ -541,7 +541,7 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
             foregroundColor: Colors.black,
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3), side: BorderSide.none),
             elevation: 0,
-            padding: EdgeInsets.symmetric(vertical: 18),
+            padding: EdgeInsets.symmetric(vertical: 11),
           ),
           child: Text(label, style: const TextStyle(fontSize: 22)),
         ),
