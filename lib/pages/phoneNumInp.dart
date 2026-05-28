@@ -216,7 +216,7 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                                       children: [
                                         Icon(Icons.account_circle, color: const Color.fromARGB(255, 141, 197, 64), size: 38),
                                         SizedBox(width: 5),
-                                        Text("TESSEMA", style: TextStyle(fontSize: 16)),
+                                        Text("Kalkidan", style: TextStyle(fontSize: 16)),
                                       ],
                                     ),
                                     Icon(Icons.arrow_forward_ios, color: const Color.fromARGB(255, 141, 197, 64), size: 13),
@@ -232,7 +232,7 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                                       children: [
                                         Icon(Icons.account_circle, color: const Color.fromARGB(255, 141, 197, 64), size: 38),
                                         SizedBox(width: 5),
-                                        Text("YAFET", style: TextStyle(fontSize: 16)),
+                                        Text("Yafet", style: TextStyle(fontSize: 16)),
                                       ],
                                     ),
                                     Icon(Icons.arrow_forward_ios, color: const Color.fromARGB(255, 203, 200, 200), size: 13),
@@ -248,7 +248,7 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                                       children: [
                                         Icon(Icons.account_circle, color: const Color.fromARGB(255, 141, 197, 64), size: 38),
                                         SizedBox(width: 5),
-                                        Text("TEMESGEN", style: TextStyle(fontSize: 16)),
+                                        Text("Segni", style: TextStyle(fontSize: 16)),
                                       ],
                                     ),
                                     Icon(Icons.arrow_forward_ios, color: const Color.fromARGB(255, 203, 200, 200), size: 13),
@@ -264,7 +264,7 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                                       children: [
                                         Icon(Icons.account_circle, color: const Color.fromARGB(255, 141, 197, 64), size: 38),
                                         SizedBox(width: 5),
-                                        Text("ESTIFANOS", style: TextStyle(fontSize: 16)),
+                                        Text("Amanuel", style: TextStyle(fontSize: 16)),
                                       ],
                                     ),
                                     Icon(Icons.arrow_forward_ios, color: const Color.fromARGB(255, 203, 200, 200), size: 13),
@@ -280,7 +280,23 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                                       children: [
                                         Icon(Icons.account_circle, color: const Color.fromARGB(255, 141, 197, 64), size: 38),
                                         SizedBox(width: 5),
-                                        Text("AMANUEL", style: TextStyle(fontSize: 16)),
+                                        Text("Biniyam", style: TextStyle(fontSize: 16)),
+                                      ],
+                                    ),
+                                    Icon(Icons.arrow_forward_ios, color: const Color.fromARGB(255, 203, 200, 200), size: 13),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.all(6),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Icon(Icons.account_circle, color: const Color.fromARGB(255, 141, 197, 64), size: 38),
+                                        SizedBox(width: 5),
+                                        Text("Yewunta", style: TextStyle(fontSize: 16)),
                                       ],
                                     ),
                                     Icon(Icons.arrow_forward_ios, color: const Color.fromARGB(255, 203, 200, 200), size: 13),
