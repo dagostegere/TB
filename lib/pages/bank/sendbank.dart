@@ -420,6 +420,7 @@ class _SendbankState extends State<Sendbank> {
                                             crossAxisAlignment: CrossAxisAlignment.center,
                                             children: [
                                               Icon(Icons.account_balance_wallet, color: Color.fromARGB(255, 141, 197, 64), size: 24),
+                                              SizedBox(width: 3),
                                               Container(
                                                 child: Column(
                                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
