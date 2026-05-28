@@ -6,6 +6,8 @@ import 'package:telebirr/controller/phoneNumInpController.dart';
 
 import '../../components/dialog.dart';
 
+import 'dart:async';
+
 class AccountInput extends StatefulWidget {
 
   const AccountInput({super.key});
@@ -23,6 +25,48 @@ class _AccountInputState extends State<AccountInput> {
   final phoneNumberinpController = Get.find<PhoneNumberInputController>();
 
   final textController = TextEditingController();
+
+  late PageController _pageController;
+  int _currentPage = 0;
+  int _realIndex = 0;
+  late Timer _timer;
+
+  final List<String> _imagePaths = [
+    'images/5ani.jpg',
+    'images/3.jpg',
+    'images/1.jpg',
+    'images/4.jpg',
+  ];
+
+  final int _maxPage = 1000;
+
+  @override
+  void initState() {
+    super.initState();
+    _currentPage = _maxPage ~/ 2;
+    _pageController = PageController(initialPage: _currentPage);
+
+    _timer = Timer.periodic(Duration(seconds: 4), (Timer timer) {
+      _currentPage++;
+      _pageController.animateToPage(
+        _currentPage,
+        duration: Duration(milliseconds: 500),
+        curve: Curves.easeInOut,
+      );
+
+      if (_currentPage >= _maxPage - 1) {
+        _currentPage = _maxPage ~/ 2;
+        _pageController.jumpToPage(_currentPage);
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    _pageController.dispose();
+    super.dispose();
+  }
 
   List<int> accountNumbers = [
 
@@ -150,6 +194,8 @@ class _AccountInputState extends State<AccountInput> {
 
   Widget build(BuildContext context) {
 
+    double screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
 
       resizeToAvoidBottomInset: false,
@@ -224,18 +270,47 @@ class _AccountInputState extends State<AccountInput> {
 
                           borderRadius: BorderRadius.all(Radius.circular(5)),
 
-                          child: Image.asset(
-
-                            'images/1.jpg',
-
-                            fit: BoxFit.cover,
-
+                          child: PageView.builder(
+                            controller: _pageController,
+                            onPageChanged: (index) {
+                              setState(() {
+                                _realIndex = index % _imagePaths.length;
+                              });
+                            },
+                            itemBuilder: (context, index) {
+                              final imageIndex = index % _imagePaths.length;
+                              return Image.asset(
+                                _imagePaths[imageIndex],
+                                fit: BoxFit.cover,
+                              );
+                            },
                           ),
 
                         ),
 
                       ),
 
+                    ),
+
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: List.generate(_imagePaths.length, (index) {
+                        return Container(
+                          margin: EdgeInsets.only(bottom: 6, left: screenWidth * 0.006, right: screenWidth * 0.006),
+                          width: screenWidth * 0.02,
+                          height: screenWidth * 0.02,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: _realIndex == index
+                                ? Color.fromARGB(255, 141, 197, 64)
+                                : Colors.transparent,
+                            border: Border.all(
+                              color: Color.fromARGB(255, 141, 197, 64),
+                              width: 1.5,
+                            ),
+                          ),
+                        );
+                      }),
                     ),
 
                     Padding(
