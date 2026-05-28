@@ -234,14 +234,13 @@ class _SendbankState extends State<Sendbank> {
       setName("NIGISTI ADMASU GEGZEABHE"); // 4kilo ROBA RMM 
     }
     
-    
 
     // Helper to build a single number/backspace button
     Widget _buildKey(dynamic label, {double? widthFactor}) {
       return Expanded(
         flex: widthFactor != null ? 2 : 1,
         child: Container(
-          margin: EdgeInsets.all(5),
+          margin: EdgeInsets.all(3),
           child: ElevatedButton(
             onPressed: () {
               phoneNumberinpController.setBankAmount(int.tryParse(textController.text) ?? 0);
@@ -266,7 +265,7 @@ class _SendbankState extends State<Sendbank> {
               foregroundColor: Colors.black,
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3), side: BorderSide.none),
               elevation: 0,
-              padding: EdgeInsets.symmetric(vertical: 18),
+              padding: EdgeInsets.symmetric(vertical: 11),
             ),
             child: label is String
                 ? Text(label, style: TextStyle(fontSize: 22))
@@ -279,7 +278,7 @@ class _SendbankState extends State<Sendbank> {
     // The tall Transfer button spanning 3 rows
     Widget _buildTransferButton() {
       return Container(
-        margin: EdgeInsets.all(5),
+        margin: EdgeInsets.all(3),
         child: ElevatedButton(
           onPressed: () {
             phoneNumberinpController.setBankAmount(int.tryParse(textController.text) ?? 0);
@@ -622,7 +621,7 @@ class _SendbankState extends State<Sendbank> {
                 ),
                 Container(
                   color: Color(0xFFF7F7F7),
-                  padding: EdgeInsets.all(11),
+                  padding: EdgeInsets.all(7),
                   child: IntrinsicHeight(
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -663,7 +662,7 @@ class _SendbankState extends State<Sendbank> {
                                   Expanded(
                                     flex: 2,
                                     child: Container(
-                                      margin: EdgeInsets.all(5),
+                                      margin: EdgeInsets.all(3),
                                       child: ElevatedButton(
                                         onPressed: () {
                                           phoneNumberinpController.setBankAmount(int.tryParse(textController.text) ?? 0);
@@ -678,7 +677,7 @@ class _SendbankState extends State<Sendbank> {
                                           foregroundColor: Colors.black,
                                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3), side: BorderSide.none),
                                           elevation: 0,
-                                          padding: EdgeInsets.symmetric(vertical: 18),
+                                          padding: EdgeInsets.symmetric(vertical: 11),
                                         ),
                                         child: Text("0", style: TextStyle(fontSize: 22)),
                                       ),
@@ -693,12 +692,12 @@ class _SendbankState extends State<Sendbank> {
                         ),
                         // Right column: backspace (top) + Transfer (tall, spans 3 rows)
                         SizedBox(
-                          width: (screenWidth - 22) / 4, // same width as one key column
+                          width: (screenWidth - 14) / 4,
                           child: Column(
                             children: [
                               // Backspace button
                               Container(
-                                margin: EdgeInsets.all(5),
+                                margin: EdgeInsets.all(3),
                                 child: ElevatedButton(
                                   onPressed: () {
                                     phoneNumberinpController.setBankAmount(int.tryParse(textController.text) ?? 0);
@@ -715,7 +714,7 @@ class _SendbankState extends State<Sendbank> {
                                     foregroundColor: Colors.black,
                                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3), side: BorderSide.none),
                                     elevation: 0,
-                                    padding: EdgeInsets.symmetric(vertical: 18),
+                                    padding: EdgeInsets.symmetric(vertical: 11),
                                     minimumSize: Size(double.infinity, 0),
                                   ),
                                   child: const Icon(Icons.backspace_outlined, color: Colors.black, size: 18),
@@ -724,7 +723,7 @@ class _SendbankState extends State<Sendbank> {
                               // Transfer button — fills remaining height (rows 2, 3, 4)
                               Expanded(
                                 child: Container(
-                                  margin: EdgeInsets.all(5),
+                                  margin: EdgeInsets.all(3),
                                   width: double.infinity,
                                   child: ElevatedButton(
                                     onPressed: () {
