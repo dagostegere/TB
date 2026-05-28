@@ -18,6 +18,7 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
 
   late PageController _pageController;
   int _currentPage = 0;
+  int _realIndex = 0;
   late Timer _timer;
 
   final List<String> _imagePaths = [
@@ -72,6 +73,7 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
     964063143
     ]; // Example recent numbers
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       resizeToAvoidBottomInset: false,  // this is sooooooo usefullllll bruhhh  - used for prevent elements from pushed up when the device's keyboard appears
       body: SafeArea( // Prevents UI from being under the status bar
@@ -103,14 +105,19 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                     ),
                     Container( // Image holder
                       width: double.infinity,
-                      margin: EdgeInsets.only(bottom: 8),
-                      height: 90,
+                      margin: EdgeInsets.only(bottom: 4),
+                      height: 110,
                       child: Padding(
                         padding: EdgeInsets.symmetric(horizontal: 8),
                         child: ClipRRect(
                           borderRadius: BorderRadius.all(Radius.circular(5)),
                           child: PageView.builder(
                             controller: _pageController,
+                            onPageChanged: (index) {
+                              setState(() {
+                                _realIndex = index % _imagePaths.length;
+                              });
+                            },
                             itemBuilder: (context, index) {
                               final imageIndex = index % _imagePaths.length;
                               return Image.asset(
@@ -121,6 +128,26 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                           ),
                         ),
                       ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: List.generate(_imagePaths.length, (index) {
+                        return Container(
+                          margin: EdgeInsets.only(bottom: 6, left: screenWidth * 0.006, right: screenWidth * 0.006),
+                          width: screenWidth * 0.02,
+                          height: screenWidth * 0.02,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: _realIndex == index
+                                ? Color.fromARGB(255, 141, 197, 64)
+                                : Colors.transparent,
+                            border: Border.all(
+                              color: Color.fromARGB(255, 141, 197, 64),
+                              width: 1.5,
+                            ),
+                          ),
+                        );
+                      }),
                     ),
                     Padding(
                       padding: EdgeInsets.all(7),
