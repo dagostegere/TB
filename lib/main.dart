@@ -9,7 +9,10 @@ import 'pages/bank/account_input.dart';
 import 'pages/bank/final_bank.dart';
 import 'pages/bank/sendbank.dart';
 import 'pages/bank/addName.dart';
+import 'pages/bank/merchant1.dart';
 import 'pages/bank/pin.dart';
+import 'pages/bank/merchantPin.dart';
+import 'pages/bank/end.dart'; 
 // flutter run -d chrome --web-browser-flag "--disable-cache"
 void main() {
   runApp(const MyApp());
@@ -24,7 +27,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Telebirr',
-      initialRoute: '/accountinput',
+      initialRoute: '/merchant1',
       getPages: [
         GetPage(name: '/phoneNumberInput', page: ()=> PhoneNumberInput()),
         GetPage(name: '/sendMoney', page: ()=> SendMoneyPage()),
@@ -33,7 +36,8 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/sendbank', page: () => Sendbank()),
         GetPage(name: '/accountinput', page: () => AccountInput()),
         GetPage(name: '/addName', page: () => Add()),
-        // GetPage(name: '/pin', page: () => Pin()),
+        GetPage(name: '/merchant1', page: () => PayForMerchantPage()),
+        GetPage(name: '/end', page: () => EndPage()),
       ],
       initialBinding: BindingsBuilder(() {
         Get.put(PhoneNumberInputController());
