@@ -83,6 +83,7 @@ class _FinalPageState extends State<FinalPage> {
     return PopScope(
       canPop: false,
       child: Scaffold(
+        backgroundColor: Colors.white,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(screenHeight * 0.12),
         child: Container(

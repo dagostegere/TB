@@ -32,7 +32,7 @@ class MerchantPin {
                 ),
                 // PIN box
                 Positioned(
-                  top: MediaQuery.of(context).size.height * 0.18,
+                  top: MediaQuery.of(context).size.height * 0.11,
                   left: 20,
                   right: 20,
                   child: Container(
@@ -56,24 +56,24 @@ class MerchantPin {
                         const SizedBox(height: 10),
                         const Text(
                           'Enter PIN',
-                          style: TextStyle(fontSize: 12, fontWeight: FontWeight.w300),
+                          style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
                         ),
                         const SizedBox(height: 8),
                         Text.rich(
                           TextSpan(
                             children: [
                               TextSpan(
-                                text: '${NumberFormat('#,###').format(phoneNumberinpController.bankAmount.value)}.00',
+                                text: '${NumberFormat('#,###').format(phoneNumberinpController.merchantamount.value)}.00',
                                 style: const TextStyle(
-                                  fontSize: 28.9,
-                                  fontWeight: FontWeight.w500,
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.w500,
                                 ),
                               ),
                               TextSpan(
                                 text: 'ETB',
                                 style: const TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w200,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400,
                                 ),
                               ),
                             ],
@@ -101,7 +101,7 @@ class MerchantPin {
                             ),
                           ),
                         ),
-                        const SizedBox(height: 30),
+                        const SizedBox(height: 40),
                       ],
                     ),
                   ),

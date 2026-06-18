@@ -13,6 +13,9 @@ import 'pages/bank/merchant1.dart';
 import 'pages/bank/pin.dart';
 import 'pages/bank/merchantPin.dart';
 import 'pages/bank/end.dart'; 
+import 'pages/bank/billshare.dart';
+import 'pages/bank/giveTip.dart';
+import 'pages/bank/qrcode.dart';
 // flutter run -d chrome --web-browser-flag "--disable-cache"
 void main() {
   runApp(const MyApp());
@@ -38,6 +41,9 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/addName', page: () => Add()),
         GetPage(name: '/merchant1', page: () => PayForMerchantPage()),
         GetPage(name: '/end', page: () => EndPage()),
+        GetPage(name: '/billshare', page: () => BillSharePage()),
+        GetPage(name: '/givetip', page: () => GiveTipPage()),
+        GetPage(name: '/qr', page: () => QrCodePage()),
       ],
       initialBinding: BindingsBuilder(() {
         Get.put(PhoneNumberInputController());

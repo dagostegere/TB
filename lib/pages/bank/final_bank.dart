@@ -86,6 +86,7 @@ class _FinalBankState extends State<FinalBank> {
     return PopScope(
       canPop: false,
       child: Scaffold(
+        backgroundColor: Colors.white,
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(screenHeight * 0.06),
           child: Container(

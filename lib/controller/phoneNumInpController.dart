@@ -9,6 +9,19 @@ class PhoneNumberInputController extends GetxController {
   var accountName = ''.obs;
   var bankAmount = 0.obs;
   var originalBankAmount = 0.obs;
+  var merchantId = 0.obs;
+  var merchantamount = 0.obs;
+  var merchantName = ''.obs;
+
+  void setmerchantamount(int amount) {
+    merchantamount.value = amount;                          
+  }
+  void setMerchantId(int id) {
+    merchantId.value = id;
+  }
+  void setMerchantName(String name) {
+    merchantName.value = name;
+  }
 
   void setBankAmount (int amount) {
     if(amount <= 100) {

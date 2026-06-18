@@ -5,6 +5,7 @@ import '../../components/dialog.dart';
 import 'pin.dart';
 import 'package:intl/intl.dart'; //
 import 'merchantPin.dart';
+import 'package:telebirr/controller/phoneNumInpController.dart';
 
 class PayForMerchantPage extends StatefulWidget {
   const PayForMerchantPage({super.key});
@@ -18,6 +19,10 @@ class _PayForMerchantPageState extends State<PayForMerchantPage>
   late TabController _tabController;
 
   final Color primaryGreen = const Color(0xFF8CC63F);
+
+  final merchantidcontrollerfile = Get.find<PhoneNumberInputController>();
+  final merchantidcontroller = TextEditingController();
+  final TextEditingController _amountController = TextEditingController();
 
   late PageController _pageController;
   int _currentPage = 0;
@@ -34,7 +39,6 @@ class _PayForMerchantPageState extends State<PayForMerchantPage>
   final int _maxPage = 1000;
 
   // Amount controller
-  final TextEditingController _amountController = TextEditingController();
   bool _showCustomKeypad = false;
 
   @override
@@ -85,6 +89,267 @@ class _PayForMerchantPageState extends State<PayForMerchantPage>
     });
   }
 
+  void showPaymentModal(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width;
+
+    showModalBottomSheet(
+      isScrollControlled: true,
+      context: context,
+      builder: (BuildContext context) {
+        return Container(
+          height: screenHeight * 0.55,
+          width: double.infinity,
+          decoration: BoxDecoration(
+            color: Color.fromARGB(
+                255, 244, 242, 242),
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(10),
+              topRight: Radius.circular(10),
+            ),
+          ),
+          child: Center(
+            child: Column(
+              children: [
+                Container(
+                  width: double.infinity,
+                  height: 50,
+                  child: Row(
+                    mainAxisAlignment:
+                        MainAxisAlignment
+                            .spaceBetween,
+                    crossAxisAlignment:
+                        CrossAxisAlignment.center,
+                    children: [
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        style: ElevatedButton
+                            .styleFrom(
+                          elevation: 0,
+                          backgroundColor:
+                              Color.fromARGB(255,
+                                  244, 242, 242),
+                          shape: RoundedRectangleBorder(
+                              side:
+                                  BorderSide.none),
+                        ),
+                        child: Icon(Icons.close,
+                            size: 25,
+                            color: Colors.black),
+                      ),
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(
+                                right: 16),
+                        child: Text(
+                          "Use Face ID",
+                          style: TextStyle(
+                            fontSize: 13,
+                            color: Color.fromARGB(
+                                255, 141, 197, 64),
+                            fontWeight:
+                                FontWeight.w200,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Center(
+                  child: Column(
+                    children: [
+                      Text("Pay to ${merchantidcontrollerfile.merchantName.value}",
+                          style: TextStyle(
+                              fontSize: 14,
+                              color: Colors.black87)),
+                      Container(
+                        padding: EdgeInsets.all(8),
+                        child: Obx(() => Text.rich(
+                                TextSpan(
+                                  text: '${NumberFormat('#,###').format(merchantidcontrollerfile.merchantamount.value)}.00',
+                                  style: TextStyle(
+                                      fontSize: 31,
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.black),
+                                  children: [
+                                    TextSpan(
+                                      text: "ETB",
+                                      style: TextStyle(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.normal,
+                                          color: Colors.black),
+                                    ),
+                                  ],
+                                ),
+                              )),
+                      ),
+                      SizedBox(height: 30),
+                      Container(
+                        padding:
+                            EdgeInsets.symmetric(
+                                horizontal: 15,
+                                vertical: 5),
+                        height: 130,
+                        width: double.infinity,
+                        alignment: Alignment.center,
+                        child: Container(
+                          width: 400,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius:
+                                BorderRadius.all(
+                                    Radius.circular(
+                                        10)),
+                          ),
+                          child: Column(
+                            children: [
+                              Container(
+                                width:
+                                    double.infinity,
+                                height: 40,
+                                alignment: Alignment
+                                    .centerLeft,
+                                padding:
+                                    EdgeInsets.all(
+                                        10),
+                                margin: EdgeInsets
+                                    .symmetric(
+                                        horizontal:
+                                            5),
+                                child: Text(
+                                    "Payment Method",
+                                    style: TextStyle(
+                                        fontSize:
+                                            15,
+                                        color: Colors
+                                            .grey)),
+                              ),
+                              Container(
+                                width:
+                                    double.infinity,
+                                padding: EdgeInsets
+                                    .symmetric(
+                                        horizontal:
+                                            10),
+                                margin: EdgeInsets
+                                    .symmetric(
+                                        horizontal:
+                                            5),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment
+                                          .spaceBetween,
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment
+                                          .center,
+                                  children: [
+                                    Icon(
+                                        Icons
+                                            .account_balance_wallet,
+                                        color: Color
+                                            .fromARGB(
+                                                255,
+                                                141,
+                                                197,
+                                                64),
+                                        size: 27),
+                                    SizedBox(
+                                        width: 1),
+                                    Container(
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment
+                                                .spaceBetween,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment
+                                                .start,
+                                        children: [
+                                          Text(
+                                              "Balance",
+                                              style: TextStyle(
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.normal)),
+                                          Text(
+                                              "(Available Balance:9034.72ETB)",
+                                              style: TextStyle(
+                                                  fontSize: 13,
+                                                  color: Colors.grey)),
+                                        ],
+                                      ),
+                                    ),
+                                    SizedBox(
+                                        width: 80),
+                                    Icon(
+                                        Icons
+                                            .check_circle,
+                                        color: Color
+                                            .fromARGB(
+                                                255,
+                                                141,
+                                                197,
+                                                64),
+                                        size: 25),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 20),
+                      Container(
+                        padding:
+                            EdgeInsets.symmetric(
+                                horizontal: 17,
+                                vertical: 3),
+                        margin: EdgeInsets.only(
+                            top: 10),
+                        child: ElevatedButton(
+                          onPressed: () {
+                            merchantidcontrollerfile.merchantamount.value = int.parse(_amountController.text);
+                            merchantidcontrollerfile.setMerchantId(int.parse(merchantidcontroller.text));
+                            Navigator.pop(context);
+                            LoadingDialog loadingDialog = Get.put(LoadingDialog());
+                            loadingDialog.showLoadingDialog();
+                            Get.back();
+                            MerchantPin().show(context);
+                                
+                          },
+                          style: ElevatedButton
+                              .styleFrom(
+                            backgroundColor:
+                                Color.fromARGB(255,
+                                    141, 197, 64),
+                            foregroundColor:
+                                Colors.white,
+                            minimumSize: Size(
+                                screenWidth * 0.85,
+                                50),
+                            shape:
+                                RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius
+                                      .circular(8),
+                            ),
+                          ),
+                          child: Text("Pay",
+                              style: TextStyle(
+                                  fontSize: 17)),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   InputDecoration inputDecoration(
     String hint, {
     Widget? suffixIcon,
@@ -104,16 +369,22 @@ class _PayForMerchantPageState extends State<PayForMerchantPage>
         vertical: 10,
       ),
       enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(7),
         borderSide: const BorderSide(
           color: Color(0xFFF1F1F1),
         ),
       ),
       focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(7),
         borderSide: BorderSide(
-          color: primaryGreen,
+          color: Color.fromARGB(255, 235, 177, 43),
           width: 1.5,
+        ),
+      ),
+      disabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10),
+        borderSide: const BorderSide(
+          color: Color(0xFFF1F1F1),
         ),
       ),
     );
@@ -157,11 +428,16 @@ class _PayForMerchantPageState extends State<PayForMerchantPage>
       ),
       child: Column(
         children: [
-          // Chevron — exactly like sendbank
-          Container(
-            width: double.infinity,
-            color: Color(0xFFF7F7F7),
-            child: Icon(Icons.keyboard_arrow_down, size: 24, color: Colors.grey),
+          // Chevron — tapping hides the keypad
+          GestureDetector(
+            onTap: () {
+              setState(() => _showCustomKeypad = false);
+            },
+            child: Container(
+              width: double.infinity,
+              color: Color(0xFFF7F7F7),
+              child: Icon(Icons.keyboard_arrow_down, size: 24, color: Colors.grey),
+            ),
           ),
 
           // Keypad grid — exactly like sendbank
@@ -263,7 +539,19 @@ class _PayForMerchantPageState extends State<PayForMerchantPage>
                             width: double.infinity,
                             child: ElevatedButton(
                               onPressed: () {
-                                setState(() => _showCustomKeypad = false);
+                                
+                                if (_amountController.text.isEmpty || merchantidcontroller.text.isEmpty) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(content: Text("Please enter Merchant ID and Amount")),
+                                  );
+                                  return;
+                                }
+                                merchantidcontrollerfile.setmerchantamount(
+                                  double.parse(_amountController.text).toInt(),
+                                );
+                                merchantidcontrollerfile.setMerchantId(int.parse(merchantidcontroller.text));
+                                // merchantidcontrollerfile.merchantId.value = int.parse(merchantidcontroller.text);
+                                showPaymentModal(context);
                               },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor:
@@ -296,508 +584,278 @@ class _PayForMerchantPageState extends State<PayForMerchantPage>
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
-    return Scaffold(
-      backgroundColor: const Color(0xFFF3F3F3),
-      body: SafeArea(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(height: 10),
 
-                  /// HEADER
-                  Row(
-                    children: [
-                      IconButton(
-                        padding: EdgeInsets.zero,
-                        constraints: const BoxConstraints(),
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        icon: const Icon(
-                          Icons.arrow_back_ios_new,
-                          size: 28,
-                          color: Colors.black,
+    void setMerchantName(String name) {
+      merchantidcontrollerfile.setMerchantName(name);
+    }
+    var merchantid = merchantidcontrollerfile.merchantId.value;
+    void setter(int id, String name) {
+      if (merchantid == id) {
+        setMerchantName(name);
+      }
+    };
+
+    if (merchantid == 43243) {
+      setMerchantName("abebe bikila");
+    }
+    if (merchantid == 111) {
+      setMerchantName("dgdlast bikila");
+    }
+    if (merchantid == 111) {
+      setMerchantName("dgdlast bikila");
+    }
+    setter(43243, "abebe bikila");
+    setter(111, "dgdlast bikila");
+    setter(123, "Sheraton Addis");
+
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        backgroundColor: const Color(0xFFF3F3F3),
+        body: SafeArea(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 10),
+
+                    /// HEADER
+                    Row(
+                      children: [
+                        IconButton(
+                          padding: EdgeInsets.zero,
+                          constraints: const BoxConstraints(),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          icon: const Icon(
+                            Icons.arrow_back_outlined,
+                            size: 22,
+                            color: Colors.black,
+                          ),
                         ),
-                      ),
-                      const Expanded(
-                        child: Center(
-                          child: Text(
-                            'Pay for Merchant',
-                            style: TextStyle(
-                              fontSize: 18.7,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
+                        const Expanded(
+                          child: Center(
+                            child: Text(
+                              'Pay for Merchant',
+                              style: TextStyle(
+                                fontSize: 18.7,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      const SizedBox(width: 30),
-                    ],
-                  ),
-
-                  const SizedBox(height: 22),
-
-                  /// TOP IMAGE
-                  Container(
-                    height: 110,
-                    width: double.infinity,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.all(Radius.circular(5)),
-                      child: PageView.builder(
-                        controller: _pageController,
-                        onPageChanged: (index) {
-                          setState(() {
-                            _realIndex = index % _imagePaths.length;
-                          });
-                        },
-                        itemBuilder: (context, index) {
-                          final imageIndex = index % _imagePaths.length;
-                          return Image.asset(
-                            _imagePaths[imageIndex],
-                            fit: BoxFit.cover,
-                          );
-                        },
-                      ),
-                    ),
-                  ),
-
-                  const SizedBox(height: 8),
-
-                  /// INDICATOR
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: List.generate(_imagePaths.length, (index) {
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 4),
-                        child: _dot(index == _realIndex),
-                      );
-                    }),
-                  ),
-
-                  const SizedBox(height: 18),
-
-                  /// TAB BAR
-                  Container(
-                    height: 45,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: TabBar(
-                      controller: _tabController,
-                      dividerColor: Colors.transparent,
-                      indicatorColor: primaryGreen,
-                      indicatorWeight: 0.5,
-                      labelColor: primaryGreen,
-                      unselectedLabelColor: Colors.grey.shade600,
-                      labelStyle: const TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w600,
-                      ),
-                      tabs: const [
-                        Tab(text: "Pay for Merchant"),
-                        Tab(text: "Apply Voucher"),
+                        const SizedBox(width: 30),
                       ],
                     ),
-                  ),
 
-                  const SizedBox(height: 12),
-                ],
+                    const SizedBox(height: 22),
+
+                    /// TOP IMAGE
+                    Container(
+                      height: 110,
+                      width: double.infinity,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.all(Radius.circular(5)),
+                        child: PageView.builder(
+                          controller: _pageController,
+                          onPageChanged: (index) {
+                            setState(() {
+                              _realIndex = index % _imagePaths.length;
+                            });
+                          },
+                          itemBuilder: (context, index) {
+                            final imageIndex = index % _imagePaths.length;
+                            return Image.asset(
+                              _imagePaths[imageIndex],
+                              fit: BoxFit.cover,
+                            );
+                          },
+                        ),
+                      ),
+                    ),
+
+                    const SizedBox(height: 8),
+
+                    /// INDICATOR
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: List.generate(_imagePaths.length, (index) {
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 4),
+                          child: _dot(index == _realIndex),
+                        );
+                      }),
+                    ),
+
+                    const SizedBox(height: 18),
+
+                    /// TAB BAR
+                    Container(
+                      height: 45,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: TabBar(
+                        controller: _tabController,
+                        dividerColor: Colors.transparent,
+                        indicatorColor: primaryGreen,
+                        indicatorWeight: 0.5,
+                        labelColor: primaryGreen,
+                        unselectedLabelColor: Colors.grey.shade600,
+                        labelStyle: const TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w600,
+                        ),
+                        tabs: const [
+                          Tab(text: "Pay for Merchant"),
+                          Tab(text: "Apply Voucher"),
+                        ],
+                      ),
+                    ),
+
+                    const SizedBox(height: 12),
+                  ],
+                ),
               ),
-            ),
 
-            /// SCROLLABLE SECTION ONLY
-            Expanded(
-              child: TabBarView(
-                controller: _tabController,
-                children: [
-                  /// TAB 1: Pay for Merchant (unchanged)
-                  _showCustomKeypad
-                      ? Column(
-                          children: [
-                            Expanded(
-                              child: SingleChildScrollView(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 20),
-                                child: _formContent(screenWidth, screenHeight),
-                              ),
-                            ),
-                            _buildCustomKeypad(screenWidth, screenHeight),
-                          ],
-                        )
-                      : Column(
-                          children: [
-                            Expanded(
-                              child: SingleChildScrollView(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 20),
-                                child: _formContent(screenWidth, screenHeight),
-                              ),
-                            ),
-
-                            /// BOTTOM BUTTON
-                            Container(
-                              padding: const EdgeInsets.fromLTRB(24, 18, 24, 30),
-                              decoration: const BoxDecoration(
-                                color: Color(0xFFF3F3F3),
-                              ),
-                              child: SizedBox(
-                                width: double.infinity,
-                                height: 50,
-                                child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: primaryGreen,
-                                    elevation: 0,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(9),
-                                    ),
-                                  ),
-                                  onPressed: () {
-                                    showModalBottomSheet(
-                                      isScrollControlled: true,
-                                      context: context,
-                                      builder: (BuildContext context) {
-                                        return Container(
-                                          height: screenHeight * 0.5,
-                                          width: double.infinity,
-                                          decoration: BoxDecoration(
-                                            color: Color.fromARGB(
-                                                255, 244, 242, 242),
-                                            borderRadius: BorderRadius.only(
-                                              topLeft: Radius.circular(10),
-                                              topRight: Radius.circular(10),
-                                            ),
-                                          ),
-                                          child: Center(
-                                            child: Column(
-                                              children: [
-                                                Container(
-                                                  width: double.infinity,
-                                                  height: 50,
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment.center,
-                                                    children: [
-                                                      ElevatedButton(
-                                                        onPressed: () {
-                                                          Navigator.pop(context);
-                                                        },
-                                                        style: ElevatedButton
-                                                            .styleFrom(
-                                                          elevation: 0,
-                                                          backgroundColor:
-                                                              Color.fromARGB(255,
-                                                                  244, 242, 242),
-                                                          shape: RoundedRectangleBorder(
-                                                              side:
-                                                                  BorderSide.none),
-                                                        ),
-                                                        child: Icon(Icons.close,
-                                                            size: 25,
-                                                            color: Colors.black),
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets.only(
-                                                                right: 16),
-                                                        child: Text(
-                                                          "Use Pin",
-                                                          style: TextStyle(
-                                                            fontSize: 12,
-                                                            color: Color.fromARGB(
-                                                                255, 141, 197, 64),
-                                                            fontWeight:
-                                                                FontWeight.w200,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                                Center(
-                                                  child: Column(
-                                                    children: [
-                                                      Text("Pay to Sheraton Addis",
-                                                          style: TextStyle(
-                                                              fontSize: 13,
-                                                              color: Colors
-                                                                  .black87)),
-                                                      Container(
-                                                        padding: EdgeInsets.all(8),
-                                                        child: Text.rich(
-                                                          TextSpan(
-                                                            text: '439.00',
-                                                            style: TextStyle(
-                                                                fontSize: 30,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .normal,
-                                                                color:
-                                                                    Colors.black),
-                                                            children: [
-                                                              TextSpan(
-                                                                text: "ETB",
-                                                                style: TextStyle(
-                                                                    fontSize: 15,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .normal,
-                                                                    color: Colors
-                                                                        .black),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      SizedBox(height: 20),
-                                                      Container(
-                                                        padding:
-                                                            EdgeInsets.symmetric(
-                                                                horizontal: 15,
-                                                                vertical: 5),
-                                                        height: 130,
-                                                        width: double.infinity,
-                                                        alignment: Alignment.center,
-                                                        child: Container(
-                                                          width: 400,
-                                                          decoration: BoxDecoration(
-                                                            color: Colors.white,
-                                                            borderRadius:
-                                                                BorderRadius.all(
-                                                                    Radius.circular(
-                                                                        10)),
-                                                          ),
-                                                          child: Column(
-                                                            children: [
-                                                              Container(
-                                                                width:
-                                                                    double.infinity,
-                                                                height: 40,
-                                                                alignment: Alignment
-                                                                    .centerLeft,
-                                                                padding:
-                                                                    EdgeInsets.all(
-                                                                        10),
-                                                                margin: EdgeInsets
-                                                                    .symmetric(
-                                                                        horizontal:
-                                                                            5),
-                                                                child: Text(
-                                                                    "Payment Method",
-                                                                    style: TextStyle(
-                                                                        fontSize:
-                                                                            15,
-                                                                        color: Colors
-                                                                            .grey)),
-                                                              ),
-                                                              Container(
-                                                                width:
-                                                                    double.infinity,
-                                                                padding: EdgeInsets
-                                                                    .symmetric(
-                                                                        horizontal:
-                                                                            10),
-                                                                margin: EdgeInsets
-                                                                    .symmetric(
-                                                                        horizontal:
-                                                                            5),
-                                                                child: Row(
-                                                                  mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .spaceBetween,
-                                                                  crossAxisAlignment:
-                                                                      CrossAxisAlignment
-                                                                          .center,
-                                                                  children: [
-                                                                    Icon(
-                                                                        Icons
-                                                                            .account_balance_wallet,
-                                                                        color: Color
-                                                                            .fromARGB(
-                                                                                255,
-                                                                                141,
-                                                                                197,
-                                                                                64),
-                                                                        size: 27),
-                                                                    SizedBox(
-                                                                        width: 1),
-                                                                    Container(
-                                                                      child: Column(
-                                                                        mainAxisAlignment:
-                                                                            MainAxisAlignment
-                                                                                .spaceBetween,
-                                                                        crossAxisAlignment:
-                                                                            CrossAxisAlignment
-                                                                                .start,
-                                                                        children: [
-                                                                          Text(
-                                                                              "Balance",
-                                                                              style: TextStyle(
-                                                                                  fontSize: 15,
-                                                                                  fontWeight: FontWeight.normal)),
-                                                                          Text(
-                                                                              "(Available Balance:9034.72ETB)",
-                                                                              style: TextStyle(
-                                                                                  fontSize: 13,
-                                                                                  color: Colors.grey)),
-                                                                        ],
-                                                                      ),
-                                                                    ),
-                                                                    SizedBox(
-                                                                        width: 80),
-                                                                    Icon(
-                                                                        Icons
-                                                                            .check_circle,
-                                                                        color: Color
-                                                                            .fromARGB(
-                                                                                255,
-                                                                                141,
-                                                                                197,
-                                                                                64),
-                                                                        size: 25),
-                                                                  ],
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      SizedBox(height: 20),
-                                                      Container(
-                                                        padding:
-                                                            EdgeInsets.symmetric(
-                                                                horizontal: 17,
-                                                                vertical: 3),
-                                                        margin: EdgeInsets.only(
-                                                            top: 10),
-                                                        child: ElevatedButton(
-                                                          onPressed: () {
-                                                            Navigator.pop(context);
-                                                            LoadingDialog
-                                                                loadingDialog =
-                                                                Get.put(
-                                                                    LoadingDialog());
-                                                            loadingDialog
-                                                                .showLoadingDialog();
-                                                            Get.back();
-                                                            MerchantPin()
-                                                                .show(context);
-                                                          },
-                                                          style: ElevatedButton
-                                                              .styleFrom(
-                                                            backgroundColor:
-                                                                Color.fromARGB(255,
-                                                                    141, 197, 64),
-                                                            foregroundColor:
-                                                                Colors.white,
-                                                            minimumSize: Size(
-                                                                screenWidth * 0.85,
-                                                                50),
-                                                            shape:
-                                                                RoundedRectangleBorder(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(8),
-                                                            ),
-                                                          ),
-                                                          child: Text("Pay",
-                                                              style: TextStyle(
-                                                                  fontSize: 17)),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        );
-                                      },
-                                    );
-                                  },
-                                  child: const Text(
-                                    "Next",
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.white,
-                                    ),
-                                  ),
+              /// SCROLLABLE SECTION ONLY
+              Expanded(
+                child: TabBarView(
+                  controller: _tabController,
+                  children: [
+                    /// TAB 1: Pay for Merchant (unchanged)
+                    _showCustomKeypad
+                        ? Column(
+                            children: [
+                              Expanded(
+                                child: SingleChildScrollView(
+                                  padding:
+                                      const EdgeInsets.symmetric(horizontal: 20),
+                                  child: _formContent(screenWidth, screenHeight),
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-
-                  /// TAB 2: Apply Voucher
-                  Column(
-                    children: [
-                      Expanded(
-                        child: Container(
-                          color: Colors.white,
-                          width: double.infinity,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
+                              _buildCustomKeypad(screenWidth, screenHeight),
+                            ],
+                          )
+                        : Column(
                             children: [
-                              Image.asset(
-                                'images/v.jpg',
-                                width: 220,
-                                height: 220,
-                                fit: BoxFit.contain,
+                              Expanded(
+                                child: SingleChildScrollView(
+                                  padding:
+                                      const EdgeInsets.symmetric(horizontal: 20),
+                                  child: _formContent(screenWidth, screenHeight),
+                                ),
                               ),
-                              const SizedBox(height: 16),
-                              Text(
-                                "Do you want to apply voucher?",
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  color: Colors.grey.shade500,
+
+                              /// BOTTOM BUTTON
+                              Container(
+                                padding: const EdgeInsets.fromLTRB(24, 18, 24, 30),
+                                decoration: const BoxDecoration(
+                                  color: Color(0xFFF3F3F3),
+                                ),
+                                child: SizedBox(
+                                  width: double.infinity,
+                                  height: 50,
+                                  child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: primaryGreen,
+                                      elevation: 0,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(9),
+                                      ),
+                                    ),
+                                    onPressed: () {
+                                      merchantidcontrollerfile.setmerchantamount(int.parse(_amountController.text));
+                                      // merchantidcontrollerfile.merchantId.value = int.parse(merchantidcontroller.text);
+                                      merchantidcontrollerfile.setMerchantId(int.parse(merchantidcontroller.text));
+                                      showPaymentModal(context);
+                                    },
+                                    child: const Text(
+                                      "Next",
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
                                 ),
                               ),
                             ],
                           ),
-                        ),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.fromLTRB(24, 18, 24, 30),
-                        decoration: const BoxDecoration(
-                          color: Color(0xFFF3F3F3),
-                        ),
-                        child: SizedBox(
-                          width: double.infinity,
-                          height: 50,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: primaryGreen,
-                              elevation: 0,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(9),
-                              ),
+
+                    /// TAB 2: Apply Voucher
+                    Column(
+                      children: [
+                        Expanded(
+                          child: Container(
+                            color: Colors.white,
+                            width: double.infinity,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.asset(
+                                  'images/v.jpg',
+                                  width: 220,
+                                  height: 220,
+                                  fit: BoxFit.contain,
+                                ),
+                                const SizedBox(height: 16),
+                                Text(
+                                  "Do you want to apply voucher?",
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    color: Colors.grey.shade500,
+                                  ),
+                                ),
+                              ],
                             ),
-                            onPressed: () {},
-                            child: const Text(
-                              "Next",
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.white,
+                          ),
+                        ),
+                        Container(
+                          padding: const EdgeInsets.fromLTRB(24, 18, 24, 30),
+                          decoration: const BoxDecoration(
+                            color: Color(0xFFF3F3F3),
+                          ),
+                          child: SizedBox(
+                            width: double.infinity,
+                            height: 50,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: primaryGreen,
+                                elevation: 0,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(9),
+                                ),
+                              ),
+                              onPressed: () {
+                                MerchantPin().show(context);
+                              },
+                              child: const Text(
+                                "Next",
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                ],
+                      ],
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -838,8 +896,9 @@ class _PayForMerchantPageState extends State<PayForMerchantPage>
             "Enter Merchant ID",
           ),
           keyboardType: TextInputType.number,
+          controller: merchantidcontroller,
           style: TextStyle(
-            fontSize: 18,
+            fontSize: 16,
             color: Colors.grey.shade700,
             fontWeight: FontWeight.w500,
           ),
@@ -862,6 +921,9 @@ class _PayForMerchantPageState extends State<PayForMerchantPage>
         TextField(
           decoration: inputDecoration("Enter Operator ID"),
           keyboardType: TextInputType.number,
+          style: TextStyle(
+            fontSize: 16,
+          ),
         ),
 
         const SizedBox(height: 10),
@@ -904,10 +966,10 @@ class _PayForMerchantPageState extends State<PayForMerchantPage>
             padding: const EdgeInsets.symmetric(horizontal: 18),
             decoration: BoxDecoration(
               color: Colors.white,
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(7),
               border: Border.all(
                 color: _showCustomKeypad
-                    ? primaryGreen
+                    ? Color.fromARGB(255, 225, 213, 81)
                     : const Color(0xFFF1F1F1),
                 width: _showCustomKeypad ? 1.5 : 1,
               ),
@@ -920,7 +982,7 @@ class _PayForMerchantPageState extends State<PayForMerchantPage>
                         ? "Enter Amount"
                         : _amountController.text,
                     style: TextStyle(
-                      fontSize: 18,
+                      fontSize: 16,
                       color: _amountController.text.isEmpty
                           ? Colors.grey.shade400
                           : Colors.grey.shade700,
@@ -958,19 +1020,28 @@ class _PayForMerchantPageState extends State<PayForMerchantPage>
 
         TextField(
           decoration: inputDecoration("Enter Note"),
+          style: TextStyle(
+            fontSize: 16,
+          ),
         ),
 
-        const SizedBox(height: 30),
+        const SizedBox(height: 12),
 
         /// RECENT
         Row(
           children: [
-            Text(
-              "Recent",
-              style: TextStyle(
-                color: Colors.grey.shade700,
-                fontSize: 15,
-                fontWeight: FontWeight.w500,
+            GestureDetector(
+              onTap: () {
+                // do something here
+                Get.toNamed('/givetip');
+              },
+              child: Text(
+                "Recent",
+                style: TextStyle(
+                  color: Colors.grey.shade700,
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             ),
             const Spacer(),
@@ -982,8 +1053,8 @@ class _PayForMerchantPageState extends State<PayForMerchantPage>
           ],
         ),
 
-        const SizedBox(height: 18),
-
+        const SizedBox(height: 12),
+        // RECENT
         Container(
           width: double.infinity,
           padding: const EdgeInsets.symmetric(
@@ -999,52 +1070,88 @@ class _PayForMerchantPageState extends State<PayForMerchantPage>
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  "Sheraton Addis",
-                  style: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                SizedBox(height: 5),
-                const Text(
-                  "432454",
-                  style: TextStyle(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                Divider(thickness: 0.2),
-                const Text(
-                  "Ambassador Gamrment and gamzone plc",
-                  style: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                SizedBox(height: 5),
-                const Text(
-                  "500260",
-                  style: TextStyle(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w500,
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          "Sheraton Addis",
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        SizedBox(height: 5),
+                        const Text(
+                          "432454",
+                          style: TextStyle(
+                            fontSize: 10,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const Icon(Icons.chevron_right, color: Colors.grey),
+                  ],
                 ),
                 Divider(thickness: 0.2),
-                const Text(
-                  "ETT BY DARCO MANUFACTURING PLC",
-                  style: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w500,
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          "Ambassador Gamrment and Game...",
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        SizedBox(height: 5),
+                        const Text(
+                          "500260",
+                          style: TextStyle(
+                            fontSize: 10,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const Icon(Icons.chevron_right, color: Colors.grey),
+                  ],
                 ),
-                SizedBox(height: 5),
-                const Text(
-                  "500260",
-                  style: TextStyle(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w500,
-                  ),
+                Divider(thickness: 0.2),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          "ETT BY DARCO MANUFACTURING...",
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        SizedBox(height: 5),
+                        const Text(
+                          "500260",
+                          style: TextStyle(
+                            fontSize: 10,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const Icon(Icons.chevron_right, color: Colors.grey),
+                  ],
                 ),
                 Divider(thickness: 0.2),
               ],

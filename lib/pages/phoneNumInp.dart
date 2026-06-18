@@ -255,9 +255,14 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Text(
+                            GestureDetector(
+                              onTap: () {
+                                Get.toNamed('/merchant1');
+                              }, 
+                              child:  Text(
                               "Recent",
                               style: TextStyle(color: Colors.black, fontSize: 17),
+                              ),
                             ),
                             IconButton(
                               onPressed: () {

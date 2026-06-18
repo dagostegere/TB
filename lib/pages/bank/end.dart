@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'dart:math';
 import 'dart:async';
+import 'package:telebirr/controller/phoneNumInpController.dart';
 
 
 class EndPage extends StatefulWidget {
@@ -15,12 +16,13 @@ class EndPage extends StatefulWidget {
 }
 
 class _EndPageState extends State<EndPage> {
-  // final phoneNumberinpcontroller = Get.find<PhoneNumberInputController>();
-
+  final merchantidcontrollerfile = Get.find<PhoneNumberInputController>();
   late PageController _pageController;
   int _currentPage = 0;
   int _realIndex = 0;
   late Timer _timer;
+  late String _transactionNumber;
+  late String _transactionTime; // ← ADDED
 
   final List<String> _imagePaths = [
     'images/5ani.jpg',
@@ -32,39 +34,39 @@ class _EndPageState extends State<EndPage> {
 
   final int _maxPage = 1000;
 
-  @override
-  void initState() {
-    super.initState();
-    _currentPage = _maxPage ~/ 2;
-    _pageController = PageController(initialPage: _currentPage);
+@override
+void initState() {
+  super.initState();
+  _transactionNumber = generateTransactionNumber();
+  _transactionTime = getCurrentDateTime(); // make sure this line exists
+  _currentPage = _maxPage ~/ 2;
+  _pageController = PageController(initialPage: _currentPage);
 
-    _timer = Timer.periodic(Duration(seconds: 4), (Timer timer) {
-      _currentPage++;
-      _pageController.animateToPage(
-        _currentPage,
-        duration: Duration(milliseconds: 500),
-        curve: Curves.easeInOut,
-      );
+  _timer = Timer.periodic(Duration(seconds: 4), (Timer timer) {
+    if (!mounted) return; // ← ADD THIS to fix the PageController error
+    _currentPage++;
+    _pageController.animateToPage(
+      _currentPage,
+      duration: Duration(milliseconds: 500),
+      curve: Curves.easeInOut,
+    );
 
-      if (_currentPage >= _maxPage - 1) {
-        _currentPage = _maxPage ~/ 2;
-        _pageController.jumpToPage(_currentPage);
-      }
-    });
-  }
+    if (_currentPage >= _maxPage - 1) {
+      _currentPage = _maxPage ~/ 2;
+      _pageController.jumpToPage(_currentPage);
+    }
+  });
+}
 
   String getCurrentDateTime() {
     DateTime now = DateTime.now();
-    // return DateFormat('HH:mm:ss').format(now);
     return DateFormat('yyyy/MM/dd HH:mm:ss').format(now);
   }
+
   String generateTransactionNumber() {
-    const String letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     const String alphanumeric = "ABCDEHIJLMPRSTVXYZ1234567890";
     Random random = Random();
-
     String middle_six = List.generate(8, (index) => alphanumeric[random.nextInt(alphanumeric.length)]).join();
-
     return "DF" + middle_six;
   }
 
@@ -83,6 +85,7 @@ class _EndPageState extends State<EndPage> {
     return PopScope(
       canPop: false,
       child: Scaffold(
+      backgroundColor: Colors.white,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(screenHeight * 0.085),
         child: Container(
@@ -97,14 +100,14 @@ class _EndPageState extends State<EndPage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset("images/d.png", width: 13, height: 13),
+                    Image.asset("images/d.png", width: 14, height: 14),
                     Text(".", style: TextStyle(color: Colors.white)),
                     Container(
                       margin: EdgeInsets.only(top: 2, left: 2),
                       child: Text("Download", 
                       style: TextStyle(
                                 color: Color.fromARGB(255, 106, 183, 71),
-                                fontSize: 13
+                                fontSize: 14
                                 )),
                     ),
                   ],
@@ -117,12 +120,12 @@ class _EndPageState extends State<EndPage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(Icons.share_outlined, size: 11, color: Color.fromARGB(255, 106, 183, 71)),
+                    Icon(Icons.share_outlined, size: 14, color: Color.fromARGB(255, 106, 183, 71)),
                     Text("..", style: TextStyle(color: Colors.white)),
                     Text("Share",
                       style: TextStyle(
                         color: Color.fromARGB(255, 106, 183, 71),
-                        fontSize: 13
+                        fontSize: 14
                       ),
                     ),
                   ],
@@ -146,7 +149,6 @@ class _EndPageState extends State<EndPage> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    // Icon(Icons.check_circle, size: 50, color : Color.fromARGB(255, 106, 183, 71)),
                     FaIcon(FontAwesomeIcons.solidCircleCheck, size: 47, color: Color.fromARGB(255, 141, 197, 64)),
                     SizedBox(height: 15),
                     Text("Successful", style: TextStyle(color: Color.fromARGB(255, 106, 183, 71), fontSize: 17, fontWeight: FontWeight.normal))
@@ -158,9 +160,8 @@ class _EndPageState extends State<EndPage> {
                 height: screenHeight * 0.1,
                 alignment: Alignment.center,
                 child: Text.rich(
-                  TextSpan( // ወደ ባንክ ሲሆን ማይነስ(-435) አይገባበትምምምምምምምምምምምምምምምምምምምምምምምምምም ከታች ያለው አስታውሥ
-                    // text: '${NumberFormat('#,###').format(phoneNumberinpcontroller.amount.value)}.00',
-                    text: '-50.00',
+                  TextSpan(
+                    text: '${NumberFormat('#,###').format(merchantidcontrollerfile.merchantamount.value)}.00',
                     style: TextStyle(fontSize: 36, fontWeight: FontWeight.w500, color: Colors.black),
                     children: [
                       TextSpan(
@@ -183,27 +184,46 @@ class _EndPageState extends State<EndPage> {
                 margin: EdgeInsets.symmetric(horizontal: 30),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [ //2025/02/01 12:47:55
-                    // _transactionRow("Transaction Time:",  "2026/03/24" + " " + getCurrentDateTime()),
-                    _transactionRow("Transaction Time:", getCurrentDateTime()),
+                  children: [
+                    _transactionRow("Transaction Time:", _transactionTime), // ← CHANGED
                     _transactionRow("Transaction Type:", "Buy Goods"),
-                    // _transactionRow("Transaction To:", "${phoneNumberinpcontroller.userName}"),
-                    _transactionRow("Transaction To:", "Sheraton Addis"),
-                    _transactionRow("Transaction Number:", generateTransactionNumber()),
+                    _transactionRow("Transaction To:", "${merchantidcontrollerfile.merchantName.value}"),
+                    _transactionRow("Transaction Number:", _transactionNumber),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        // Icon(Icons.savings_outlined, color: Color.fromARGB(255, 106, 183, 71), size: 19),
-                        Image.asset("images/c.jpg", width: 15, height: 15),
+                        Image.asset("images/c.jpg", width: 20, height: 20),
                         SizedBox(width: 5),
-                        Text("Give Tip", style: TextStyle(color: Color.fromARGB(255, 106, 183, 71), fontWeight: FontWeight.bold, fontSize: 12)),
+                        GestureDetector(
+                          onTap: () {
+                            Get.toNamed('/givetip');
+                          },
+                          child: Text(
+                            "Give Tip",
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 106, 183, 71),
+                              fontWeight: FontWeight.bold,
+                              fontSize: 12,
+                            ),
+                          ),
+                        ),
                         SizedBox(width: 25),
-
-                        Icon(Icons.qr_code, color: Color.fromARGB(255, 106, 183, 71), size: 19),
+                        Icon(Icons.qr_code, color: Color.fromARGB(255, 106, 183, 71), size: 21),
                         SizedBox(width: 5),
-                        Text("QR Code", style: TextStyle(color: Color.fromARGB(255, 106, 183, 71), fontWeight: FontWeight.bold, fontSize: 12)),
-                        SizedBox(width: 35),
-
+                        GestureDetector(
+                          onTap: () {
+                            Get.toNamed('/qr');
+                          },
+                          child: Text(
+                            "QR Code",
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 106, 183, 71),
+                              fontWeight: FontWeight.bold,
+                              fontSize: 12,
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 3),
                       ],
                     ),
                   ],
@@ -261,9 +281,9 @@ class _EndPageState extends State<EndPage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                          ElevatedButton(
+                      ElevatedButton(
                         onPressed: (){
-                          Get.toNamed('/phoneNumberInput');
+                          Get.toNamed('/billshare');
                         },
                         style: ElevatedButton.styleFrom(
                           minimumSize: Size(screenWidth * 0.4, 50),
@@ -280,19 +300,19 @@ class _EndPageState extends State<EndPage> {
                         child: Text("Bill Share", style: TextStyle(fontSize: 18),),
                       ),
                       ElevatedButton(
-                    onPressed: (){
-                      Get.toNamed('/phoneNumberInput');
-                    },
-                    style: ElevatedButton.styleFrom(
-                      minimumSize: Size(screenWidth * 0.4, 50),
-                      backgroundColor: Color.fromARGB(255, 141, 197, 64),
-                      foregroundColor: Colors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(8))
-                      )
-                    ),
-                    child: Text("Finished", style: TextStyle(fontSize: 18),),
-                  ),
+                        onPressed: (){
+                          Get.toNamed('/merchant1');
+                        },
+                        style: ElevatedButton.styleFrom(
+                          minimumSize: Size(screenWidth * 0.4, 50),
+                          backgroundColor: Color.fromARGB(255, 141, 197, 64),
+                          foregroundColor: Colors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(8))
+                          )
+                        ),
+                        child: Text("Finished", style: TextStyle(fontSize: 18),),
+                      ),
                     ],
                   ),
                 ),
