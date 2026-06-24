@@ -6,6 +6,8 @@ import 'pin.dart';
 import 'package:intl/intl.dart'; //
 import 'merchantPin.dart';
 import 'package:telebirr/controller/phoneNumInpController.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'qrpage.dart';
 
 class PayForMerchantPage extends StatefulWidget {
   const PayForMerchantPage({super.key});
@@ -40,6 +42,21 @@ class _PayForMerchantPageState extends State<PayForMerchantPage>
 
   // Amount controller
   bool _showCustomKeypad = false;
+
+  // ---- ADDED: central place to map a merchant ID to a name ----
+  String _resolveMerchantName(int id) {
+    switch (id) {
+      case 43243:
+        return "abebe bikila";
+      case 111:
+        return "dgdlast bikila";
+      case 123:
+        return "Sheraton Addis";
+      default:
+        return merchantidcontrollerfile.merchantName.value;
+    }
+  }
+  // ---- END ADDED ----
 
   @override
   void initState() {
@@ -85,6 +102,86 @@ class _PayForMerchantPageState extends State<PayForMerchantPage>
         }
       } else {
         _amountController.text += value;
+      }
+    });
+  }
+
+  // ---- ADDED: opens the QR scanner and fills the Merchant ID field ----
+  Future<void> _openQrScanner() async {
+    final scannedValue = await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (_) => const QrScanPage()),
+    );
+    if (scannedValue != null) {
+      setState(() {
+        merchantidcontroller.text = scannedValue.toString();
+      });
+    }
+  }
+  // ---- END ADDED ----
+
+  Widget _errorDialogContent(String message) {
+    return Container(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 21,
+        vertical: 15,
+      ),
+      decoration: BoxDecoration(
+        color: Colors.black.withOpacity(0.7),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Text(
+        message,
+        textAlign: TextAlign.center,
+        style: const TextStyle(
+          color: Colors.white,
+          fontSize: 13.6,
+          fontWeight: FontWeight.w200,
+          decoration: TextDecoration.none,
+        ),
+      ),
+    );
+  }
+  void _showErrorDialog(String message) {
+    showGeneralDialog(
+      context: context,
+      barrierDismissible: true,
+      barrierLabel: "Error",
+      barrierColor: Colors.transparent,
+      transitionDuration: const Duration(milliseconds: 250),
+
+      pageBuilder: (context, animation, secondaryAnimation) {
+        return const SizedBox(); // required placeholder
+      },
+
+      transitionBuilder: (context, animation, secondaryAnimation, child) {
+        final curvedAnimation = CurvedAnimation(
+          parent: animation,
+          curve: Curves.easeOutBack,
+        );
+
+        return FadeTransition(
+          opacity: animation,
+          child: ScaleTransition(
+            scale: Tween<double>(
+              begin: 0.6,
+              end: 1.0,
+            ).animate(curvedAnimation),
+            child: Center(
+              child: Material(
+                color: Colors.transparent,
+                child: _errorDialogContent(message),
+              ),
+            ),
+          ),
+        );
+      },
+    );
+
+    // auto close after 2 seconds
+    Future.delayed(const Duration(seconds: 2), () {
+      if (Navigator.canPop(context)) {
+        Navigator.of(context).pop();
       }
     });
   }
@@ -160,10 +257,13 @@ class _PayForMerchantPageState extends State<PayForMerchantPage>
                 Center(
                   child: Column(
                     children: [
-                      Text("Pay to ${merchantidcontrollerfile.merchantName.value}",
+                      // ---- CHANGED: wrapped in Obx so it updates live ----
+                      Obx(() => Text(
+                          "Pay to ${merchantidcontrollerfile.merchantName.value}",
                           style: TextStyle(
                               fontSize: 14,
-                              color: Colors.black87)),
+                              color: Colors.black87))),
+                      // ---- END CHANGED ----
                       Container(
                         padding: EdgeInsets.all(8),
                         child: Obx(() => Text.rich(
@@ -216,34 +316,21 @@ class _PayForMerchantPageState extends State<PayForMerchantPage>
                                         10),
                                 margin: EdgeInsets
                                     .symmetric(
-                                        horizontal:
-                                            5),
+                                        horizontal: 5),
                                 child: Text(
                                     "Payment Method",
                                     style: TextStyle(
-                                        fontSize:
-                                            15,
-                                        color: Colors
-                                            .grey)),
+                                        fontSize: 14,
+                                        color: Colors.grey)),
                               ),
                               Container(
-                                width:
-                                    double.infinity,
-                                padding: EdgeInsets
-                                    .symmetric(
-                                        horizontal:
-                                            10),
-                                margin: EdgeInsets
-                                    .symmetric(
-                                        horizontal:
-                                            5),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment
-                                          .spaceBetween,
+                                width: double.infinity,
+                                padding: EdgeInsets.symmetric(horizontal:10),
+                                margin: EdgeInsets.symmetric(horizontal: 5),
+                                child: Row(mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   crossAxisAlignment:
-                                      CrossAxisAlignment
-                                          .center,
+                                      CrossAxisAlignment.center,
                                   children: [
                                     Icon(
                                         Icons
@@ -358,7 +445,7 @@ class _PayForMerchantPageState extends State<PayForMerchantPage>
       hintText: hint,
       hintStyle: TextStyle(
         color: Colors.grey.shade400,
-        fontSize: 16,
+        fontSize: 14,
         fontWeight: FontWeight.w400,
       ),
       filled: true,
@@ -369,16 +456,16 @@ class _PayForMerchantPageState extends State<PayForMerchantPage>
         vertical: 10,
       ),
       enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(7),
+        borderRadius: BorderRadius.circular(4),
         borderSide: const BorderSide(
           color: Color(0xFFF1F1F1),
         ),
       ),
       focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(7),
+        borderRadius: BorderRadius.circular(4),
         borderSide: BorderSide(
-          color: Color.fromARGB(255, 235, 177, 43),
-          width: 1.5,
+          color: Color.fromARGB(255, 248, 193, 66),
+          width: 1.8,
         ),
       ),
       disabledBorder: OutlineInputBorder(
@@ -539,19 +626,41 @@ class _PayForMerchantPageState extends State<PayForMerchantPage>
                             width: double.infinity,
                             child: ElevatedButton(
                               onPressed: () {
-                                
-                                if (_amountController.text.isEmpty || merchantidcontroller.text.isEmpty) {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(content: Text("Please enter Merchant ID and Amount")),
-                                  );
+                                if (merchantidcontroller.text.isEmpty) {
+                                    _showErrorDialog("Enter Merchant ID");
+                                return;
+                                }
+
+                                if (_amountController.text.isEmpty) {
+                                    _showErrorDialog("Enter Amount");
                                   return;
                                 }
+
+                                if (!merchantidcontrollerfile.merchant_IDs.contains(int.parse(merchantidcontroller.text))) {
+                                  LoadingDialog loadingDialog = Get.put(LoadingDialog());
+                                  loadingDialog.showLoadingDialog();
+                                  Future.delayed( Duration(milliseconds: 1000), () {
+                                    Get.back();
+                                    _showErrorDialog("Organization is not exist");
+                                  }); 
+                                  return;
+                                }
+                                final int enteredId = int.parse(merchantidcontroller.text);
                                 merchantidcontrollerfile.setmerchantamount(
                                   double.parse(_amountController.text).toInt(),
                                 );
-                                merchantidcontrollerfile.setMerchantId(int.parse(merchantidcontroller.text));
-                                // merchantidcontrollerfile.merchantId.value = int.parse(merchantidcontroller.text);
-                                showPaymentModal(context);
+                                merchantidcontrollerfile.setMerchantId(enteredId);
+                                // ---- ADDED: resolve & set name immediately, don't wait for build() ----
+                                merchantidcontrollerfile.setMerchantName(_resolveMerchantName(enteredId));
+                                // ---- END ADDED ----
+
+                                
+                                LoadingDialog loadingDialog = Get.put(LoadingDialog());
+                                loadingDialog.showLoadingDialog();
+                                Future.delayed( Duration(milliseconds: 1000), () {
+                                  Get.back();
+                                  showPaymentModal(context);
+                                }); 
                               },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor:
@@ -584,29 +693,6 @@ class _PayForMerchantPageState extends State<PayForMerchantPage>
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
-
-    void setMerchantName(String name) {
-      merchantidcontrollerfile.setMerchantName(name);
-    }
-    var merchantid = merchantidcontrollerfile.merchantId.value;
-    void setter(int id, String name) {
-      if (merchantid == id) {
-        setMerchantName(name);
-      }
-    };
-
-    if (merchantid == 43243) {
-      setMerchantName("abebe bikila");
-    }
-    if (merchantid == 111) {
-      setMerchantName("dgdlast bikila");
-    }
-    if (merchantid == 111) {
-      setMerchantName("dgdlast bikila");
-    }
-    setter(43243, "abebe bikila");
-    setter(111, "dgdlast bikila");
-    setter(123, "Sheraton Addis");
 
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
@@ -654,7 +740,7 @@ class _PayForMerchantPageState extends State<PayForMerchantPage>
                       ],
                     ),
 
-                    const SizedBox(height: 22),
+                    const SizedBox(height: 10),
 
                     /// TOP IMAGE
                     Container(
@@ -687,7 +773,7 @@ class _PayForMerchantPageState extends State<PayForMerchantPage>
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: List.generate(_imagePaths.length, (index) {
                         return Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 4),
+                          padding: const EdgeInsets.symmetric(horizontal: 2.5),
                           child: _dot(index == _realIndex),
                         );
                       }),
@@ -710,8 +796,8 @@ class _PayForMerchantPageState extends State<PayForMerchantPage>
                         labelColor: primaryGreen,
                         unselectedLabelColor: Colors.grey.shade600,
                         labelStyle: const TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w600,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
                         ),
                         tabs: const [
                           Tab(text: "Pay for Merchant"),
@@ -772,10 +858,35 @@ class _PayForMerchantPageState extends State<PayForMerchantPage>
                                       ),
                                     ),
                                     onPressed: () {
-                                      merchantidcontrollerfile.setmerchantamount(int.parse(_amountController.text));
-                                      // merchantidcontrollerfile.merchantId.value = int.parse(merchantidcontroller.text);
-                                      merchantidcontrollerfile.setMerchantId(int.parse(merchantidcontroller.text));
-                                      showPaymentModal(context);
+                                      if (merchantidcontroller.text.isEmpty) {
+                                          _showErrorDialog("Enter Merchant ID");
+                                      return;
+                                      }
+                                      if (_amountController.text.isEmpty) {
+                                          _showErrorDialog("Enter Amount");
+                                      return;
+                                      }
+                                      if (!merchantidcontrollerfile.merchant_IDs.contains(int.parse(merchantidcontroller.text))) {
+                                        LoadingDialog loadingDialog = Get.put(LoadingDialog());
+                                        loadingDialog.showLoadingDialog();
+                                        Future.delayed( Duration(milliseconds: 1000), () {
+                                          Get.back();
+                                          _showErrorDialog("Organization is not exist");
+                                        }); 
+                                        return;
+                                      }
+                                      final int enteredId = int.parse(merchantidcontroller.text);
+                                      merchantidcontrollerfile.setmerchantamount(double.parse(_amountController.text).toInt());
+                                      merchantidcontrollerfile.setMerchantId(enteredId);
+                                      // ---- ADDED: resolve & set name immediately, don't wait for build() ----
+                                      merchantidcontrollerfile.setMerchantName(_resolveMerchantName(enteredId));
+                                      // ---- END ADDED ----
+                                      LoadingDialog loadingDialog = Get.put(LoadingDialog());
+                                      loadingDialog.showLoadingDialog();
+                                      Future.delayed(Duration(milliseconds: 1000), () {
+                                        Get.back();
+                                        showPaymentModal(context);
+                                      });
                                     },
                                     child: const Text(
                                       "Next",
@@ -881,7 +992,7 @@ class _PayForMerchantPageState extends State<PayForMerchantPage>
                 text: 'Merchant ID',
                 style: TextStyle(
                   color: Colors.grey.shade700,
-                  fontSize: 15,
+                  fontSize: 12,
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -894,11 +1005,22 @@ class _PayForMerchantPageState extends State<PayForMerchantPage>
         TextField(
           decoration: inputDecoration(
             "Enter Merchant ID",
+            suffixIcon: GestureDetector(
+              onTap: _openQrScanner,
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Image.asset(
+                  'images/scan.jpg',
+                  width: 17,
+                  height: 17,
+                ),
+              ),
+            ),
           ),
           keyboardType: TextInputType.number,
           controller: merchantidcontroller,
           style: TextStyle(
-            fontSize: 16,
+            fontSize: 13,
             color: Colors.grey.shade700,
             fontWeight: FontWeight.w500,
           ),
@@ -910,7 +1032,7 @@ class _PayForMerchantPageState extends State<PayForMerchantPage>
         Text(
           "Operator ID",
           style: TextStyle(
-            fontSize: 15,
+            fontSize: 12,
             color: Colors.grey.shade700,
             fontWeight: FontWeight.w500,
           ),
@@ -922,7 +1044,7 @@ class _PayForMerchantPageState extends State<PayForMerchantPage>
           decoration: inputDecoration("Enter Operator ID"),
           keyboardType: TextInputType.number,
           style: TextStyle(
-            fontSize: 16,
+            fontSize: 13,
           ),
         ),
 
@@ -943,7 +1065,7 @@ class _PayForMerchantPageState extends State<PayForMerchantPage>
                 text: 'Set Amount',
                 style: TextStyle(
                   color: Colors.grey.shade700,
-                  fontSize: 15,
+                  fontSize: 12,
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -966,12 +1088,12 @@ class _PayForMerchantPageState extends State<PayForMerchantPage>
             padding: const EdgeInsets.symmetric(horizontal: 18),
             decoration: BoxDecoration(
               color: Colors.white,
-              borderRadius: BorderRadius.circular(7),
+              borderRadius: BorderRadius.circular(4),
               border: Border.all(
                 color: _showCustomKeypad
-                    ? Color.fromARGB(255, 225, 213, 81)
+                    ? Color.fromARGB(255, 248, 193, 66)
                     : const Color(0xFFF1F1F1),
-                width: _showCustomKeypad ? 1.5 : 1,
+                width: _showCustomKeypad ? 1.8 : 1,
               ),
             ),
             child: Row(
@@ -982,7 +1104,7 @@ class _PayForMerchantPageState extends State<PayForMerchantPage>
                         ? "Enter Amount"
                         : _amountController.text,
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 14,
                       color: _amountController.text.isEmpty
                           ? Colors.grey.shade400
                           : Colors.grey.shade700,
@@ -1010,7 +1132,7 @@ class _PayForMerchantPageState extends State<PayForMerchantPage>
         Text(
           "Add Note",
           style: TextStyle(
-            fontSize: 15,
+            fontSize: 12,
             color: Colors.grey.shade700,
             fontWeight: FontWeight.w500,
           ),
@@ -1021,7 +1143,7 @@ class _PayForMerchantPageState extends State<PayForMerchantPage>
         TextField(
           decoration: inputDecoration("Enter Note"),
           style: TextStyle(
-            fontSize: 16,
+            fontSize: 14,
           ),
         ),
 
@@ -1033,13 +1155,13 @@ class _PayForMerchantPageState extends State<PayForMerchantPage>
             GestureDetector(
               onTap: () {
                 // do something here
-                Get.toNamed('/givetip');
+                Get.toNamed('/accountinput');
               },
               child: Text(
                 "Recent",
                 style: TextStyle(
                   color: Colors.grey.shade700,
-                  fontSize: 15,
+                  fontSize: 13,
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -1048,7 +1170,7 @@ class _PayForMerchantPageState extends State<PayForMerchantPage>
             Icon(
               Icons.delete_outline,
               color: Colors.grey.shade500,
-              size: 20,
+              size: 18,
             ),
           ],
         ),
@@ -1080,7 +1202,7 @@ class _PayForMerchantPageState extends State<PayForMerchantPage>
                         const Text(
                           "Sheraton Addis",
                           style: TextStyle(
-                            fontSize: 15,
+                            fontSize: 14,
                             fontWeight: FontWeight.w500,
                           ),
                         ),
@@ -1108,7 +1230,7 @@ class _PayForMerchantPageState extends State<PayForMerchantPage>
                         const Text(
                           "Ambassador Gamrment and Game...",
                           style: TextStyle(
-                            fontSize: 15,
+                            fontSize: 14,
                             fontWeight: FontWeight.w500,
                           ),
                         ),
@@ -1136,7 +1258,7 @@ class _PayForMerchantPageState extends State<PayForMerchantPage>
                         const Text(
                           "ETT BY DARCO MANUFACTURING...",
                           style: TextStyle(
-                            fontSize: 15,
+                            fontSize: 14,
                             fontWeight: FontWeight.w500,
                           ),
                         ),
@@ -1166,14 +1288,14 @@ class _PayForMerchantPageState extends State<PayForMerchantPage>
 
   Widget _dot(bool active) {
     return Container(
-      width: active ? 11 : 10,
-      height: active ? 11 : 10,
+      width: active ? 8 : 9,
+      height: active ? 8 : 9,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         color: active ? primaryGreen : Colors.transparent,
         border: Border.all(
           color: primaryGreen,
-          width: 1.5,
+          width: 0.5,
         ),
       ),
     );

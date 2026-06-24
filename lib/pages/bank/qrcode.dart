@@ -74,8 +74,11 @@ class QrCodePage extends StatelessWidget {
                         color: const Color(0xFFF0F0F0),
                         borderRadius: BorderRadius.circular(12),
                       ),
-                      child: CustomPaint(
-                        painter: _QrCodePainter(),
+                      child: Image.asset(
+                        'images/qr.jpg',
+                        width: 200,
+                        height: 200,
+                        fit: BoxFit.contain,
                       ),
                     ),
 
@@ -131,60 +134,60 @@ class QrCodePage extends StatelessWidget {
   }
 }
 
-class _QrCodePainter extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    final paint = Paint()..color = Colors.black;
-    final whitePaint = Paint()..color = Colors.white;
+// class _QrCodePainter extends CustomPainter {
+//   @override
+//   void paint(Canvas canvas, Size size) {
+//     final paint = Paint()..color = Colors.black;
+//     final whitePaint = Paint()..color = Colors.white;
 
-    // white background
-    canvas.drawRect(Rect.fromLTWH(0, 0, size.width, size.height), whitePaint);
+//     // white background
+//     canvas.drawRect(Rect.fromLTWH(0, 0, size.width, size.height), whitePaint);
 
-    final cellCount = 25;
-    final cellSize = size.width / cellCount;
+//     final cellCount = 25;
+//     final cellSize = size.width / cellCount;
 
-    // simple pseudo-random QR-like pattern
-    final pattern = [
-      [1,1,1,1,1,1,1,0,1,0,1,1,0,0,1,1,1,1,1,1,1],
-      [1,0,0,0,0,0,1,0,0,1,0,0,1,0,1,0,0,0,0,0,1],
-      [1,0,1,1,1,0,1,0,1,0,1,0,0,0,1,0,1,1,1,0,1],
-      [1,0,1,1,1,0,1,0,0,1,1,1,0,0,1,0,1,1,1,0,1],
-      [1,0,1,1,1,0,1,0,1,1,0,0,1,0,1,0,1,1,1,0,1],
-      [1,0,0,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,0,0,1],
-      [1,1,1,1,1,1,1,0,1,0,1,0,1,0,1,1,1,1,1,1,1],
-      [0,0,0,0,0,0,0,0,1,1,0,1,0,1,0,0,0,0,0,0,0],
-      [1,0,1,1,0,1,1,1,0,0,1,0,1,1,1,0,1,1,0,1,1],
-      [0,1,0,0,1,0,0,0,1,0,0,1,0,0,0,1,0,0,1,0,0],
-      [1,1,0,1,1,0,1,0,0,1,1,0,1,0,1,0,0,1,1,0,1],
-      [0,0,1,0,0,1,0,1,1,0,0,1,0,1,0,1,1,0,0,1,0],
-      [1,0,1,0,1,0,1,0,1,1,0,0,1,0,1,0,1,0,1,0,1],
-      [0,0,0,0,0,0,0,0,1,0,1,1,0,1,0,1,0,1,0,1,0],
-      [1,1,1,1,1,1,1,0,0,1,0,0,1,0,1,0,0,0,1,0,1],
-      [1,0,0,0,0,0,1,0,1,0,1,0,0,1,0,1,0,0,0,1,0],
-      [1,0,1,1,1,0,1,0,0,1,0,1,1,0,1,0,1,1,0,0,1],
-      [1,0,1,1,1,0,1,1,1,0,1,0,0,1,0,1,0,0,1,0,0],
-      [1,0,1,1,1,0,1,0,0,1,1,0,1,0,1,0,1,0,0,1,1],
-      [1,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,0],
-      [1,1,1,1,1,1,1,0,1,1,0,0,1,0,1,0,0,0,1,1,0],
-    ];
+//     // simple pseudo-random QR-like pattern
+//     final pattern = [
+//       [1,1,1,1,1,1,1,0,1,0,1,1,0,0,1,1,1,1,1,1,1],
+//       [1,0,0,0,0,0,1,0,0,1,0,0,1,0,1,0,0,0,0,0,1],
+//       [1,0,1,1,1,0,1,0,1,0,1,0,0,0,1,0,1,1,1,0,1],
+//       [1,0,1,1,1,0,1,0,0,1,1,1,0,0,1,0,1,1,1,0,1],
+//       [1,0,1,1,1,0,1,0,1,1,0,0,1,0,1,0,1,1,1,0,1],
+//       [1,0,0,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,0,0,1],
+//       [1,1,1,1,1,1,1,0,1,0,1,0,1,0,1,1,1,1,1,1,1],
+//       [0,0,0,0,0,0,0,0,1,1,0,1,0,1,0,0,0,0,0,0,0],
+//       [1,0,1,1,0,1,1,1,0,0,1,0,1,1,1,0,1,1,0,1,1],
+//       [0,1,0,0,1,0,0,0,1,0,0,1,0,0,0,1,0,0,1,0,0],
+//       [1,1,0,1,1,0,1,0,0,1,1,0,1,0,1,0,0,1,1,0,1],
+//       [0,0,1,0,0,1,0,1,1,0,0,1,0,1,0,1,1,0,0,1,0],
+//       [1,0,1,0,1,0,1,0,1,1,0,0,1,0,1,0,1,0,1,0,1],
+//       [0,0,0,0,0,0,0,0,1,0,1,1,0,1,0,1,0,1,0,1,0],
+//       [1,1,1,1,1,1,1,0,0,1,0,0,1,0,1,0,0,0,1,0,1],
+//       [1,0,0,0,0,0,1,0,1,0,1,0,0,1,0,1,0,0,0,1,0],
+//       [1,0,1,1,1,0,1,0,0,1,0,1,1,0,1,0,1,1,0,0,1],
+//       [1,0,1,1,1,0,1,1,1,0,1,0,0,1,0,1,0,0,1,0,0],
+//       [1,0,1,1,1,0,1,0,0,1,1,0,1,0,1,0,1,0,0,1,1],
+//       [1,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,0],
+//       [1,1,1,1,1,1,1,0,1,1,0,0,1,0,1,0,0,0,1,1,0],
+//     ];
 
-    for (int row = 0; row < pattern.length; row++) {
-      for (int col = 0; col < pattern[row].length; col++) {
-        if (pattern[row][col] == 1) {
-          canvas.drawRect(
-            Rect.fromLTWH(
-              col * cellSize,
-              row * cellSize,
-              cellSize,
-              cellSize,
-            ),
-            paint,
-          );
-        }
-      }
-    }
-  }
+//     for (int row = 0; row < pattern.length; row++) {
+//       for (int col = 0; col < pattern[row].length; col++) {
+//         if (pattern[row][col] == 1) {
+//           canvas.drawRect(
+//             Rect.fromLTWH(
+//               col * cellSize,
+//               row * cellSize,
+//               cellSize,
+//               cellSize,
+//             ),
+//             paint,
+//           );
+//         }
+//       }
+//     }
+//   }
 
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
-}
+//   @override
+//   bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
+// }

@@ -21,6 +21,8 @@ class _FinalPageState extends State<FinalPage> {
   int _currentPage = 0;
   int _realIndex = 0;
   late Timer _timer;
+  late String _transactionNumber;
+  late String _currentDateTime;
 
   final List<String> _imagePaths = [
     'images/5ani.jpg',
@@ -35,6 +37,8 @@ class _FinalPageState extends State<FinalPage> {
   @override
   void initState() {
     super.initState();
+    _transactionNumber = generateTransactionNumber();
+    _currentDateTime = getCurrentDateTime();
     _currentPage = _maxPage ~/ 2;
     _pageController = PageController(initialPage: _currentPage);
 
@@ -83,7 +87,7 @@ class _FinalPageState extends State<FinalPage> {
     return PopScope(
       canPop: false,
       child: Scaffold(
-        backgroundColor: Colors.white,
+      backgroundColor: Colors.white,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(screenHeight * 0.12),
         child: Container(
@@ -99,11 +103,11 @@ class _FinalPageState extends State<FinalPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     // Icon(Icons.downloading_rounded, size: 17, color: Color.fromARGB(255, 106, 183, 71)),
-                    FaIcon(FontAwesomeIcons.download, size: 15, color: Color.fromARGB(255, 106, 183, 71)),
+                    FaIcon(FontAwesomeIcons.download, size: 12, color: Color.fromARGB(255, 106, 183, 71)),
                     Text("Download",
                       style: TextStyle(
                         color: Color.fromARGB(255, 106, 183, 71),
-                        fontSize: 20
+                        fontSize: 14
                       ),
                     ),
                   ],
@@ -116,11 +120,11 @@ class _FinalPageState extends State<FinalPage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Icon(Icons.share_outlined, size: 17, color: Color.fromARGB(255, 106, 183, 71)),
+                    Icon(Icons.share_outlined, size: 14, color: Color.fromARGB(255, 106, 183, 71)),
                     Text("Share",
                       style: TextStyle(
                         color: Color.fromARGB(255, 106, 183, 71),
-                        fontSize: 20
+                        fontSize: 40
                       ),
                     ),
                   ],
@@ -145,9 +149,10 @@ class _FinalPageState extends State<FinalPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     // Icon(Icons.check_circle, size: 50, color : Color.fromARGB(255, 106, 183, 71)),
-                    FaIcon(FontAwesomeIcons.solidCircleCheck, size: 50, color: Color.fromARGB(255, 141, 197, 64)),
+                    FaIcon(FontAwesomeIcons.solidCircleCheck, size: 48, color: Color.fromARGB(255, 141, 197, 64)),
                     SizedBox(height: 10),
-                    Text("Successful", style: TextStyle(color: Color.fromARGB(255, 106, 183, 71), fontSize: 20))
+                    Text("Successful", style: TextStyle(color: Color.fromARGB(255, 106, 183, 71), fontSize: 17)),
+                    SizedBox(height: 15,)
                   ],
                 ),
               ),
@@ -157,8 +162,8 @@ class _FinalPageState extends State<FinalPage> {
                 alignment: Alignment.center,
                 child: Text.rich(
                   TextSpan( // ወደ ባንክ ሲሆን ማይነስ(-435) አይገባበትምምምምምምምምምምምምምምምምምምምምምምምምምም ከታች ያለው አስታውሥ
-                    text: '${NumberFormat('#,###').format(phoneNumberinpcontroller.amount.value)}.00',
-                    style: TextStyle(fontSize: 43, fontWeight: FontWeight.bold, color: Colors.black),
+                    text: '-${NumberFormat('#,###').format(phoneNumberinpcontroller.amount.value)}.00',
+                    style: TextStyle(fontSize: 41, fontWeight: FontWeight.bold, color: Colors.black),
                     children: [
                       TextSpan(
                         text: ' (ETB)',
@@ -182,10 +187,10 @@ class _FinalPageState extends State<FinalPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [ //2025/02/01 12:47:55
                     // _transactionRow("Transaction Time:",  "2026/03/24" + " " + getCurrentDateTime()),
-                    _transactionRow("Transaction Time:", getCurrentDateTime()),
+                    _transactionRow("Transaction Time:", _currentDateTime),
                     _transactionRow("Transaction Type:", "Transfer Money"),
                     _transactionRow("Transaction To:", "${phoneNumberinpcontroller.userName}"),
-                    _transactionRow("Transaction Number:", generateTransactionNumber()),
+                    _transactionRow("Transaction Number:", _transactionNumber),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
@@ -246,7 +251,7 @@ class _FinalPageState extends State<FinalPage> {
               Container(
                 width: double.infinity,
                 height: screenHeight * 0.1,
-                margin: EdgeInsets.only(top: 35),
+                margin: EdgeInsets.only(top: 15),
                 child: Center(
                   child: ElevatedButton(
                     onPressed: (){
@@ -260,7 +265,7 @@ class _FinalPageState extends State<FinalPage> {
                         borderRadius: BorderRadius.all(Radius.circular(8))
                       )
                     ),
-                    child: Text("Finished", style: TextStyle(fontSize: 18),),
+                    child: Text("Finished", style: TextStyle(fontSize: 16),),
                   ),
                 ),
               ),
@@ -276,8 +281,8 @@ class _FinalPageState extends State<FinalPage> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(title, style: TextStyle(color: Colors.grey, fontSize: 16)),
-        Text(value, style: TextStyle(fontSize: 16)),
+        Text(title, style: TextStyle(color: Colors.grey, fontSize: 14)),
+        Text(value, style: TextStyle(fontSize: 14)),
       ],
     );
   }

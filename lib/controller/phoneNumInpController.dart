@@ -13,6 +13,11 @@ class PhoneNumberInputController extends GetxController {
   var merchantamount = 0.obs;
   var merchantName = ''.obs;
 
+  final List<int> merchant_IDs = [
+    123,
+    111
+  ];
+
   void setmerchantamount(int amount) {
     merchantamount.value = amount;                          
   }

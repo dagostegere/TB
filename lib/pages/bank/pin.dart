@@ -32,7 +32,7 @@ class Pin {
                 ),
                 // PIN box
                 Positioned(
-                  top: MediaQuery.of(context).size.height * 0.18,
+                  top: MediaQuery.of(context).size.height * 0.07,
                   left: 20,
                   right: 20,
                   child: Container(
@@ -56,7 +56,7 @@ class Pin {
                         const SizedBox(height: 10),
                         const Text(
                           'Enter PIN',
-                          style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
+                          style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
                         ),
                         const SizedBox(height: 8),
                         Text.rich(
@@ -64,11 +64,11 @@ class Pin {
                             children: [
                               TextSpan(
                                 text: '${NumberFormat('#,###').format(phoneNumberinpController.bankAmount.value)}.00 ',
-                                style: const TextStyle(fontSize: 28.9, fontWeight: FontWeight.bold),
+                                style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                               ),
                               TextSpan(
                                 text: 'ETB',
-                                style: const TextStyle(fontSize: 15.3, fontWeight: FontWeight.w600),
+                                style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
                               ),
                             ],
                           ),

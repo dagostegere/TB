@@ -30,10 +30,18 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
   ];
 
   final int _maxPage = 1000;
+  FocusNode _focusNode = FocusNode();
+  bool _isFocused = false;
 
   @override
   void initState() {
     super.initState();
+    _focusNode.addListener(() {
+      setState(() {
+        _isFocused = _focusNode.hasFocus;
+      });
+    });
+    
     _currentPage = _maxPage ~/ 2;
     _pageController = PageController(initialPage: _currentPage);
 
@@ -56,6 +64,7 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
   void dispose() {
     _timer.cancel();
     _pageController.dispose();
+    _focusNode.dispose();
     super.dispose();
   }
 
@@ -92,23 +101,25 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                         width: double.infinity,
                         height: 50,
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Icon(Icons.arrow_back, size: 20, color: Colors.black),
-                            SizedBox(width: 20),
+                            // SizedBox(width: 20),
                             Text("Send Money to Individuals", 
                               style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
                             ),
+                            SizedBox(width: 20),
                           ],
                         ),
                       ),
                     ),
                     Container( // Image holder
                       width: double.infinity,
-                      margin: EdgeInsets.only(bottom: 4),
+                      margin: EdgeInsets.fromLTRB(8, 0, 8, 4),
+
                       height: 110,
                       child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 8),
+                        padding: EdgeInsets.symmetric(horizontal: 16),
                         child: ClipRRect(
                           borderRadius: BorderRadius.all(Radius.circular(5)),
                           child: PageView.builder(
@@ -164,7 +175,7 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                           children: [
                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: 13),
-                              child: Text("Please Enter Mobile Number", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
+                              child: Text("Mobile Number", style: TextStyle(fontSize: 14, fontWeight: FontWeight.w300),),
                             ),
                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: 13),
@@ -174,31 +185,42 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                                 padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
                                 decoration: BoxDecoration(
                                   color: Colors.white,
-                                  borderRadius: BorderRadius.circular(8),
-                                  border: Border.all(color: Color.fromARGB(255, 141, 197, 64), width: 2),
+                                  borderRadius: BorderRadius.circular(5),
+                                  border: Border.all(
+                                    color: _isFocused ? Color.fromARGB(255, 248, 207, 73) : Color.fromARGB(255, 189, 189, 188),
+                                    width: 0.5,
+                                  ),
+                                  boxShadow: _isFocused ? [
+                                    BoxShadow(
+                                      color: Color.fromARGB(255, 248, 207, 73),
+                                      blurRadius: 0,
+                                      spreadRadius: 1.5,
+                                    )
+                                  ] : [],
                                 ),
                                 child: Row(
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Text('+251', 
-                                      style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+                                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                                     ),
-                                    const SizedBox(width: 8),
+                                    const SizedBox(width: 4),
                                     Expanded(
                                       child: Column(
                                         children: [
-                                          SizedBox(height: 5),
+                                          SizedBox(height: 5.99),
                                           TextField(
                                             keyboardType: TextInputType.phone,
                                             controller: textController,
+                                            focusNode: _focusNode,
                                             decoration: InputDecoration(
                                               hintText: 'Enter Mobile Number',
-                                              hintStyle: TextStyle(color: Colors.grey[600], fontSize: 17),
+                                              hintStyle: TextStyle(color: const Color.fromARGB(255, 164, 163, 163), fontSize: 13.5, fontWeight: FontWeight.w100),
                                               border: InputBorder.none,
                                               isDense: true,
                                               contentPadding: EdgeInsets.zero,
                                             ),
-                                            style: const TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+                                            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
                                           ),
                                         ],
                                       ),

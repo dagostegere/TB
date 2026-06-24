@@ -90,14 +90,22 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 244, 242, 242),
-        title: const Text("Send Money", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22)),
-        centerTitle: false,
+        centerTitle: true,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, size: 23, color: Colors.black),
+          icon: const Icon(Icons.arrow_back, size: 20, color: Colors.black),
           onPressed: () {
-            Get.back(); 
+            Get.back();
           },
         ),
+        title: const Text(
+          "Send Money",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 19,
+            letterSpacing: 0.7,
+          ),
+        ),
+        actions: const [SizedBox(width: 48)], // balances leading
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -111,14 +119,14 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
                   const CircleAvatar(
                     radius: 25,
                     backgroundColor: Color.fromARGB(255, 141, 197, 64),
-                    child: Icon(Icons.person, color: Colors.white, size: 28),
+                    child: Icon(Icons.person, color: Colors.white, size: 26),
                   ),
                   const SizedBox(width: 12),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Obx(() => Text("${phoneNumberinpController.userName ?? nullUsername}", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20))),
-                      Obx(() => Text("251${phoneNumberinpController.phoneNumber}", style: TextStyle(color: Colors.grey, fontSize: 15))),
+                      Obx(() => Text("${phoneNumberinpController.userName ?? nullUsername}", style: TextStyle(fontWeight: FontWeight.w300, fontSize: 15))),
+                      Obx(() => Text("251${phoneNumberinpController.phoneNumber}", style: TextStyle(color: Colors.grey, fontSize: 10))),
                     ],
                   ),
                 ],
@@ -142,7 +150,7 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text("Amount", style: TextStyle(fontSize: 16)),
+                    const Text("Amount", style: TextStyle(fontSize: 12)),
                     const SizedBox(height: 8),
                     Row(
                       children: [
@@ -157,10 +165,11 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
                             child: TextField(
                               keyboardType: TextInputType.none,
                               // readOnly: true,
+                              // showCursor: false,
                               decoration: const InputDecoration(
                                 border: InputBorder.none,
                               ),
-                              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black),
+                              style: const TextStyle(fontSize: 29, fontWeight: FontWeight.bold, color: Colors.black),
                               controller: textController..text, // Use the SAME controller
                               onChanged: (value) {
                                 // Update the amount in the controller
@@ -170,7 +179,7 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
                             ),
                           ),
                         ),
-                        const Text("(ETB)", style: TextStyle(color: Colors.grey, fontSize: 16)),
+                        const Text("(ETB)", style: TextStyle(color: Colors.grey, fontSize: 12)),
                       ],
                     ),
                   ],
@@ -183,7 +192,7 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
             color: Colors.white,
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              child: Text("Add notes(optional)", style: TextStyle(color: Colors.blue, fontSize: 16)),
+              child: Text("Add notes(optional)", style: TextStyle(color: const Color.fromARGB(255, 177, 180, 194), fontSize: 11)),
             ),
           ),
           Expanded(child: Container(color: Colors.white)),
@@ -254,6 +263,8 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
                                         style: ElevatedButton.styleFrom(
                                           backgroundColor: Colors.white,
                                           foregroundColor: Colors.black,
+                                          overlayColor: Colors.transparent,
+                                          splashFactory: NoSplash.splashFactory,
                                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3), side: BorderSide.none),
                                           elevation: 0,
                                           padding: EdgeInsets.symmetric(vertical: 11),
@@ -291,6 +302,8 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor: Colors.white,
                                     foregroundColor: Colors.black,
+                                    overlayColor: Colors.transparent,
+                                    splashFactory: NoSplash.splashFactory,
                                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3), side: BorderSide.none),
                                     elevation: 0,
                                     padding: EdgeInsets.symmetric(vertical: 11),
@@ -352,18 +365,18 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
                                                     Center(
                                                       child: Column(
                                                         children: [
-                                                          Obx(() => Text("Send Money to ${phoneNumberinpController.userName}", style: TextStyle(fontSize: 16, color: Colors.black87))),
+                                                          Obx(() => Text("Send Money to ${phoneNumberinpController.userName}", style: TextStyle(fontSize: 14, color: Colors.black87))),
                                                           Container(
                                                             padding: EdgeInsets.all(8),
                                                             child: Obx(() =>
                                                               Text.rich(
                                                                 TextSpan(
                                                                   text: '${NumberFormat('#,###').format(phoneNumberinpController.amount.value)}.00',
-                                                                  style: TextStyle(fontSize: 38, fontWeight: FontWeight.normal, color: Colors.black),
+                                                                  style: TextStyle(fontSize: 36, fontWeight: FontWeight.w300, color: Colors.black),
                                                                   children: [
                                                                     TextSpan(
                                                                       text: "ETB",
-                                                                      style: TextStyle(fontSize: 15, fontWeight: FontWeight.normal, color: Colors.black),
+                                                                      style: TextStyle(fontSize: 14, fontWeight: FontWeight.normal, color: Colors.black),
                                                                     ),
                                                                   ],
                                                                 ),
@@ -390,8 +403,8 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
                                                                     child: Row(
                                                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                                       children: [
-                                                                        Text("Original Amount", style: TextStyle(fontSize: 16, color: Colors.grey)),
-                                                                        Text("${phoneNumberinpController.originalAmount}.00ETB", style: TextStyle(fontSize: 16, color: Colors.black, fontWeight: FontWeight.bold))
+                                                                        Text("Original Amount", style: TextStyle(fontSize: 13, color: Colors.grey)),
+                                                                        Text("${phoneNumberinpController.originalAmount}.00ETB", style: TextStyle(fontSize: 13, color: Colors.black, fontWeight: FontWeight.bold))
                                                                       ],
                                                                     ),
                                                                   ),
@@ -401,13 +414,13 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
                                                                     child: Row(
                                                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                                       children: [
-                                                                        Text("Service fee", style: TextStyle(fontSize: 16, color: Colors.grey)),
+                                                                        Text("Service fee", style: TextStyle(fontSize: 13, color: Colors.grey)),
                                                                         Text(phoneNumberinpController.amount < 101 ? "1.00" :
                                                                           phoneNumberinpController.amount > 100 && phoneNumberinpController.amount < 600 ? "2.00" :
                                                                           phoneNumberinpController.amount > 599 && phoneNumberinpController.amount < 3000 ? "4.00" :
                                                                           phoneNumberinpController.amount > 2999 && phoneNumberinpController.amount < 5001 ? "6.00" :
                                                                           "5.00",
-                                                                         style: TextStyle(fontSize: 16, color: Colors.black, fontWeight: FontWeight.bold))
+                                                                         style: TextStyle(fontSize: 13, color: Colors.black, fontWeight: FontWeight.bold))
                                                                       ],
                                                                     ),
                                                                   ),
@@ -434,7 +447,7 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
                                                                     alignment: Alignment.centerLeft,
                                                                     padding: EdgeInsets.all(10),
                                                                     margin: EdgeInsets.symmetric(horizontal: 5),
-                                                                    child: Text("Payment Method", style: TextStyle(fontSize: 16, color: Colors.grey)),
+                                                                    child: Text("Payment Method", style: TextStyle(fontSize: 13, color: Colors.grey)),
                                                                   ),
                                                                   Container(
                                                                     width: double.infinity,
@@ -444,19 +457,19 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
                                                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                                       crossAxisAlignment: CrossAxisAlignment.center,
                                                                       children: [
-                                                                        Icon(Icons.account_balance_wallet, color: Color.fromARGB(255, 141, 197, 64), size: 24),
-                                                                        SizedBox(width: 1),
+                                                                        Icon(Icons.account_balance_wallet, color: Color.fromARGB(255, 141, 197, 64), size: 22),
+                                                                        SizedBox(width: 2.5),
                                                                         Container(
                                                                           child: Column(
                                                                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                                             crossAxisAlignment: CrossAxisAlignment.start,
                                                                             children: [
-                                                                              Text("Balance", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-                                                                              Text("(Available Balance:9034.72ETB)", style: TextStyle(fontSize: 14, color: Colors.grey))
+                                                                              Text("Balance", style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold)),
+                                                                              Text("(Available Balance:9034.72ETB)", style: TextStyle(fontSize: 12, color: Colors.grey))
                                                                             ],
                                                                           ),
                                                                         ),
-                                                                        SizedBox(width: 80),
+                                                                        SizedBox(width: 70),
                                                                         Icon(Icons.check_circle, color: Color.fromARGB(255, 141, 197, 64), size: 20)
                                                                       ],
                                                                     ),
@@ -484,7 +497,7 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
                                                                   borderRadius: BorderRadius.circular(8)
                                                                 ),
                                                               ),
-                                                              child: Text("Send", style: TextStyle(fontSize: 20))
+                                                              child: Text("Send", style: TextStyle(fontSize: 17))
                                                             ),
                                                           )
                                                         ],
@@ -540,11 +553,13 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
           style: ElevatedButton.styleFrom(
             backgroundColor: Colors.white,
             foregroundColor: Colors.black,
+            overlayColor: Colors.transparent, // 👈 add this
+             splashFactory: NoSplash.splashFactory, // 👈 add this
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3), side: BorderSide.none),
             elevation: 0,
             padding: EdgeInsets.symmetric(vertical: 11),
           ),
-          child: Text(label, style: const TextStyle(fontSize: 22)),
+          child: Text(label, style: const TextStyle(fontSize: 20)),
         ),
       ),
     );
