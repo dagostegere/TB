@@ -124,7 +124,7 @@ class _FinalPageState extends State<FinalPage> {
                     Text("Share",
                       style: TextStyle(
                         color: Color.fromARGB(255, 106, 183, 71),
-                        fontSize: 40
+                        fontSize: 14
                       ),
                     ),
                   ],
@@ -194,9 +194,9 @@ class _FinalPageState extends State<FinalPage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Icon(Icons.qr_code, color: Color.fromARGB(255, 106, 183, 71), size: 19),
+                        Icon(Icons.qr_code, color: Color.fromARGB(255, 106, 183, 71), size: 14),
                         SizedBox(width: 5),
-                        Text("QR Code", style: TextStyle(color: Color.fromARGB(255, 106, 183, 71), fontWeight: FontWeight.bold, fontSize: 19)),
+                        Text("QR Code", style: TextStyle(color: Color.fromARGB(255, 106, 183, 71), fontWeight: FontWeight.bold, fontSize: 12)),
                         SizedBox(width: 5),
                         Icon(Icons.arrow_forward_ios, color: Color.fromARGB(255, 106, 183, 71), size: 15),
                       ],
