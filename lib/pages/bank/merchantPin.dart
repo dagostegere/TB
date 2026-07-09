@@ -32,7 +32,7 @@ class MerchantPin {
                 ),
                 // PIN box
                 Positioned(
-                  top: MediaQuery.of(context).size.height * 0.07,
+                  top: MediaQuery.of(context).size.height * 0.09,
                   left: 20,
                   right: 20,
                   child: Container(
@@ -56,7 +56,7 @@ class MerchantPin {
                         const SizedBox(height: 10),
                         const Text(
                           'Enter PIN',
-                          style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+                          style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
                         ),
                         const SizedBox(height: 8),
                         Text.rich(
@@ -66,20 +66,20 @@ class MerchantPin {
                                 text: '${NumberFormat('#,###').format(phoneNumberinpController.merchantamount.value)}.00',
                                 style: const TextStyle(
                                     fontSize: 30,
-                                    fontWeight: FontWeight.bold,
+                                    fontWeight: FontWeight.w600,
                                 ),
                               ),
                               TextSpan(
                                 text: 'ETB',
                                 style: const TextStyle(
                                   fontSize: 14,
-                                  fontWeight: FontWeight.w400,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                             ],
                           ),
                         ),
-                        const SizedBox(height: 20),
+                        const SizedBox(height: 23),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: List.generate(

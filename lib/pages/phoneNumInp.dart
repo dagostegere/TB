@@ -105,7 +105,7 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                           children: [
                             Icon(Icons.arrow_back, size: 20, color: Colors.black),
                             // SizedBox(width: 20),
-                            Text("Send Money to Individuals", 
+                            Text("Send Money to Individual", 
                               style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
                             ),
                             SizedBox(width: 20),
@@ -161,10 +161,10 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                       }),
                     ),
                     Padding(
-                      padding: EdgeInsets.all(7),
+                      padding: EdgeInsets.symmetric(horizontal: 12, vertical: 7),
                       child: Container(
                         width: double.infinity,
-                        height: 185,
+                        height: 195,
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.all(Radius.circular(8)),
@@ -172,17 +172,17 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
+                          children: [                                                                                                                                                                                                                                                                                                                                                                                                                        
                             Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 13),
-                              child: Text("Mobile Number", style: TextStyle(fontSize: 14, fontWeight: FontWeight.w300),),
+                              padding: EdgeInsets.symmetric(horizontal: 13, vertical: 0),
+                              child: Text("Mobile Number", style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),),
                             ),
                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: 13),
                               child: Container(
                                 width: double.infinity,
-                                height: 48,
-                                padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
+                                height: 50,
+                                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 13),
                                 decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(5),
@@ -202,20 +202,20 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Text('+251', 
-                                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
                                     ),
                                     const SizedBox(width: 4),
                                     Expanded(
                                       child: Column(
                                         children: [
-                                          SizedBox(height: 5.99),
+                                          // SizedBox(height: 4.55),
                                           TextField(
                                             keyboardType: TextInputType.phone,
                                             controller: textController,
                                             focusNode: _focusNode,
                                             decoration: InputDecoration(
                                               hintText: 'Enter Mobile Number',
-                                              hintStyle: TextStyle(color: const Color.fromARGB(255, 164, 163, 163), fontSize: 13.5, fontWeight: FontWeight.w100),
+                                              hintStyle: TextStyle(color: const Color.fromARGB(255, 164, 163, 163), fontSize: 13.5, fontWeight: FontWeight.w200),
                                               border: InputBorder.none,
                                               isDense: true,
                                               contentPadding: EdgeInsets.zero,
@@ -246,7 +246,7 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                                   });
                                 },
                                 style: ElevatedButton.styleFrom(
-                                  minimumSize: Size(double.infinity, 44),
+                                  minimumSize: Size(double.infinity, 47),
                                   backgroundColor: Color.fromARGB(255, 141, 197, 64),
                                   foregroundColor: Colors.white,
                                   shape: RoundedRectangleBorder(
@@ -267,10 +267,11 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                 child: Container(
                   color: Color.fromARGB(255, 243, 239, 239),
                   width: double.infinity,
-                  padding: EdgeInsets.all(7),
+                  padding: EdgeInsets.all(9),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      SizedBox(height: 7),
                       Container(
                         height: 26,
                         child: Row(
@@ -283,7 +284,7 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                               }, 
                               child:  Text(
                               "Recent",
-                              style: TextStyle(color: Colors.black, fontSize: 17),
+                              style: TextStyle(color: Colors.black, fontSize: 14),
                               ),
                             ),
                             IconButton(
@@ -301,6 +302,7 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                           ],
                         ),
                       ),
+                      SizedBox(height: 7),
 
                       Expanded(
                         child: Container(
@@ -327,6 +329,7 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                                   ],
                                 ),
                               ),
+                              // Divider(thickness: 0.5),
                               Padding(
                                 padding: EdgeInsets.all(6),
                                 child: Row(
@@ -343,6 +346,7 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                                   ],
                                 ),
                               ),
+                              // Divider(thickness: 0.5),
                               Padding(
                                 padding: EdgeInsets.all(6),
                                 child: Row(
@@ -359,6 +363,7 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                                   ],
                                 ),
                               ),
+                              // Divider(thickness: 0.5),
                               Padding(
                                 padding: EdgeInsets.all(6),
                                 child: Row(
@@ -375,6 +380,7 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                                   ],
                                 ),
                               ),
+                              // Divider(thickness: 0.5),
                               Padding(
                                 padding: EdgeInsets.all(6),
                                 child: Row(
@@ -391,6 +397,7 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                                   ],
                                 ),
                               ),
+                              // Divider(thickness: 0.5),
                               Padding(
                                 padding: EdgeInsets.all(6),
                                 child: Row(

@@ -246,8 +246,8 @@ class _PayForMerchantPageState extends State<PayForMerchantPage>
                             fontSize: 13,
                             color: Color.fromARGB(
                                 255, 141, 197, 64),
-                            fontWeight:
-                                FontWeight.w200,
+                            // fontWeight:
+                            //     FontWeight.w300,
                           ),
                         ),
                       ),
@@ -320,7 +320,7 @@ class _PayForMerchantPageState extends State<PayForMerchantPage>
                                 child: Text(
                                     "Payment Method",
                                     style: TextStyle(
-                                        fontSize: 14,
+                                        fontSize: 13,
                                         color: Colors.grey)),
                               ),
                               Container(
@@ -333,15 +333,14 @@ class _PayForMerchantPageState extends State<PayForMerchantPage>
                                       CrossAxisAlignment.center,
                                   children: [
                                     Icon(
-                                        Icons
-                                            .account_balance_wallet,
+                                        Icons.account_balance_wallet,
                                         color: Color
                                             .fromARGB(
                                                 255,
                                                 141,
                                                 197,
                                                 64),
-                                        size: 27),
+                                        size: 26),
                                     SizedBox(
                                         width: 1),
                                     Container(
@@ -356,12 +355,12 @@ class _PayForMerchantPageState extends State<PayForMerchantPage>
                                           Text(
                                               "Balance",
                                               style: TextStyle(
-                                                  fontSize: 15,
+                                                  fontSize: 13,
                                                   fontWeight: FontWeight.normal)),
                                           Text(
                                               "(Available Balance:9034.72ETB)",
                                               style: TextStyle(
-                                                  fontSize: 13,
+                                                  fontSize: 10,
                                                   color: Colors.grey)),
                                         ],
                                       ),
@@ -377,7 +376,7 @@ class _PayForMerchantPageState extends State<PayForMerchantPage>
                                                 141,
                                                 197,
                                                 64),
-                                        size: 25),
+                                        size: 23),
                                   ],
                                 ),
                               ),

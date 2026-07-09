@@ -242,7 +242,7 @@ class _FinalPageState extends State<FinalPage> {
                           : Colors.transparent,
                       border: Border.all(
                         color: Color.fromARGB(255, 141, 197, 64),
-                        width: 1.5,
+                        width: 1.5, 
                       ),
                     ),
                   );

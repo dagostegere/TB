@@ -192,7 +192,7 @@ void initState() {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Image.asset("images/c.jpg", width: 20, height: 20),
+                        Image.asset("images/c.jpg", width: 18, height: 18),
                         SizedBox(width: 5),
                         GestureDetector(
                           onTap: () {
@@ -202,8 +202,8 @@ void initState() {
                             "Give Tip",
                             style: TextStyle(
                               color: Color.fromARGB(255, 106, 183, 71),
-                              fontWeight: FontWeight.bold,
-                              fontSize: 12,
+                              // fontWeight: FontWeight.w200,
+                              fontSize: 10.5,
                             ),
                           ),
                         ),
@@ -218,8 +218,8 @@ void initState() {
                             "QR Code",
                             style: TextStyle(
                               color: Color.fromARGB(255, 106, 183, 71),
-                              fontWeight: FontWeight.bold,
-                              fontSize: 12,
+                              // fontWeight: FontWeight.bold,
+                              fontSize: 10.5,
                             ),
                           ),
                         ),
@@ -231,7 +231,7 @@ void initState() {
               ),
               Container(
                 width: double.infinity,
-                height: 110,
+                height: 100,
                 margin: EdgeInsets.symmetric(horizontal: 9, vertical: 5),
                 child: ClipRRect(
                   borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -275,8 +275,8 @@ void initState() {
               ),
               Container(
                 width: double.infinity,
-                height: screenHeight * 0.1,
-                margin: EdgeInsets.only(top: 35),
+                height: screenHeight * 0.09,
+                margin: EdgeInsets.only(top: 20),
                 child: Center(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -286,7 +286,7 @@ void initState() {
                           Get.toNamed('/billshare');
                         },
                         style: ElevatedButton.styleFrom(
-                          minimumSize: Size(screenWidth * 0.4, 50),
+                          minimumSize: Size(screenWidth * 0.38, 43),
                           backgroundColor: const Color.fromARGB(255, 255, 255, 255),
                           foregroundColor: Color.fromARGB(255, 141, 197, 64),
                           shape: RoundedRectangleBorder(
@@ -297,14 +297,14 @@ void initState() {
                             ),
                           )
                         ),
-                        child: Text("Bill Share", style: TextStyle(fontSize: 18),),
+                        child: Text("Bill Share", style: TextStyle(fontSize: 16),),
                       ),
                       ElevatedButton(
                         onPressed: (){
                           Get.toNamed('/merchant1');
                         },
                         style: ElevatedButton.styleFrom(
-                          minimumSize: Size(screenWidth * 0.4, 50),
+                          minimumSize: Size(screenWidth * 0.38, 43),
                           backgroundColor: Color.fromARGB(255, 141, 197, 64),
                           foregroundColor: Colors.white,
                           shape: RoundedRectangleBorder(
