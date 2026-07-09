@@ -116,17 +116,17 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
               padding: const EdgeInsets.all(16.0),
               child: Row(
                 children: [
-                  const CircleAvatar(
+                  CircleAvatar(
                     radius: 25,
                     backgroundColor: Color.fromARGB(255, 141, 197, 64),
-                    child: Icon(Icons.person, color: Colors.white, size: 26),
+                    child: phoneNumberinpController.userName == "zerabruk" ? Icon(Icons.person, color: Colors.white, size: 26) : Image.asset("images/zer.jpg"),
                   ),
                   const SizedBox(width: 12),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Obx(() => Text("${phoneNumberinpController.userName ?? nullUsername}", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16))),
-                      Obx(() => Text("251${phoneNumberinpController.phoneNumber}", style: TextStyle(color: Colors.grey, fontSize: 12.5))),
+                      Obx(() => Text("${phoneNumberinpController.userName ?? nullUsername}", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 17))),
+                      Obx(() => Text("251${phoneNumberinpController.phoneNumber}", style: TextStyle(color: Colors.grey, fontSize: 13))),
                     ],
                   ),
                 ],
@@ -391,7 +391,7 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
                                                               Text.rich(
                                                                 TextSpan(
                                                                   text: '${NumberFormat('#,###').format(phoneNumberinpController.amount.value)}.00',
-                                                                  style: TextStyle(fontSize: 36, fontWeight: FontWeight.w700, color: Colors.black),
+                                                                  style: TextStyle(fontSize: 36, fontWeight: FontWeight.w600, color: Colors.black),
                                                                   children: [
                                                                     TextSpan(
                                                                       text: "ETB",

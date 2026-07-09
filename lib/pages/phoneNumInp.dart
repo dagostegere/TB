@@ -187,7 +187,9 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(5),
                                   border: Border.all(
-                                    color: _isFocused ? Color.fromARGB(255, 248, 207, 73) : Color.fromARGB(255, 189, 189, 188),
+                                    color: _isFocused 
+                                        ? Color.fromARGB(255, 248, 207, 73) 
+                                        : Color.fromARGB(255, 189, 189, 188),
                                     width: 0.5,
                                   ),
                                   boxShadow: _isFocused ? [
@@ -199,30 +201,38 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                                   ] : [],
                                 ),
                                 child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.baseline,
+                                  textBaseline: TextBaseline.alphabetic,
                                   children: [
-                                    Text('+251', 
-                                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                                    Text(
+                                      '+251',
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w600,
+                                      ),
                                     ),
                                     const SizedBox(width: 4),
                                     Expanded(
-                                      child: Column(
-                                        children: [
-                                          // SizedBox(height: 4.55),
-                                          TextField(
-                                            keyboardType: TextInputType.phone,
-                                            controller: textController,
-                                            focusNode: _focusNode,
-                                            decoration: InputDecoration(
-                                              hintText: 'Enter Mobile Number',
-                                              hintStyle: TextStyle(color: const Color.fromARGB(255, 164, 163, 163), fontSize: 14, fontWeight: FontWeight.w300),
-                                              border: InputBorder.none,
-                                              isDense: true,
-                                              contentPadding: EdgeInsets.zero,
-                                            ),
-                                            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                                      child: TextField(
+                                        keyboardType: TextInputType.phone,
+                                        controller: textController,
+                                        focusNode: _focusNode,
+                                        textAlignVertical: TextAlignVertical.center,
+                                        decoration: InputDecoration(
+                                          hintText: 'Enter Mobile Number',
+                                          hintStyle: TextStyle(
+                                            color: const Color.fromARGB(255, 164, 163, 163),
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w300,
                                           ),
-                                        ],
+                                          border: InputBorder.none,
+                                          isDense: true,
+                                          contentPadding: EdgeInsets.zero,
+                                        ),
+                                        style: const TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w600,
+                                        ),
                                       ),
                                     ),
                                     Image.asset('images/icon.jpg'),

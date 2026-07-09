@@ -141,7 +141,7 @@ class _FinalPageState extends State<FinalPage> {
             children: [
               Container(
                 width: double.infinity,
-                height: screenHeight * 0.2,
+                height: screenHeight * 0.16,
                 alignment: Alignment.center,
                 padding : EdgeInsets.all(5),
                 child: Column(
@@ -163,7 +163,7 @@ class _FinalPageState extends State<FinalPage> {
                 child: Text.rich(
                   TextSpan( // ወደ ባንክ ሲሆን ማይነስ(-435) አይገባበትምምምምምምምምምምምምምምምምምምምምምምምምምም ከታች ያለው አስታውሥ
                     text: '-${NumberFormat('#,###').format(phoneNumberinpcontroller.amount.value)}.00',
-                    style: TextStyle(fontSize: 38, fontWeight: FontWeight.w600, color: Colors.black),
+                    style: TextStyle(fontSize: 37, fontWeight: FontWeight.w500, color: Colors.black),
                     children: [
                       TextSpan(
                         text: ' (ETB)',
@@ -196,7 +196,7 @@ class _FinalPageState extends State<FinalPage> {
                       children: [
                         Icon(Icons.qr_code, color: Color.fromARGB(255, 106, 183, 71), size: 16),
                         SizedBox(width: 5),
-                        Text("QR Code", style: TextStyle(color: Color.fromARGB(255, 106, 183, 71), fontWeight: FontWeight.w200, fontSize: 13)),
+                        Text("QR Code", style: TextStyle(color: Color.fromARGB(255, 106, 183, 71), fontWeight: FontWeight.w400, fontSize: 13)),
                         // SizedBox(width: 5),
                         // Icon(Icons.arrow_forward_ios, color: Color.fromARGB(255, 106, 183, 71), size: 15),
                       ],
