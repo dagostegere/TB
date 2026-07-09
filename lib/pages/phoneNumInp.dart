@@ -215,12 +215,12 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                                             focusNode: _focusNode,
                                             decoration: InputDecoration(
                                               hintText: 'Enter Mobile Number',
-                                              hintStyle: TextStyle(color: const Color.fromARGB(255, 164, 163, 163), fontSize: 13.5, fontWeight: FontWeight.w200),
+                                              hintStyle: TextStyle(color: const Color.fromARGB(255, 164, 163, 163), fontSize: 14, fontWeight: FontWeight.w300),
                                               border: InputBorder.none,
                                               isDense: true,
                                               contentPadding: EdgeInsets.zero,
                                             ),
-                                            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                                            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
                                           ),
                                         ],
                                       ),
@@ -240,7 +240,7 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                                   
 
                                   phoneNumberinpController.setPhoneNumber(int.tryParse(textController.text) ?? 0);
-                                  Future.delayed(Duration (seconds: 4), () {
+                                  Future.delayed(Duration (seconds: 2), () {
                                     Get.back();
                                     Get.toNamed('sendMoney');
                                   });

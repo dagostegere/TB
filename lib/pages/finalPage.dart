@@ -146,7 +146,7 @@ class _FinalPageState extends State<FinalPage> {
                 padding : EdgeInsets.all(5),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     // Icon(Icons.check_circle, size: 50, color : Color.fromARGB(255, 106, 183, 71)),
                     FaIcon(FontAwesomeIcons.solidCircleCheck, size: 48, color: Color.fromARGB(255, 141, 197, 64)),
@@ -163,11 +163,11 @@ class _FinalPageState extends State<FinalPage> {
                 child: Text.rich(
                   TextSpan( // ወደ ባንክ ሲሆን ማይነስ(-435) አይገባበትምምምምምምምምምምምምምምምምምምምምምምምምምም ከታች ያለው አስታውሥ
                     text: '-${NumberFormat('#,###').format(phoneNumberinpcontroller.amount.value)}.00',
-                    style: TextStyle(fontSize: 41, fontWeight: FontWeight.bold, color: Colors.black),
+                    style: TextStyle(fontSize: 38, fontWeight: FontWeight.w600, color: Colors.black),
                     children: [
                       TextSpan(
                         text: ' (ETB)',
-                        style: TextStyle(fontSize: 17, fontWeight: FontWeight.normal, color: Colors.black),
+                        style: TextStyle(fontSize: 15, fontWeight: FontWeight.normal, color: Colors.black),
                       ),
                     ],
                   ),
@@ -194,11 +194,11 @@ class _FinalPageState extends State<FinalPage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Icon(Icons.qr_code, color: Color.fromARGB(255, 106, 183, 71), size: 14),
+                        Icon(Icons.qr_code, color: Color.fromARGB(255, 106, 183, 71), size: 16),
                         SizedBox(width: 5),
-                        Text("QR Code", style: TextStyle(color: Color.fromARGB(255, 106, 183, 71), fontWeight: FontWeight.bold, fontSize: 12)),
-                        SizedBox(width: 5),
-                        Icon(Icons.arrow_forward_ios, color: Color.fromARGB(255, 106, 183, 71), size: 15),
+                        Text("QR Code", style: TextStyle(color: Color.fromARGB(255, 106, 183, 71), fontWeight: FontWeight.w200, fontSize: 13)),
+                        // SizedBox(width: 5),
+                        // Icon(Icons.arrow_forward_ios, color: Color.fromARGB(255, 106, 183, 71), size: 15),
                       ],
                     ),
                   ],
@@ -258,7 +258,7 @@ class _FinalPageState extends State<FinalPage> {
                       Get.toNamed('/phoneNumberInput');
                     },
                     style: ElevatedButton.styleFrom(
-                      minimumSize: Size(screenWidth * 0.4, 50),
+                      minimumSize: Size(screenWidth * 0.4, 46),
                       backgroundColor: Color.fromARGB(255, 141, 197, 64),
                       foregroundColor: Colors.white,
                       shape: RoundedRectangleBorder(

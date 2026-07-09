@@ -32,14 +32,14 @@ class TPin {
                 ),
                 // PIN box
                 Positioned(
-                  top: MediaQuery.of(context).size.height * 0.07,
+                  top: MediaQuery.of(context).size.height * 0.09,
                   left: 20,
                   right: 20,
                   child: Container(
                     padding: const EdgeInsets.all(20),
                     decoration: BoxDecoration(
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(15),
                     ),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
@@ -56,15 +56,15 @@ class TPin {
                         const SizedBox(height: 10),
                         const Text(
                           'Enter PIN',
-                          style: TextStyle(fontSize: 14, fontWeight: FontWeight.w800), //20 n theres fontwyt w600
+                          style: TextStyle(fontSize: 14.5, ), //20 n theres fontwyt w600
                         ),
-                        const SizedBox(height: 8),
+                        const SizedBox(height: 9),
                         Text.rich(
                           TextSpan(
                             children: [
                               TextSpan(
                                 text: '${NumberFormat('#,###').format(phoneNumberinpController.amount.value)}.00 ',
-                                style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),//3- n bold
+                                style: const TextStyle(fontSize: 30, fontWeight: FontWeight.w700),//3- n bold
                               ),
                               TextSpan(
                                 text: 'ETB',
@@ -73,7 +73,7 @@ class TPin {
                             ],
                           ),
                         ),
-                        const SizedBox(height: 20),
+                        const SizedBox(height: 23.5),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: List.generate(
@@ -83,13 +83,14 @@ class TPin {
                               height: 38,
                               decoration: BoxDecoration(
                                 color: const Color.fromARGB(255, 239, 238, 238),
+                                borderRadius: BorderRadius.circular(4),
                               ),
                               alignment: Alignment.center,
                               child: Text(
                                 index < pin.length ? '●' : '',
                                 style: const TextStyle(
                                   fontSize: 11, // 20
-                                  fontWeight: FontWeight.bold,
+                                  fontWeight: FontWeight.w600,
                                 ),
                               ),
                             ),
