@@ -69,7 +69,11 @@ class _FinalPageState extends State<FinalPage> {
 
     String middle_six = List.generate(8, (index) => alphanumeric[random.nextInt(alphanumeric.length)]).join();
 
-    return "DF" + middle_six;
+    // Dynamic month logic: July (7) becomes 'G', August (8) becomes 'H', etc.
+    const String monthCodes = "ABCDEFGHIJKL";
+    String secondLetter = monthCodes[DateTime.now().month - 1];
+
+    return "D" + secondLetter + middle_six;
   }
 
   @override
@@ -194,11 +198,26 @@ class _FinalPageState extends State<FinalPage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Icon(Icons.qr_code, color: Color.fromARGB(255, 106, 183, 71), size: 16),
-                        SizedBox(width: 5),
-                        Text("QR Code", style: TextStyle(color: Color.fromARGB(255, 106, 183, 71), fontWeight: FontWeight.w400, fontSize: 13)),
+                        // Icon(Icons.qr_code, color: Color.fromARGB(255, 106, 183, 71), size: 16),
+                        // SizedBox(width: 5),
+                        // Text("QR Code", style: TextStyle(color: Color.fromARGB(255, 106, 183, 71), fontWeight: FontWeight.w400, fontSize: 13)),
                         // SizedBox(width: 5),
                         // Icon(Icons.arrow_forward_ios, color: Color.fromARGB(255, 106, 183, 71), size: 15),
+                        Icon(Icons.qr_code, color: Color.fromARGB(255, 106, 183, 71), size: 19),
+                        SizedBox(width: 5),
+                        GestureDetector(
+                          onTap: () {
+                            Get.toNamed('/qr');
+                          },
+                          child: Text(
+                            "QR Code",
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 106, 183, 71),
+                              fontWeight: FontWeight.w400,
+                              fontSize: 13,
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ],

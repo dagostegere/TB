@@ -332,7 +332,7 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                                       children: [
                                         Icon(Icons.account_circle, color: const Color.fromARGB(255, 141, 197, 64), size: 38),
                                         SizedBox(width: 5),
-                                        Text("Kalkidan", style: TextStyle(fontSize: 16)),
+                                        Text("Segni", style: TextStyle(fontSize: 16)),
                                       ],
                                     ),
                                     Icon(Icons.arrow_forward_ios, color: const Color.fromARGB(255, 141, 197, 64), size: 13),
@@ -366,7 +366,7 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                                       children: [
                                         Icon(Icons.account_circle, color: const Color.fromARGB(255, 141, 197, 64), size: 38),
                                         SizedBox(width: 5),
-                                        Text("Segni", style: TextStyle(fontSize: 16)),
+                                        Text("Kalkidan", style: TextStyle(fontSize: 16)),
                                       ],
                                     ),
                                     Icon(Icons.arrow_forward_ios, color: const Color.fromARGB(255, 203, 200, 200), size: 13),
@@ -383,7 +383,7 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                                       children: [
                                         Icon(Icons.account_circle, color: const Color.fromARGB(255, 141, 197, 64), size: 38),
                                         SizedBox(width: 5),
-                                        Text("Amanuel", style: TextStyle(fontSize: 16)),
+                                        Text("Felmeta", style: TextStyle(fontSize: 16)),
                                       ],
                                     ),
                                     Icon(Icons.arrow_forward_ios, color: const Color.fromARGB(255, 203, 200, 200), size: 13),

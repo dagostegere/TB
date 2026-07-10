@@ -254,6 +254,7 @@ class _PayForMerchantPageState extends State<PayForMerchantPage>
                     ],
                   ),
                 ),
+                SizedBox(height: 5),
                 Center(
                   child: Column(
                     children: [

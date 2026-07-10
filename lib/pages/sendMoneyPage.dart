@@ -533,6 +533,8 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor: Color.fromARGB(255, 141, 197, 64),
                                       foregroundColor: Colors.white,
+                                      overlayColor: Colors.transparent,
+                                      splashFactory: NoSplash.splashFactory,
                                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3), side: BorderSide.none),
                                       elevation: 0,
                                       padding: EdgeInsets.zero,
@@ -561,7 +563,7 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
   Widget _buildKey(BuildContext context, String label) {
     return Expanded(
       child: Container(
-        margin: EdgeInsets.all(3),
+        margin: EdgeInsets.all(2.5),
         child: ElevatedButton(
           onPressed: () {
             phoneNumberinpController.setAmount(int.tryParse(textController.text) ?? 0);
@@ -576,9 +578,9 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
             foregroundColor: Colors.black,
             overlayColor: Colors.transparent, // 👈 add this
              splashFactory: NoSplash.splashFactory, // 👈 add this
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3), side: BorderSide.none),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6), side: BorderSide.none),
             elevation: 0,
-            padding: EdgeInsets.symmetric(vertical: 11),
+            padding: EdgeInsets.symmetric(vertical: 10),
           ),
           child: Text(label, style: const TextStyle(fontSize: 20)),
         ),
