@@ -263,11 +263,19 @@ class _PayForMerchantPageState extends State<PayForMerchantPage>
                   child: Column(
                     children: [
                       // ---- CHANGED: wrapped in Obx so it updates live ----
-                      Obx(() => Text( 
-                          "Pay to ${merchantidcontrollerfile.merchantName.value == "AMBASSADOR GARMENT AND TRADE PLC GAME ZONE" ? "AMBASSADOR GARMENT AND TRADE PLC..." : merchantidcontrollerfile.merchantName.value}",
-                          style: TextStyle(
-                              fontSize: 14,
-                              color: Colors.black87))),
+                      Obx(() => Text.rich(
+                          TextSpan(
+                            children: [
+                              TextSpan(text: "Pay to ", style: TextStyle(fontSize: 14, color: Colors.black87)),
+                              TextSpan(
+                                text: merchantidcontrollerfile.merchantName.value == "AMBASSADOR GARMENT AND TRADE PLC GAME ZONE"
+                                    ? "AMBASSADOR GARMENT AND TRADE PLC..."
+                                    : merchantidcontrollerfile.merchantName.value,
+                                style: TextStyle(fontSize: merchantidcontrollerfile.merchantName.value == "AMBASSADOR GARMENT AND TRADE PLC GAME ZONE" ? 13.4 : 14, color: Colors.black87),
+                              ),
+                            ],
+                          ),
+                        )),
                       // ---- END CHANGED ----
                       Container(
                         padding: EdgeInsets.all(8),

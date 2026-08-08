@@ -185,10 +185,16 @@ void initState() {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    _transactionRow("Transaction Time:", _transactionTime), // ← CHANGED
-                    _transactionRow("Transaction Type:", "Buy Goods"),
-                    _transactionRow(merchantidcontrollerfile.merchantName.value == "AMBASSADOR GARMENT AND TRADE PLC GAME ZONE" ? "AMBASSADOR GARMENT AND TRADE PLC GAME ZONE" : "Transaction To:", "${merchantidcontrollerfile.merchantName.value}"),
-                    _transactionRow("Transaction Number:", _transactionNumber),
+                  _transactionRow("Transaction Time:", _transactionTime),
+                  _transactionRow("Transaction Type:", "Buy Goods"),
+                  _transactionRow(
+                    merchantidcontrollerfile.merchantName.value == "AMBASSADOR GARMENT AND TRADE PLC GAME ZONE"
+                        ? "AMBASSADOR GARMENT AND TRADE PLC GAME ZONE"
+                        : "Transaction To:",
+                    merchantidcontrollerfile.merchantName.value,
+                    titleSize: merchantidcontrollerfile.merchantName.value == "AMBASSADOR GARMENT AND TRADE PLC GAME ZONE" ? 11 : 14,
+                  ),
+                  _transactionRow("Transaction Number:", _transactionNumber),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
@@ -325,13 +331,22 @@ void initState() {
     );
   }
 
-  Widget _transactionRow(String title, String value) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(title, style: TextStyle(color: Colors.grey, fontSize: 14)),
-        Text(value, style: TextStyle(fontSize: 14)),
-      ],
-    );
-  }
+  // Widget _transactionRow(String title, String value) {
+  //   return Row(
+  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //     children: [
+  //       Text(title, style: TextStyle(color: Colors.grey, fontSize: 14)),
+  //       Text(value, style: TextStyle(fontSize: 14)),
+  //     ],
+  //   );
+  // }
+ Widget _transactionRow(String title, String value, {double titleSize = 14}) {
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    children: [
+      Text(title, style: TextStyle(color: title == "AMBASSADOR GARMENT AND TRADE PLC GAME ZONE" ? Colors.black : Colors.grey, fontSize: titleSize)),
+      Text(value, style: TextStyle(fontSize: 14)),
+    ],
+  );
+ }
 }
