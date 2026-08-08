@@ -52,6 +52,10 @@ class _PayForMerchantPageState extends State<PayForMerchantPage>
         return "dgdlast bikila";
       case 123:
         return "Sheraton Addis";
+      case 731472:
+        return "CHITo TRADING PLC";
+      case 514731:
+       return "AMBASSADOR GARMENT AND TRADE PLC GAME ZONE";
       default:
         return merchantidcontrollerfile.merchantName.value;
     }
@@ -259,8 +263,8 @@ class _PayForMerchantPageState extends State<PayForMerchantPage>
                   child: Column(
                     children: [
                       // ---- CHANGED: wrapped in Obx so it updates live ----
-                      Obx(() => Text(
-                          "Pay to ${merchantidcontrollerfile.merchantName.value}",
+                      Obx(() => Text( 
+                          "Pay to ${merchantidcontrollerfile.merchantName.value == "AMBASSADOR GARMENT AND TRADE PLC GAME ZONE" ? "AMBASSADOR GARMENT AND TRADE PLC..." : merchantidcontrollerfile.merchantName.value}",
                           style: TextStyle(
                               fontSize: 14,
                               color: Colors.black87))),

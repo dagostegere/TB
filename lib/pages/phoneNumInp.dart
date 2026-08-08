@@ -81,6 +81,95 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
     921801767,
     964063143
     ]; // Example recent numbers
+
+  // Proceeds with the normal "send money" flow (loading dialog + navigation)
+  void _proceedToSendMoney() {
+    LoadingDialog loadingDialog = Get.put(LoadingDialog());
+    loadingDialog.showLoadingDialog();
+
+    phoneNumberinpController.setPhoneNumber(int.tryParse(textController.text) ?? 0);
+    Future.delayed(Duration(seconds: 2), () {
+      Get.back();
+      Get.toNamed('sendMoney');
+    });
+  }
+
+  // Shows the "customer is not registered" confirmation popup
+  void _showUnregisteredDialog() {
+    showDialog(
+      context: context,
+      barrierDismissible: true,
+      builder: (BuildContext dialogContext) {
+        return Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(14),
+          ),
+          insetPadding: EdgeInsets.symmetric(horizontal: 24),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Padding(
+                padding: EdgeInsets.fromLTRB(24, 28, 24, 24),
+                child: Text(
+                  "The customer is not registered, the recipient can access the money by registering for telebirr. Would you like to continue to send the money?",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 17, color: Colors.black87),
+                ),
+              ),
+              Divider(height: 1, thickness: 1, color: Color.fromARGB(255, 230, 230, 230)),
+              IntrinsicHeight(
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.of(dialogContext).pop();
+                        },
+                        child: Container(
+                          padding: EdgeInsets.symmetric(vertical: 16),
+                          alignment: Alignment.center,
+                          child: Text(
+                            "No",
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.black87,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    VerticalDivider(width: 1, thickness: 1, color: Color.fromARGB(255, 230, 230, 230)),
+                    Expanded(
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.of(dialogContext).pop();
+                          _proceedToSendMoney();
+                        },
+                        child: Container(
+                          padding: EdgeInsets.symmetric(vertical: 16),
+                          alignment: Alignment.center,
+                          child: Text(
+                            "Yes",
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Color.fromARGB(255, 141, 197, 64),
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
@@ -218,20 +307,20 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                                         controller: textController,
                                         focusNode: _focusNode,
                                         textAlignVertical: TextAlignVertical.center,
-                                        decoration: InputDecoration(
-                                          hintText: 'Enter Mobile Number',
-                                          hintStyle: TextStyle(
-                                            color: const Color.fromARGB(255, 164, 163, 163),
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w300,
-                                          ),
-                                          border: InputBorder.none,
-                                          isDense: true,
-                                          contentPadding: EdgeInsets.zero,
-                                        ),
                                         style: const TextStyle(
                                           fontSize: 18,
                                           fontWeight: FontWeight.w600,
+                                        ),
+                                        decoration: const InputDecoration(
+                                          hintText: 'Enter Mobile Number',
+                                          hintStyle: TextStyle(
+                                            color: Color.fromARGB(255, 164, 163, 163),
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                          border: InputBorder.none,
+                                          isDense: true,
+                                          contentPadding: EdgeInsets.symmetric(vertical: 12),
                                         ),
                                       ),
                                     ),
@@ -244,16 +333,15 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                               padding: EdgeInsets.symmetric(horizontal: 13),
                               child: ElevatedButton(
                                 onPressed: () {
-                                  LoadingDialog loadingDialog = Get.put(LoadingDialog());
-                                  loadingDialog.showLoadingDialog();
                                   int? input = int.tryParse(textController.text);
-                                  
 
-                                  phoneNumberinpController.setPhoneNumber(int.tryParse(textController.text) ?? 0);
-                                  Future.delayed(Duration (seconds: 2), () {
-                                    Get.back();
-                                    Get.toNamed('sendMoney');
-                                  });
+                                  if (input != null && phonenumbers.contains(input)) {
+                                    // Number is registered/known -> proceed as normal
+                                    _proceedToSendMoney();
+                                  } else {
+                                    // Number is not in the known list -> show the popup
+                                    _showUnregisteredDialog();
+                                  }
                                 },
                                 style: ElevatedButton.styleFrom(
                                   minimumSize: Size(double.infinity, 47),
@@ -332,7 +420,7 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                                       children: [
                                         Icon(Icons.account_circle, color: const Color.fromARGB(255, 141, 197, 64), size: 38),
                                         SizedBox(width: 5),
-                                        Text("Segni", style: TextStyle(fontSize: 16)),
+                                        Text("Yordanos", style: TextStyle(fontSize: 16)),
                                       ],
                                     ),
                                     Icon(Icons.arrow_forward_ios, color: const Color.fromARGB(255, 141, 197, 64), size: 13),
@@ -383,7 +471,7 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                                       children: [
                                         Icon(Icons.account_circle, color: const Color.fromARGB(255, 141, 197, 64), size: 38),
                                         SizedBox(width: 5),
-                                        Text("Felmeta", style: TextStyle(fontSize: 16)),
+                                        Text("Mitiku", style: TextStyle(fontSize: 16)),
                                       ],
                                     ),
                                     Icon(Icons.arrow_forward_ios, color: const Color.fromARGB(255, 203, 200, 200), size: 13),
@@ -417,7 +505,7 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                                       children: [
                                         Icon(Icons.account_circle, color: const Color.fromARGB(255, 141, 197, 64), size: 38),
                                         SizedBox(width: 5),
-                                        Text("Yewunta", style: TextStyle(fontSize: 16)),
+                                        Text("Tariku", style: TextStyle(fontSize: 16)),
                                       ],
                                     ),
                                     Icon(Icons.arrow_forward_ios, color: const Color.fromARGB(255, 203, 200, 200), size: 13),

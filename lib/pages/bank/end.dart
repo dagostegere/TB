@@ -67,7 +67,7 @@ void initState() {
     const String alphanumeric = "ABCDEHIJLMPRSTVXYZ1234567890";
     Random random = Random();
     String middle_six = List.generate(8, (index) => alphanumeric[random.nextInt(alphanumeric.length)]).join();
-    return "DF" + middle_six;
+    return "DH" + middle_six;
   }
 
   @override
@@ -166,7 +166,7 @@ void initState() {
                     children: [
                       TextSpan(
                         text: ' (ETB)',
-                        style: TextStyle(fontSize: 14, fontWeight: FontWeight.w100, color: Colors.black),
+                        style: TextStyle(fontSize: 14, fontWeight: FontWeight.w300, color: Colors.black),
                       ),
                     ],
                   ),
@@ -187,7 +187,7 @@ void initState() {
                   children: [
                     _transactionRow("Transaction Time:", _transactionTime), // ← CHANGED
                     _transactionRow("Transaction Type:", "Buy Goods"),
-                    _transactionRow("Transaction To:", "${merchantidcontrollerfile.merchantName.value}"),
+                    _transactionRow(merchantidcontrollerfile.merchantName.value == "AMBASSADOR GARMENT AND TRADE PLC GAME ZONE" ? "AMBASSADOR GARMENT AND TRADE PLC GAME ZONE" : "Transaction To:", "${merchantidcontrollerfile.merchantName.value}"),
                     _transactionRow("Transaction Number:", _transactionNumber),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
