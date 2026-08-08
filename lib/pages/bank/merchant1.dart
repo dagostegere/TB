@@ -368,12 +368,12 @@ class _PayForMerchantPageState extends State<PayForMerchantPage>
                                           Text(
                                               "Balance",
                                               style: TextStyle(
-                                                  fontSize: 13,
+                                                  fontSize: 14,
                                                   fontWeight: FontWeight.normal)),
                                           Text(
                                               "(Available Balance:9034.72ETB)",
                                               style: TextStyle(
-                                                  fontSize: 10,
+                                                  fontSize: 12,
                                                   color: Colors.grey)),
                                         ],
                                       ),
