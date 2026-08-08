@@ -15,7 +15,9 @@ class PhoneNumberInputController extends GetxController {
 
   final List<int> merchant_IDs = [
     123,
-    111
+    111,
+    514731,
+    731472
   ];
 
   void setmerchantamount(int amount) {

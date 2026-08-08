@@ -108,10 +108,10 @@ class _SendbankState extends State<Sendbank> {
       setName("MESERET MINWYELET MIHRETE"); // 4kilo food and coffe  
     }
     if(phoneNumberinpController.accountNumber == 1000004400201) {
-      setName("AMBACHEW TESFAYE HMARIAM"); // KEMEKEM 
+      setName("AMBACHEW TESFAYE HMARIAM"); // KEMEKEM hair
     }
     if(phoneNumberinpController.accountNumber == 1000006955502) {
-      setName("BEKELE MOLLA HOTEL PLC"); // hibir 
+      setName("BEKELE MOLLA HOTEL PLC"); // hibirr 
     }
     if(phoneNumberinpController.accountNumber == 1000683265652) {
       setName("THE ADDRESS TRADING PLC"); // bolenew 
@@ -126,13 +126,13 @@ class _SendbankState extends State<Sendbank> {
       setName("DARCO MANUFACTURING AND TRADING PLC"); // 4kilo icevream
     }
     if(phoneNumberinpController.accountNumber == 1000494090434) {
-      setName("BESRAT TILAHUN WELDEKIDAN"); // KBUR 
+      setName("BESRAT TILAHUN WELDEKIDAN"); // KBUR kibur coffe
     }
     if(phoneNumberinpController.accountNumber == 1000313612914) {
       setName("DELMELA TRADING PLC"); // mitmita 
     }
     if(phoneNumberinpController.accountNumber == 1000672488625) {
-      setName("BETHELHEM ANDARGE BIRKAYEHU"); //  noodle
+      setName("BETHELHEM ANDARGE BIRKAYEHU"); //  noodle bole
     }
     if(phoneNumberinpController.accountNumber == 1000329745523) {
       setName("GIRMA DEGU MAMAS KITCHEN"); //  
@@ -165,10 +165,10 @@ class _SendbankState extends State<Sendbank> {
       setName("EFFI NORDIC SPECIALIZED RESTAURANT"); // atlas rut
     }
     if(phoneNumberinpController.accountNumber == 1000403709356) {
-      setName("NAHOM MANALE TASSU"); // ATLAS YOS
+      setName("NAHOM MANALE TASSU"); // ATLAS YOSeph
     }
     if(phoneNumberinpController.accountNumber == 1000413077412) {
-      setName("MICKEY GENERAL INVESTMENT PLC"); // 2K HA
+      setName("MICKEY GENERAL INVESTMENT PLC"); // 2K HA 2shi habesha 
     }
     if(phoneNumberinpController.accountNumber == 1000723361412) {
       setName("WOW BURGER PRODUCTION PLC"); // WOW bole 
@@ -189,19 +189,19 @@ class _SendbankState extends State<Sendbank> {
       setName("Mr Sami Ali Ahmed"); // AMBASADOR 
     }
     if(phoneNumberinpController.accountNumber == 1000001812509) {
-      setName("MIDROC ETH PLC (SHERATON ADD.)"); // LIN
+      setName("MIDROC ETH PLC (SHERATON ADD.)"); // sheraton
     }
     if(phoneNumberinpController.accountNumber == 1000704448272) {
-      setName("NONNA S PLC"); // PIZZA AMBASADOR
+      setName("NONNA S PLC"); // PIZZA AMBASADOR pastaaaaaa
     }
     if(phoneNumberinpController.accountNumber == 1000434061109) {
-      setName("TAFESE W.5KILO RESTAU AND LAUNGE"); //
+      setName("TAFESE W.5KILO RESTAU AND LAUNGE"); // 4kilo mgb bet
     }
     if(phoneNumberinpController.accountNumber == 1000662056646) {
-      setName("BETHELHEM MELESSE SHISHIGE"); //
+      setName("BETHELHEM MELESSE SHISHIGE"); // hidar biych 
     } //HIDAR
     if(phoneNumberinpController.accountNumber == 1000711786116) {
-      setName("Miss Meron Fesha Yitbarek"); //
+      setName("Miss Meron Fesha Yitbarek"); // adorisi biych
     } //adorisi
     if(phoneNumberinpController.accountNumber == 1000646095976) {
       setName("ROMINA PLC"); //
@@ -216,19 +216,19 @@ class _SendbankState extends State<Sendbank> {
       setName("ADORSI ONE MEMBER PLC"); //
     } //ADORSI
     if(phoneNumberinpController.accountNumber == 1000432972368) {
-      setName("KOMARR PLC"); //
+      setName("KOMARR PLC"); // olive
     } //OLIVE
     if(phoneNumberinpController.accountNumber == 1000675828893) {
-      setName("SOLINA HOME FURNISHING PLC"); //
+      setName("SOLINA HOME FURNISHING PLC"); // solina cafe and res
     } //OLIVE
     if(phoneNumberinpController.accountNumber == 1000322673691) {
-      setName("Mr Selam Bereket Abreham"); //
+      setName("Mr Selam Bereket Abreham"); // idk
     } //OLIVE
     if(phoneNumberinpController.accountNumber == 1000597367426) {
-      setName("Miss Firut Asrat Birhanu"); //
+      setName("Miss Firut Asrat Birhanu"); // school indomi
     } //OLIVE
     if(phoneNumberinpController.accountNumber == 1000741463907) {
-      setName("ROKI RESTAURANT ONE MEMBER PLC"); //
+      setName("ROKI RESTAURANT ONE MEMBER PLC"); // gerji chips
     } //OLIVE
     if(phoneNumberinpController.accountNumber == 1000235010732) {
       setName("NIGISTI ADMASU GEGZEABHE"); // 4kilo ROBA RMM 
