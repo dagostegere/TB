@@ -189,7 +189,7 @@ void initState() {
                   _transactionRow("Transaction Type:", "Buy Goods"),
                   _transactionRow(
                     merchantidcontrollerfile.merchantName.value, "", 
-                    titleSize: merchantidcontrollerfile.merchantName.value == "AMBASSADOR GARMENT AND TRADE PLC GAME ZONE" ? 11 : 14,
+                    titleSize: merchantidcontrollerfile.merchantName.value == "AMBASSADOR GARMENT AND TRADE PLC GAME ZONE" ? 11.5 : 14,
                   ),
                   _transactionRow("Transaction Number:", _transactionNumber),
                     Row(
