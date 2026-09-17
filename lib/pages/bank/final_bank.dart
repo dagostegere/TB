@@ -68,7 +68,7 @@ class _FinalBankState extends State<FinalBank> {
     Random random = Random();
     String firstPart = List.generate(6, (index) => alphanumeric[random.nextInt(alphanumeric.length)]).join();
     String last_two_letters = List.generate(2, (index) => letters[random.nextInt(letters.length)]).join();
-    return 'DH' + firstPart + last_two_letters;
+    return 'DI' + firstPart + last_two_letters;
   }
 
   @override

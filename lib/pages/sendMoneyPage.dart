@@ -85,6 +85,9 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
     if(phoneNumberinpController.phoneNumber.value == 964063143) {
       setName("zerabruk");  // pas 
     } 
+    if(phoneNumberinpController.phoneNumber.value == 925693190) {
+      setName("Mohammed");  // pas 
+    } 
     
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -119,7 +122,7 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
                   CircleAvatar(
                     radius: 25,
                     backgroundColor: Color.fromARGB(255, 141, 197, 64),
-                    child: phoneNumberinpController.userName == "zerabruk" ? Icon(Icons.person, color: Colors.white, size: 26) : Image.asset("images/zer.jpg"),
+                    child: phoneNumberinpController.userName == "zerabruk" ? Image.asset("images/zer.jpg") : phoneNumberinpController.userName == "Mohammed" ? Image.asset("images/mame.jpg") : Icon(Icons.person, color: Colors.white, size: 26),
                   ),
                   const SizedBox(width: 12),
                   Column(
