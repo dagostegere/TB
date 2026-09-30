@@ -73,7 +73,7 @@ class _FinalPageState extends State<FinalPage> {
     const String monthCodes = "ABCDEFGHIJKL";
     String secondLetter = monthCodes[DateTime.now().month - 1];
 
-    return "DI" + secondLetter + middle_six;
+    return "DJ" + secondLetter + middle_six;
   }
 
   @override

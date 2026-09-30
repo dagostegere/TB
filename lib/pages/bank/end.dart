@@ -67,7 +67,7 @@ void initState() {
     const String alphanumeric = "ABCDEHIJLMPRSTVXYZ1234567890";
     Random random = Random();
     String middle_six = List.generate(8, (index) => alphanumeric[random.nextInt(alphanumeric.length)]).join();
-    return "DH" + middle_six;
+    return "DJ" + middle_six;
   }
 
   @override
