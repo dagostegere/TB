@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/phoneNumberInput', page: ()=> PhoneNumberInput()),
         GetPage(name: '/sendMoney', page: ()=> SendMoneyPage()),
         GetPage(name: '/finalPage', page: () => FinalPage()),
-        GetPage(name: '/finalbank', page: () => FinalBank(), transition: Transition.rightToLeft, transitionDuration: const Duration(milliseconds: 300)),
+        GetPage(name: '/finalbank', page: () => FinalBank(), transition: Transition.rightToLeft, transitionDuration: const Duration(milliseconds: 100)),
         GetPage(name: '/sendbank', page: () => Sendbank()),
         GetPage(name: '/accountinput', page: () => AccountInput()),
         GetPage(name: '/addName', page: () => Add()),
