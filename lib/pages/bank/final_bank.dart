@@ -25,10 +25,9 @@ class _FinalBankState extends State<FinalBank> {
   late String _transactionTime;
 
   final List<String> _imagePaths = [
-    'images/5ani.jpg',
-    'images/3.jpg',
+    'images/esey.jpg',
     'images/1.jpg',
-    'images/4.jpg',
+    'images/3.jpg',
   ];
 
   final int _maxPage = 1000;
@@ -176,26 +175,62 @@ class _FinalBankState extends State<FinalBank> {
                       // _transactionRow("Transaction Time:", "2026/03/24" + " " + getCurrentDateTime(), 16),
                       _transactionRow("Transaction Time:", _transactionTime, 15),
                       _transactionRow("Transaction Type:", "Transfer to Bank", 15),
-                      _transactionRow(phoneNumberinpcontroller.accountName == "DARCO MANUFACTURING AND TRADING PLC" ? "T..." : "Transaction To:" , "${phoneNumberinpcontroller.accountName}",
-                          phoneNumberinpcontroller.accountName == "BORA AMUSEMENT PARK EMEBET WOLDHER"
-                              ? 12
-                              : phoneNumberinpcontroller.accountName == "AMBASSADOR GARMENT AND TRADE PLC" //32
-                                  ? 12
-                                  : phoneNumberinpcontroller.accountName == "DARCO MANUFACTURING AND TRADING PLC" ? 15 : 15),
-                      _transactionRow("Bank Account Number:", "${phoneNumberinpcontroller.accountNumber}", 15),
-                      _transactionRow("Bank Name:", "Commercial Bank of Ethiopia", 15),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Icon(Icons.qr_code, color: Color.fromARGB(255, 106, 183, 71), size: 16),
-                          SizedBox(width: 5),
-                          Text("QR Code", style: TextStyle(color: Color.fromARGB(255, 106, 183, 71), fontWeight: FontWeight.w600, fontSize: 15)),
-                          SizedBox(width: 5),
-                          Icon(Icons.arrow_forward_ios, color: Color.fromARGB(255, 106, 183, 71), size: 13),
-                        ],
+                      _transactionRow(
+                        phoneNumberinpcontroller.accountName == "DARCO MANUFACTURING AND TRADING PLC"
+                            ? "T..."
+                            : "Transaction To:",
+                        phoneNumberinpcontroller.accountName == "BROSTAMIFA TRADE AND HOSPITALITY"
+                            ? "BROSTAMIFA TRADE\nAND HOSPITALITY"
+                            : "${phoneNumberinpcontroller.accountName}",
+                        phoneNumberinpcontroller.accountName == "BORA AMUSEMENT PARK EMEBET WOLDHER"
+                            ? 12
+                            : phoneNumberinpcontroller.accountName == "AMBASSADOR GARMENT AND TRADE PLC" //32
+                        ? 12
+                        : phoneNumberinpcontroller.accountName == "DARCO MANUFACTURING AND TRADING PLC"
+                            ? 15
+                            : 15,
+                          ),
+                          _transactionRow(
+                            "Bank Account Number:",
+                            "${phoneNumberinpcontroller.accountNumber}",
+                            15,
+                          ),
+                          _transactionRow(
+                            "Bank Name:",
+                            phoneNumberinpcontroller.accountName == "BROSTAMIFA TRADE AND HOSPITALITY"
+                                ? "Commercial Bank\nof Ethiopia"
+                                : "Commercial Bank of Ethiopia",
+                            15,
+                         ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Icon(
+                      Icons.qr_code,
+                      color: Color.fromARGB(255, 106, 183, 71),
+                      size: 16,
+                    ),
+                    SizedBox(width: 5),
+                    GestureDetector(
+                      onTap: () {
+                        Get.toNamed('/qr');
+                      },
+                      child: Text(
+                        "QR Code",
+                        style: TextStyle(
+                          color: Color.fromARGB(255, 106, 183, 71),
+                          fontWeight: FontWeight.w600,
+                          fontSize: 15,
+                        ),
                       ),
-                    ],
-                  ),
+                    ),
+                    // Text("QR Code", style: TextStyle(color: Color.fromARGB(255, 106, 183, 71), fontWeight: FontWeight.w600, fontSize: 15)),
+                    // SizedBox(width: 5),
+                    // Icon(Icons.arrow_forward_ios, color: Color.fromARGB(255, 106, 183, 71), size: 13),
+                  ],
+                ),
+              ],
+            ),
                 ),
                 Container(
                   width: double.infinity,

@@ -25,11 +25,9 @@ class _FinalPageState extends State<FinalPage> {
   late String _currentDateTime;
 
   final List<String> _imagePaths = [
-    'images/5ani.jpg',
-    'images/3.jpg',
+    'images/esey.jpg',
     'images/1.jpg',
-    'images/4.jpg',
-    'images/55.jpg',
+    'images/3.jpg',
   ];
 
   final int _maxPage = 1000;

@@ -233,6 +233,12 @@ class _SendbankState extends State<Sendbank> {
     if(phoneNumberinpController.accountNumber == 1000235010732) {
       setName("NIGISTI ADMASU GEGZEABHE"); // 4kilo ROBA RMM 
     }
+    if(phoneNumberinpController.accountNumber == 1000644033876) {
+      setName("MOPLACO TRADING PLC"); // Galani
+    }
+    if(phoneNumberinpController.accountNumber == 1000737780507) {
+      setName("BROSTAMIFA TRADE AND HOSPITALITY"); // CHICKEN
+    }
     
 
     // Helper to build a single number/backspace button

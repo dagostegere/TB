@@ -32,10 +32,9 @@ class _PayForMerchantPageState extends State<PayForMerchantPage>
   late Timer _timer;
 
   final List<String> _imagePaths = [
-    'images/5ani.jpg',
-    'images/3.jpg',
+    'images/esey.jpg',
     'images/1.jpg',
-    'images/4.jpg',
+    'images/3.jpg',
   ];
 
   final int _maxPage = 1000;
@@ -46,8 +45,8 @@ class _PayForMerchantPageState extends State<PayForMerchantPage>
   // ---- ADDED: central place to map a merchant ID to a name ----
   String _resolveMerchantName(int id) {
     switch (id) {
-      case 43243:
-        return "abebe bikila";
+      case 0909:
+        return "GULIFA COFFEE PLC";
       case 111:
         return "dgdlast bikila";
       case 123:
